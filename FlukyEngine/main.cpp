@@ -1,11 +1,11 @@
-#include <GLFW/glfw3.h>
-#include <iostream>
-
-#include "src/graphics/window.h"
+//#include <GLFW/glfw3.h>
+//#include <iostream>
+//
+//#include "src/graphics/window.h"
 
 int main()
 {
-	using namespace fluky;
+	/*using namespace fluky;
 	using namespace graphics;
 
 	Window window("Fluky!", 800, 600);
@@ -29,5 +29,5 @@ int main()
 	}
 
 	system("PAUSE");
-	return 0;
+	return 0;*/
 }
