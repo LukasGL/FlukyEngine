@@ -1,3 +1,9 @@
 [submodule "thirdParty/glfw-3.3.4"]
 	path = thirdParty/glfw-3.3.4
 	url = https://github.com/glfw/glfw
+[submodule "thirdParty/ogre"]
+	path = thirdParty/ogre
+	url = https://github.com/OGRECave/ogre
+[submodule "thirdParty/bgfx"]
+	path = thirdParty/bgfx
+	url = https://github.com/bkaradzic/bgfx
