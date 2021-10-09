@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 	if (!glfwInit())
 		return 1;
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-	GLFWwindow *window = glfwCreateWindow(1024, 768, "helloworld", nullptr, nullptr);
+	GLFWwindow *window = glfwCreateWindow(1024, 768, "Fluky Engine", nullptr, nullptr);
 	if (!window)
 		return 1;
 	glfwSetKeyCallback(window, glfw_keyCallback);

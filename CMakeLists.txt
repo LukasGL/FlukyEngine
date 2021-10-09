@@ -5,11 +5,6 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("FlukyEngine")
 
-set(BGFX_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/bgfx-full/bgfx/include/bgfx"
-							 "${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/bgfx-full/bgfx/examples/common"
-							 "${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/bgfx-full/bimg/include"
-							 "${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/bgfx-full/bx/include")
-
 
 #find_package(OpenGL REQUIRED)
 set(THIRD_PARTY_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/glfw-3.3.4/include"
@@ -19,9 +14,17 @@ set(THIRD_PARTY_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/glfw
 									"${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/bgfx-full/bgfx/examples/common"
 									"${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/Easy3D")
 
-#set(FLUKY_INCLUDE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/FlukyEngine")
+set(FLUKY_INCLUDE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/source")
+
+if(MSVC)
+	set(THIRD_PARTY_LIBRARIES OpenGL::GL glfw glad ImGui bgfx bx bimg dear-imgui meshoptimizer easy3d::core easy3d::viewer)
+else()
+	set(THIRD_PARTY_LIBRARIES OpenGL::GL glfw glad ImGui bgfx bx bimg dear-imgui meshoptimizer easy3d::core easy3d::viewer stdc++fs)
+endif(MSVC)
 
 # Include sub-projects.
+add_subdirectory("examples")
+add_subdirectory("examples-fluky")
 add_subdirectory("thirdParty")
 add_subdirectory("source")
 
