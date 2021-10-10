@@ -7,11 +7,12 @@ namespace Fluky {
 		//m_eventManager(),
 		m_window(),
 		m_input(),
+		m_joystickinput(),
 		m_application(app),
 		m_shouldClose(false)
 	{
 		m_window.StartUp();
-		m_input.StartUp();
+		//m_input.StartUp();
 		m_application = std::move(app);
 		m_application.StartUp(*this);
 	}
@@ -19,13 +20,17 @@ namespace Fluky {
 	World::~World() {
 		m_application.UserShutDown(*this);
 		m_window.ShutDown();
-		m_input.ShutDown();
+		//m_input.ShutDown();
 
 	}
 
 	
 	Input& World::GetInput() noexcept {
 		return m_input;
+	}
+
+	JoystickInput& World::GetJoystickInput() noexcept {
+		return m_joystickinput;
 	}
 
 	Window& World::GetWindow() noexcept {

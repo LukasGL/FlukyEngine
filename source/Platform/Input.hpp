@@ -46,6 +46,8 @@ namespace Fluky
 		* Ajusta el tipo de cursor al tipo entregado
 		*/
 		void SetCursorType(CursorType type) noexcept;
+
+
 	private:
 
 		/*

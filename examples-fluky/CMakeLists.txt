@@ -11,3 +11,4 @@ endfunction(MakeExample)
 
 #MakeExample(ex_quad_pro ex_quad_pro.cpp)
 MakeExample(ex_world ex_world.cpp)
+MakeExample(ex_input ex_input.cpp)

@@ -8,6 +8,7 @@ find_package(OpenGL REQUIRED)
 set(FLUKY_HEADERS 
 				Platform/Window.hpp
 				Platform/Input.hpp
+				Platform/JoystickInput.hpp
 				Platform/KeyCodes.hpp
 				World/World.hpp
 				Application.hpp
@@ -16,6 +17,7 @@ set(FLUKY_HEADERS
 set(FLUKY_SOURCES 
 				Platform/Window.cpp
 				Platform/Input.cpp
+				Platform/JoystickInput.cpp
 				Application.cpp
 				World/World.cpp
 				)

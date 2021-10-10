@@ -1,9 +1,12 @@
 #include "Window.hpp"
 #define GLFW_INCLUDE_NONE
+#include <iostream>
 #include <stdio.h>
 #include <bx/bx.h>
 #include <bgfx/bgfx.h>
 #include <bgfx/platform.h>
+#include <imgui/imgui.h>
+#include "JoystickInput.hpp"
 #define GLFW_EXPOSE_NATIVE_WIN32
 #include <GLFW/glfw3native.h>
 #ifndef _WINDOWS_
@@ -11,6 +14,9 @@
 #endif
 
 namespace Fluky {
+
+	JoystickInput joyInput;
+
 	static void GLFWErrorCallback(int error, const char* description)
 	{
 		fprintf(stderr, "GLFW error %d: %s\n", error, description);
@@ -19,13 +25,35 @@ namespace Fluky {
 	{
 		const int success = glfwInit();
 		glfwSetErrorCallback(GLFWErrorCallback);
-		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+		//glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+#if __APPLE__
+		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
+#endif
+#ifndef NDEBUG
+		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+#endif
 		auto monitor = glfwGetPrimaryMonitor();
 		m_windowHandle = glfwCreateWindow(1024, 768, "Fluky Engine", nullptr, nullptr);
 		//m_windowHandle = glfwCreateWindow(windowWidth, windowHeight, windowTitle.c_str(), fullScreen? monitor : NULL, NULL);
 		if (!m_windowHandle)
-			return;
+		{
+			std::cout << "Failed to create GLFW window" << std::endl;
+		}
+		else
+		{
+			std::cout << "GLFW window created successfully!" << std::endl;
+		}
+
 		glfwMakeContextCurrent(m_windowHandle);
+
+		joyInput.SetKeyCallback(m_windowHandle);
+
+		joyInput.SetJoystickCallback();
+
+
 		// Call bgfx::renderFrame before bgfx::init to signal to bgfx not to create a render thread.
 		// Most graphics APIs must be used on the same thread that created the window.
 		bgfx::renderFrame();
@@ -38,26 +66,52 @@ namespace Fluky {
 		init.resolution.reset = BGFX_RESET_VSYNC;
 		if (!bgfx::init(init))
 			return;
-		const bgfx::ViewId kClearView = 0;
-		bgfx::setViewClear(kClearView, BGFX_CLEAR_COLOR);
-		bgfx::setViewRect(kClearView, 0, 0, bgfx::BackbufferRatio::Equal);
+		// Enable debug text.
+		bgfx::setDebug(BGFX_DEBUG_NONE);
+		// Set view 0 clear state.
+		bgfx::setViewClear(0
+			, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH
+			, 0x303030ff
+			, 1.0f
+			, 0
+		);
+
 	}
 	void Window::ShutDown() noexcept
 	{
+		
 		bgfx::shutdown();
 		glfwDestroyWindow(m_windowHandle);
 		//glfwTerminate();
 	}
 	void Window::Update() noexcept
 	{
+		
+
 		glfwPollEvents();
+
+		joyInput.pollJoysticks();
+
 		// Handle window resize.
-		int oldWidth = width, oldHeight = height;
+		/*int oldWidth = width, oldHeight = height;
 		glfwGetWindowSize(m_windowHandle, &width, &height);
+		const bgfx::ViewId kClearView = 0;
+		bgfx::setViewClear(kClearView, BGFX_CLEAR_COLOR);
 		if (width != oldWidth || height != oldHeight) {
 			bgfx::reset((uint32_t)width, (uint32_t)height, BGFX_RESET_VSYNC);
-			//bgfx::setViewRect(kClearView, 0, 0, bgfx::BackbufferRatio::Equal);
-		}
+			bgfx::setViewRect(kClearView, 0, 0, bgfx::BackbufferRatio::Equal);
+		}*/
+
+		// Set view 0 default viewport.
+		bgfx::setViewRect(0, 0, 0, uint16_t(width), uint16_t(height));
+
+		// This dummy draw call is here to make sure that view 0 is cleared
+		// if no other draw calls are submitted to view 0.
+		bgfx::touch(0);
+
+		// Advance to next frame. Rendering thread will be kicked to
+			// process submitted rendering primitives.
+		bgfx::frame();
 	}
 
 	glm::ivec2 Window::GetWindowDimensions() const noexcept

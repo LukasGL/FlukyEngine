@@ -3,6 +3,7 @@
 #define WORLD_HPP
 #include "../Platform/Window.hpp"
 #include "../Platform/Input.hpp"
+#include "../Platform/JoystickInput.hpp"
 #include "../Application.hpp"
 
 #include <memory>
@@ -21,6 +22,7 @@ namespace Fluky {
 		World& operator=(const World& world) = delete;
 
 		Input& GetInput() noexcept;
+		JoystickInput& GetJoystickInput() noexcept;
 		Window& GetWindow() noexcept;
 		void EndApplication() noexcept;
 
@@ -32,6 +34,7 @@ namespace Fluky {
 
 		Input m_input;
 		Window m_window;
+		JoystickInput m_joystickinput;
 		Application& m_application;
 		bool m_shouldClose;
 
