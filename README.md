@@ -45,6 +45,9 @@ Los ejemplos serán generados automáticamente y serán los siguientes:
 - `ex_audio.exe` Para la prueba del audio
 - `ex_cube.exe` Para la prueba del renderizado de figuras
 - `ex_world.exe` Para la prueba de la creación del mundo
+- `ex_text.exe` (No terminado)
+
+Toda la explicación puede ser vista en el video de la demostración haciendo clic [aquí](https://youtu.be/E3vkcPsZdg8)
 
 ## Como crear aplicaciones usando el motor
 
