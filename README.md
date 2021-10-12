@@ -48,4 +48,4 @@ Por ejemplo si se revisan el archivo `examples-fluky/ex_cube.cpp` utiliza la mis
 
 ## Screenshots
 
-![image-20211012120957362](C:\Users\lukas\AppData\Roaming\Typora\typora-user-images\image-20211012120957362.png)
+![ex_cube](images/ex_cube.png)
