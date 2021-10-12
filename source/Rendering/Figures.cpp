@@ -1,5 +1,7 @@
 #include "Figures.hpp"
-
+#include "bgfx/bgfx.h"
+#include "bgfx/platform.h"
+#include "bx/math.h"
 #include <iostream>
 
 struct PosColorVertex
@@ -41,6 +43,8 @@ static const uint16_t s_cubeTriList[] =
 
 bgfx::ShaderHandle loadShader(const char* FILENAME)
 {
+
+
 	const char* shaderPath = "???";
 
 	switch (bgfx::getRendererType()) {
@@ -77,6 +81,13 @@ bgfx::ShaderHandle loadShader(const char* FILENAME)
 namespace Fluky {
 
 
+	bgfx::VertexBufferHandle vbh;
+	bgfx::IndexBufferHandle ibh;
+
+	bgfx::ShaderHandle vsh;
+	bgfx::ShaderHandle fsh;
+	bgfx::ProgramHandle program;
+
 	int Figures::Init()
 	{
 		bgfx::VertexLayout pcvDecl;
@@ -92,6 +103,8 @@ namespace Fluky {
 		program = bgfx::createProgram(vsh, fsh, true);
 
 		counter = 0;
+
+		std::cout << "Figure initialized succesfully!" << std::endl;
 
 		return 1;
 	}
@@ -111,6 +124,8 @@ namespace Fluky {
 		bgfx::setIndexBuffer(ibh);
 
 		bgfx::submit(0, program);
+
+		counter++;
 
 		///*bgfx::IndexBufferHandle ibh = m_ibh[m_pt];
 		//uint64_t state = 0

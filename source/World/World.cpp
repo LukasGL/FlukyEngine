@@ -2,32 +2,39 @@
 #include <chrono>
 namespace Fluky {
 
+	Figures figures;
+
 	World::World(Application& app) :
 		//m_objectManager(),
 		//m_eventManager(),
 		m_window(),
-		m_input(),
 		m_joystickinput(),
 		m_application(app),
 		m_shouldClose(false)
 	{
 		m_window.StartUp();
 		//m_input.StartUp();
+		add_figure = false;
 		m_application = std::move(app);
 		m_application.StartUp(*this);
 	}
 
 	World::~World() {
 		m_application.UserShutDown(*this);
+		if (add_figure) {
+			figures.~Figures();
+		}
 		m_window.ShutDown();
 		//m_input.ShutDown();
 
 	}
 
-	
-	Input& World::GetInput() noexcept {
-		return m_input;
+	void World::CreateFigure() noexcept {
+		figures.Init();
+		add_figure = true;
 	}
+
+
 
 	JoystickInput& World::GetJoystickInput() noexcept {
 		return m_joystickinput;
@@ -57,8 +64,11 @@ namespace Fluky {
 
 	void World::Update(float timeStep) noexcept
 	{
-		m_input.Update();
 		m_application.UserUpdate(*this, timeStep);
+
+		if (add_figure) {
+			figures.Update();
+		}
 		m_window.Update();
 	}
 }

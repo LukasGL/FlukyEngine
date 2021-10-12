@@ -1,9 +1,10 @@
 #pragma once
 #ifndef WORLD_HPP
 #define WORLD_HPP
+
 #include "../Platform/Window.hpp"
-#include "../Platform/Input.hpp"
 #include "../Platform/JoystickInput.hpp"
+#include "../Rendering/Figures.hpp"
 #include "../Application.hpp"
 
 #include <memory>
@@ -21,10 +22,10 @@ namespace Fluky {
 		World(const World& world) = delete;
 		World& operator=(const World& world) = delete;
 
-		Input& GetInput() noexcept;
 		JoystickInput& GetJoystickInput() noexcept;
 		Window& GetWindow() noexcept;
 		void EndApplication() noexcept;
+		void CreateFigure() noexcept;
 
 	private:
 		World(Application& app);
@@ -32,11 +33,12 @@ namespace Fluky {
 		void StartMainLoop() noexcept;
 		void Update(float timeStep) noexcept;
 
-		Input m_input;
 		Window m_window;
 		JoystickInput m_joystickinput;
 		Application& m_application;
 		bool m_shouldClose;
+
+		bool add_figure;
 
 	};
 

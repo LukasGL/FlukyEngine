@@ -3,11 +3,12 @@
 #include <iostream>
 #include <stdio.h>
 #include <bx/bx.h>
+#include <bx/math.h>
 #include <bgfx/bgfx.h>
 #include <bgfx/platform.h>
 #include <imgui/imgui.h>
 #include "JoystickInput.hpp"
-#include "../Rendering/Figures.hpp"
+//#include "../Rendering/Figures.hpp"
 #define GLFW_EXPOSE_NATIVE_WIN32
 #include <GLFW/glfw3native.h>
 #ifndef _WINDOWS_
@@ -17,7 +18,7 @@
 namespace Fluky {
 
 	JoystickInput joyInput;
-	Figures figtest;
+	//Figures figtest;
 
 	static void GLFWErrorCallback(int error, const char* description)
 	{
@@ -87,14 +88,14 @@ namespace Fluky {
 		bgfx::setViewRect(0, 0, 0, width, height);
 
 
-		if (figtest.Init()) {
+		/*if (figtest.Init()) {
 			std::cout << "Figures initialized succesfully!" << std::endl;
-		}
+		}*/
 
 	}
 	void Window::ShutDown() noexcept
 	{
-		figtest.~Figures();
+		//figtest.~Figures();
 		bgfx::shutdown();
 		glfwDestroyWindow(m_windowHandle);
 		//glfwTerminate();
@@ -139,13 +140,12 @@ namespace Fluky {
 		// if no other draw calls are submitted to view 0.
 		bgfx::touch(0);
 
-		figtest.Update();
+		//figtest.Update();
 
 		// Advance to next frame. Rendering thread will be kicked to
 			// process submitted rendering primitives.
 		bgfx::frame();
 
-		figtest.counter++;
 	}
 
 	glm::ivec2 Window::GetWindowDimensions() const noexcept

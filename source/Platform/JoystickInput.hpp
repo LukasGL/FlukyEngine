@@ -10,7 +10,6 @@
 #include <bitset>
 #include <cmath>
 #include <ciso646>
-#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <memory>
 
