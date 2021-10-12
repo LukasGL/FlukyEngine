@@ -37,7 +37,7 @@ namespace Fluky
 
 		GLFWwindow* GetHandle() const;
 
-		int width, height;
+		int width, height, debug, reset;
 		GLFWwindow* m_windowHandle;
 	private:
 		void StartUp() noexcept;

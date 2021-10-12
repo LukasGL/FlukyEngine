@@ -1,4 +1,6 @@
 
+set_property( GLOBAL PROPERTY USE_FOLDERS ON )
+
 
 function(MakeExample TARGETNAME FILENAME)
 	add_executable(${TARGETNAME} ${FILENAME})

@@ -21,7 +21,6 @@ namespace Fluky {
             // The joystick was disconnected
             std::cout << "The joystick " << jid << " was disconnected" << std::endl;
         }
-        std::cout << "The event " << event  << std::endl;
     }
 
     void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)

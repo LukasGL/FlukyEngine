@@ -10,6 +10,7 @@ set(FLUKY_HEADERS
 				Platform/Input.hpp
 				Platform/JoystickInput.hpp
 				Platform/KeyCodes.hpp
+				Rendering/Figures.hpp
 				World/World.hpp
 				Application.hpp
 				Engine.hpp
@@ -18,6 +19,7 @@ set(FLUKY_SOURCES
 				Platform/Window.cpp
 				Platform/Input.cpp
 				Platform/JoystickInput.cpp
+				Rendering/Figures.cpp
 				Application.cpp
 				World/World.cpp
 				)
