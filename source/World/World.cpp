@@ -22,7 +22,10 @@ namespace Fluky {
 		m_application = std::move(app);
 		m_application.StartUp(*this);
 	}
-
+ /**
+  * Destructor of the world
+	*
+  */
 	World::~World() {
 		m_application.UserShutDown(*this);
 		if (add_figure) {
@@ -36,35 +39,73 @@ namespace Fluky {
 		//m_input.ShutDown();
 
 	}
-
+ /**
+  * World 
+  * 
+	* Generates text in the world
+  */
 	void World::CreateText() noexcept {
 		m_text.Init();
 		add_text = true;
 	}
-
+ /**
+  * World 
+  * 
+	* Render a figure in the world
+  */
 	void World::CreateFigure() noexcept {
 		figures.Init();
 		add_figure = true;
 	}
-
+ 
+/**
+ * World 
+ * 
+ * Plays .wav file when the world starts
+ * 
+ * @param  {file} undefined : 
+ */
 	void World::PlayWav(const char* file) noexcept {
-		m_audio.Play("demo.wav");
+		m_audio.Play(file);
 	}
 
 
-
+ /**
+  * World 
+  * 
+	* Get the joystick input
+	* 
+  * @return {JoystickInput}  : 
+  */
 	JoystickInput& World::GetJoystickInput() noexcept {
 		return m_joystickinput;
 	}
-
+ /**
+  * World 
+  * 
+	* Get the current window
+	* 
+  * @return {Window}  : 
+  */
 	Window& World::GetWindow() noexcept {
 		return m_window;
 	}
-
+ /**
+  * World 
+  * 
+	* Ends the current application
+	* 
+  */
 	void World::EndApplication() noexcept {
 		m_shouldClose = true;
 	}
 
+ /**
+	* World
+	* 
+	* Starts the main loop for this world 
+	*
+	*/
 	void World::StartMainLoop() noexcept {
 		std::chrono::time_point<std::chrono::steady_clock> startTime = std::chrono::steady_clock::now();
 
@@ -78,7 +119,12 @@ namespace Fluky {
 		}
 
 	}
-
+ /**
+	* World
+	* 
+  * Updates the world
+	* 
+  */
 	void World::Update(float timeStep) noexcept
 	{
 		m_application.UserUpdate(*this, timeStep);

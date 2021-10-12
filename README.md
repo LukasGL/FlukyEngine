@@ -1,6 +1,6 @@
 # FlukyEngine
 
-Motor de juegos desarrollado en C++ para el ramo CC5512 - Arquitectura de Motores de Juegos
+Motor de juegos desarrollado en C++ para el ramo CC5512 - Arquitectura de Motores de Juegos, enfocado en juegos de plataforma 3D que utilizan figuras simples.
 
 ## Dependencias
 
@@ -38,7 +38,13 @@ Y listo! solo queda generar la `Build` del motor.
 
 ## Generando la solución o makefiles y el proceso de compilación
 
-La solución solamente ha sido probada en Windows 10 y directamente de Visual Studio 2019. Y el paso principal es generar el `Build` del `CMakeLists.txt` que se define el proyecto, en este caso el que se encuentra afuera de las carpetas.
+La solución solamente ha sido probada en Windows 10 y directamente de Visual Studio 2019. Y el paso principal es generar el `Build` del `CMakeLists.txt` que se define el proyecto, en este caso el que se encuentra afuera de las carpetas. 
+
+Los ejemplos serán generados automáticamente y serán los siguientes:
+
+- `ex_audio.exe` Para la prueba del audio
+- `ex_cube.exe` Para la prueba del renderizado de figuras
+- `ex_world.exe` Para la prueba de la creación del mundo
 
 ## Como crear aplicaciones usando el motor
 
