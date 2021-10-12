@@ -55,6 +55,13 @@ Para crear un juego se debe utilizar la plantilla `examples-fluky/ex_world.cpp`,
 
 Por ejemplo si se revisan el archivo `examples-fluky/ex_cube.cpp` utiliza la misma elaboración del mundo pero esta vez genera el cubo en la función `UserStartUp()`.
 
+Por el momento solo existen 2 funciones extra que el usuario puede añadir a su juego en `UserStartUp()`:
+
+- `CreateFigure()` generará el cubo giratorio en medio de la pantalla
+- `PlayWav(filename)` reproduce el archivo wav especificado por el usuario (`filename`)
+
+La utilización de las 2 funciones están en los ejemplos de `examples-fluky`.
+
 ## Screenshots
 
 ![ex_cube](images/ex_cube.png)
