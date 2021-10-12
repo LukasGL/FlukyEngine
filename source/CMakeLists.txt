@@ -11,6 +11,7 @@ set(FLUKY_HEADERS
 				Platform/JoystickInput.hpp
 				Platform/KeyCodes.hpp
 				Rendering/Figures.hpp
+				Rendering/Text.hpp
 				Audio/Audio.hpp
 				World/World.hpp
 				Application.hpp
@@ -21,6 +22,7 @@ set(FLUKY_SOURCES
 				Platform/Input.cpp
 				Platform/JoystickInput.cpp
 				Rendering/Figures.cpp
+				Rendering/Text.cpp
 				Audio/Audio.cpp
 				Application.cpp
 				World/World.cpp

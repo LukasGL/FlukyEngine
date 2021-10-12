@@ -3,6 +3,7 @@
 namespace Fluky {
 
 	Figures figures;
+	Text m_text;
 
 	World::World(Application& app) :
 		//m_objectManager(),
@@ -17,6 +18,7 @@ namespace Fluky {
 		m_window.StartUp();
 		//m_input.StartUp();
 		add_figure = false;
+		add_text = false;
 		m_application = std::move(app);
 		m_application.StartUp(*this);
 	}
@@ -26,10 +28,18 @@ namespace Fluky {
 		if (add_figure) {
 			figures.~Figures();
 		}
+		if (add_text) {
+			m_text.~Text();
+		}
 		m_audio.ShutDown();
 		m_window.ShutDown();
 		//m_input.ShutDown();
 
+	}
+
+	void World::CreateText() noexcept {
+		m_text.Init();
+		add_text = true;
 	}
 
 	void World::CreateFigure() noexcept {

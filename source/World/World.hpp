@@ -5,6 +5,7 @@
 #include "../Platform/Window.hpp"
 #include "../Platform/JoystickInput.hpp"
 #include "../Rendering/Figures.hpp"
+#include "../Rendering/Text.hpp"
 #include "../Audio/Audio.hpp"
 #include "../Application.hpp"
 
@@ -28,6 +29,7 @@ namespace Fluky {
 		void EndApplication() noexcept;
 		void CreateFigure() noexcept;
 
+		void CreateText() noexcept;
 		void PlayWav(const char* file) noexcept;
 
 	private:
@@ -43,6 +45,7 @@ namespace Fluky {
 		Audio m_audio;
 
 		bool add_figure;
+		bool add_text;
 
 	};
 

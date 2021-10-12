@@ -1,5 +1,4 @@
 
-set_property( GLOBAL PROPERTY USE_FOLDERS ON )
 
 
 function(MakeExample TARGETNAME FILENAME)
@@ -15,3 +14,10 @@ endfunction(MakeExample)
 MakeExample(ex_world ex_world.cpp)
 MakeExample(ex_cube ex_cube.cpp)
 MakeExample(ex_audio ex_audio.cpp)
+MakeExample(ex_text ex_text.cpp)
+
+add_custom_command(
+        TARGET ex_world POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+                ${CMAKE_SOURCE_DIR}/examples-fluky/demo/demo.wav
+                ${CMAKE_CURRENT_BINARY_DIR}/demo.wav)
