@@ -12,14 +12,16 @@ set(THIRD_PARTY_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/glfw
 									"${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/glm-0.9.9.8"
 									"${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/imgui"
 									"${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/bgfx-full/bgfx/examples/common"
-									"${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/Easy3D")
+									"${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/Easy3D"
+									"${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/openal-soft/include"
+									"${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/dr_wav")
 
 set(FLUKY_INCLUDE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/source")
 
 if(MSVC)
-	set(THIRD_PARTY_LIBRARIES OpenGL::GL glfw glad ImGui bgfx bx bimg dear-imgui meshoptimizer easy3d::core easy3d::viewer)
+	set(THIRD_PARTY_LIBRARIES OpenGL::GL glfw glad ImGui bgfx bx bimg dear-imgui meshoptimizer easy3d::core easy3d::viewer OpenAL dr_wav)
 else()
-	set(THIRD_PARTY_LIBRARIES OpenGL::GL glfw glad ImGui bgfx bx bimg dear-imgui meshoptimizer easy3d::core easy3d::viewer stdc++fs)
+	set(THIRD_PARTY_LIBRARIES OpenGL::GL glfw glad ImGui bgfx bx bimg dear-imgui meshoptimizer easy3d::core easy3d::viewer stdc++fs OpenAL dr_wav)
 endif(MSVC)
 
 # Include sub-projects.

@@ -18,5 +18,7 @@ add_subdirectory_with_folder("thirdParty" glm-0.9.9.8)
 add_subdirectory_with_folder("thirdParty" imgui)
 add_subdirectory_with_folder("thirdParty" bgfx-full)
 add_subdirectory_with_folder("thirdParty" Easy3D)
+add_subdirectory_with_folder("thirdParty" dr_wav)
+add_subdirectory_with_folder("thirdParty" openal-soft)
 
 

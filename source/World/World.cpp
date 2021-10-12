@@ -10,8 +10,10 @@ namespace Fluky {
 		m_window(),
 		m_joystickinput(),
 		m_application(app),
-		m_shouldClose(false)
+		m_shouldClose(false),
+		m_audio()
 	{
+		m_audio.StartUp();
 		m_window.StartUp();
 		//m_input.StartUp();
 		add_figure = false;
@@ -24,6 +26,7 @@ namespace Fluky {
 		if (add_figure) {
 			figures.~Figures();
 		}
+		m_audio.ShutDown();
 		m_window.ShutDown();
 		//m_input.ShutDown();
 
@@ -32,6 +35,10 @@ namespace Fluky {
 	void World::CreateFigure() noexcept {
 		figures.Init();
 		add_figure = true;
+	}
+
+	void World::PlayWav(const char* file) noexcept {
+		m_audio.Play("demo.wav");
 	}
 
 

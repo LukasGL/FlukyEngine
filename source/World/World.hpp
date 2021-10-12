@@ -5,6 +5,7 @@
 #include "../Platform/Window.hpp"
 #include "../Platform/JoystickInput.hpp"
 #include "../Rendering/Figures.hpp"
+#include "../Audio/Audio.hpp"
 #include "../Application.hpp"
 
 #include <memory>
@@ -27,6 +28,8 @@ namespace Fluky {
 		void EndApplication() noexcept;
 		void CreateFigure() noexcept;
 
+		void PlayWav(const char* file) noexcept;
+
 	private:
 		World(Application& app);
 		~World();
@@ -37,6 +40,7 @@ namespace Fluky {
 		JoystickInput m_joystickinput;
 		Application& m_application;
 		bool m_shouldClose;
+		Audio m_audio;
 
 		bool add_figure;
 
