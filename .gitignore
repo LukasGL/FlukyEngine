@@ -3,6 +3,8 @@
 
 build/
 
+doc_doxygen/
+
 # Add this line
 out/
 
@@ -43,7 +45,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-*.html
 .vs/FlukyEngine/v16/.suo
 .vs/FlukyEngine/v16/Browse.VC.db
 *.db
@@ -436,3 +437,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 .idea/
 *.sln.iml
+*.html
