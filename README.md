@@ -62,6 +62,10 @@ Por el momento solo existen 2 funciones extra que el usuario puede añadir a su 
 
 La utilización de las 2 funciones están en los ejemplos de `examples-fluky`.
 
+## Documentación
+
+Toda la información acerca de las funciones y clases creadas se puede ver [aquí](doc_doxygen/doc/index.html)
+
 ## Screenshots
 
 ![ex_cube](images/ex_cube.png)
