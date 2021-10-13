@@ -10,6 +10,3 @@
 [submodule "thirdParty/bgfx-full"]
 	path = thirdParty/bgfx-full
 	url = https://github.com/widberg/bgfx.cmake
-[submodule "thirdParty/Easy3D"]
-	path = thirdParty/Easy3D
-	url = https://github.com/LiangliangNan/Easy3D
