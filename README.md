@@ -64,7 +64,7 @@ La utilización de las 2 funciones están en los ejemplos de `examples-fluky`.
 
 ## Documentación
 
-Toda la información acerca de las funciones y clases creadas se puede ver [aquí](doc_doxygen/doc/index.html)
+Toda la información acerca de las funciones y clases creadas se puede ver mediante [Doxygen](https://www.doxygen.nl/index.html). Para esto se debe tener instalado Doxygen y luego solamente buildear el proyecto. Finalmente la documentación estará en `doc_doxygen/index.html`.
 
 ## Screenshots
 
