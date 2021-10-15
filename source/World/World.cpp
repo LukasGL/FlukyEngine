@@ -1,5 +1,7 @@
 #include "World.hpp"
+#include <iostream>
 #include <chrono>
+#include <thread>
 namespace Fluky {
 
 	Figures figures;
@@ -61,20 +63,25 @@ namespace Fluky {
 	void World::StartMainLoop() noexcept {
 		std::chrono::time_point<std::chrono::steady_clock> startTime = std::chrono::steady_clock::now();
 
+
 		while (!m_window.ShouldClose() && !m_shouldClose)
 		{
 			std::chrono::time_point<std::chrono::steady_clock> newTime = std::chrono::steady_clock::now();
-			const auto frameTime = newTime - startTime;
+			std::this_thread::sleep_until(newTime + std::chrono::seconds(1/60));
+			const std::chrono::duration<float, std::milli> frameTime = newTime - startTime;
 			startTime = newTime;
 			float timeStep = std::chrono::duration_cast<std::chrono::duration<float>>(frameTime).count();
+			if (frameTime > std::chrono::milliseconds(17)) {
+				timeStep = 0.016f;
+			}
 			Update(timeStep);
 		}
 	}
 
 	void World::Update(float timeStep) noexcept
 	{
+		std::cout << timeStep * 1000.f << "ms" << std::endl;
 		m_application.UserUpdate(*this, timeStep);
-
 		if (add_figure) {
 			JoystickInput joyInput = m_window.GetJoystickHandler();
 			JoystickContainer joysticks = joyInput.GetJoysticks();
