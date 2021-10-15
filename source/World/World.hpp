@@ -96,6 +96,8 @@ namespace Fluky {
 		// Render text boolean
 		bool add_text;
 
+		bool playingwav;
+
 	};
 
 

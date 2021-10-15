@@ -18,6 +18,7 @@ namespace Fluky {
 		m_window.StartUp();
 		add_figure = false;
 		add_text = false;
+		playingwav = false;
 		m_application = std::move(app);
 		m_application.StartUp(*this);
 	}
@@ -80,7 +81,7 @@ namespace Fluky {
 
 	void World::Update(float timeStep) noexcept
 	{
-		std::cout << timeStep * 1000.f << "ms" << std::endl;
+		//std::cout << timeStep * 1000.f << "ms" << std::endl;
 		m_application.UserUpdate(*this, timeStep);
 		if (add_figure) {
 			JoystickInput joyInput = m_window.GetJoystickHandler();
@@ -96,6 +97,10 @@ namespace Fluky {
 				if (joystickId == GLFW_JOYSTICK_1)
 				{
 					figures.Update(joystick.axes[1], joystick.axes[0]);
+					if (joystick.buttons[1]) {
+						std::cout << "tecla" << std::endl;
+						PlayWav("demo.wav");
+					}
 				}
 				if (joystickId == GLFW_JOYSTICK_2)
 				{
@@ -103,6 +108,23 @@ namespace Fluky {
 				}
 			}
 		}
+
+		JoystickInput joyInput = m_window.GetJoystickHandler();
+		JoystickContainer joysticks = joyInput.GetJoysticks();
+
+		for (auto& elem : joysticks)
+		{
+			auto& joystickId = elem.first;
+			auto& joystick = elem.second;
+
+			float const buttonSize = 2.0f / joystick.buttons.size();
+
+			if (!playingwav && joystick.buttons[0]) {
+				PlayWav("demo.wav");
+				playingwav = true;
+			}
+		}
+
 		m_window.Update();
 	}
 }

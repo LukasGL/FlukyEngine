@@ -6,7 +6,7 @@ public:
 	EXWorld() = default;
 	~EXWorld() = default;
 	virtual void UserStartUp(Fluky::World& world) noexcept override {
-		world.PlayWav("demo.wav");
+		//world.PlayWav("demo.wav");
 	}
 
 	virtual void UserShutDown(Fluky::World& world) noexcept override {
