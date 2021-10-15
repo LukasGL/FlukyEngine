@@ -36,6 +36,8 @@ Si los submódulos se actualizan se deberá ejecutar
 
 Y listo! solo queda generar la `Build` del motor.
 
+(Es posible que si hay errores en el build se deba a que no está Doxygen instalado, descargar instalador desde [aquí](https://www.doxygen.nl/files/doxygen-1.9.2-setup.exe))
+
 ## Generando la solución o makefiles y el proceso de compilación
 
 La solución solamente ha sido probada en Windows 10 y directamente de Visual Studio 2019. Y el paso principal es generar el `Build` del `CMakeLists.txt` que se define el proyecto, en este caso el que se encuentra afuera de las carpetas. 
@@ -43,7 +45,7 @@ La solución solamente ha sido probada en Windows 10 y directamente de Visual St
 Los ejemplos serán generados automáticamente y serán los siguientes:
 
 - `ex_audio.exe` Para la prueba del audio
-- `ex_cube.exe` Para la prueba del renderizado de figuras
+- `ex_cube.exe` Para la prueba del renderizado de figuras y además el testeo de inputs desde joysticks (se podrán mover los cubos)
 - `ex_world.exe` Para la prueba de la creación del mundo
 - `ex_text.exe` (No terminado)
 
