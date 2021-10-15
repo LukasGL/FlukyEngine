@@ -44,7 +44,7 @@ La solución solamente ha sido probada en Windows 10 y directamente de Visual St
 
 Los ejemplos serán generados automáticamente y serán los siguientes:
 
-- `ex_audio.exe` Para la prueba del audio
+- `ex_audio.exe` Para la prueba del audio, ejecuta el .wav cuando el botón A del joystick es presionado.
 - `ex_cube.exe` Para la prueba del renderizado de figuras y además el testeo de inputs desde joysticks (se podrán mover los cubos)
 - `ex_world.exe` Para la prueba de la creación del mundo
 - `ex_text.exe` (No terminado)
