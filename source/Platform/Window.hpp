@@ -8,6 +8,7 @@
 namespace Fluky
 {
 	class World;
+	class JoystickInput;
 	/*
 	* this class allow to the user create a window where render the game
 	*/
@@ -46,6 +47,7 @@ namespace Fluky
    * @return {GLFWwindow*}  : 
    */
 		GLFWwindow* GetHandle() const;
+		JoystickInput GetJoystickHandler();
 
 		int width, height, debug, reset;
 		GLFWwindow* m_windowHandle;
@@ -66,5 +68,6 @@ namespace Fluky
    */
 		void Update() noexcept;
 	};
+
 }
 #endif

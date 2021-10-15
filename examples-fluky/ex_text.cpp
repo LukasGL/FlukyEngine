@@ -18,8 +18,8 @@ public:
 
 int main()
 {
-	EXWorld exworld;
+	/*EXWorld exworld;
 	Fluky::Engine engine(exworld);
-	engine.StartMainLoop();
+	engine.StartMainLoop();*/
 
 }

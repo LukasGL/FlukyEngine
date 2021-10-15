@@ -13,7 +13,7 @@ namespace Fluky {
 		Engine(const Engine&) = delete;
 		Engine& operator=(const Engine&) = delete;
 		/*
-		* Funci�n que comienza el main loop del motor.
+		* Starts the main loop of the engine
 		*/
 		void StartMainLoop() noexcept {
 			m_world.StartMainLoop();

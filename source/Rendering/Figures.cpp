@@ -41,14 +41,6 @@ static const uint16_t s_cubeTriList[] =
 	6, 3, 7,
 };
 
-/**
- * 
- * loads a shader for bgfx use
- * 
- * @param FILENAME of the shader
- * @return bgfx shader creation
- * 
- */ 
 bgfx::ShaderHandle loadShader(const char* FILENAME)
 {
 
@@ -95,13 +87,7 @@ namespace Fluky {
 	bgfx::ShaderHandle vsh;
 	bgfx::ShaderHandle fsh;
 	bgfx::ProgramHandle program;
-/**
- * Figures 
- * 
- * initializes the figures
- * 
- * @return {int}  : 
- */
+
 	int Figures::Init()
 	{
 		bgfx::VertexLayout pcvDecl;
@@ -123,29 +109,17 @@ namespace Fluky {
 		return 1;
 	}
 	
- /**
-  * Figures::~Figures 
-  * 
-	* Destrucor of figures
-	* 
-  */
 	Figures::~Figures()
 	{
 		bgfx::destroy(ibh);
 		bgfx::destroy(vbh);
 	}
 	
- /**
-  * Figures 
-  * 
-	* Updates figures
-	* 
-  */
-	void Figures::Update() noexcept
+	void Figures::Update(float sizeX, float sizeY) noexcept
 	{
 
 		float mtx[16];
-		bx::mtxRotateXY(mtx, counter * 0.01f, counter * 0.01f);
+		bx::mtxRotateXY(mtx, sizeX, sizeY);
 		bgfx::setTransform(mtx);
 
 		bgfx::setVertexBuffer(0, vbh);

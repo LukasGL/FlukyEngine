@@ -13,7 +13,7 @@
 #include <GLFW/glfw3.h>
 #include <memory>
 /**
- * Struct that defines a Joystick
+ * A simple struct handling all axes and button inputs of a joystick.
  * 
  */
 struct Joystick
@@ -26,6 +26,22 @@ struct Joystick
 	{
 	}
 };
+
+//std::ostream& operator<<(std::ostream& os, const Joystick& joystick)
+//{
+//    os << "buttons: ";
+//    for (bool button : joystick.buttons)
+//    {
+//        os << (button ? 1 : 0);
+//    }
+//    os << " axes: ";
+//    for (float ax : joystick.axes)
+//    {
+//        os << std::fixed << std::setprecision(2) << std::setfill('0') << ax << " ";
+//    }
+//    return os;
+//}
+
 /**
  * Stores the joystick ID
  * 

@@ -52,6 +52,14 @@ namespace Fluky {
     
     void JoystickInput::pollJoysticks()
     {
+        for (auto& elem : joysticks)
+        {
+            auto& joystickId = elem.first;
+            auto& joystick = elem.second;
+
+            float const buttonSize = 2.0f / joystick.buttons.size();
+        }
+
         for (int joystickId = GLFW_JOYSTICK_1; joystickId < GLFW_JOYSTICK_LAST; ++joystickId)
         {
             int const joystickConnected = glfwJoystickPresent(joystickId);

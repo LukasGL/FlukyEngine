@@ -7,13 +7,16 @@
 #include <bgfx/bgfx.h>
 #include <bgfx/platform.h>
 #include <imgui/imgui.h>
-#include "JoystickInput.hpp"
-//#include "../Rendering/Figures.hpp"
 #define GLFW_EXPOSE_NATIVE_WIN32
 #include <GLFW/glfw3native.h>
 #ifndef _WINDOWS_
 #undef APIENTRY
 #endif
+
+#include "JoystickInput.hpp"
+
+
+class JoystickInput;
 
 namespace Fluky {
 
@@ -167,6 +170,11 @@ namespace Fluky {
 	}
 	GLFWwindow* Window::GetHandle() const {
 		return m_windowHandle;
+	}
+
+	JoystickInput Window::GetJoystickHandler()
+	{
+		return joyInput;
 	}
 
 	bool Window::ShouldClose() const noexcept

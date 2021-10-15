@@ -1,21 +1,21 @@
 #include "Text.hpp"
-
-#include "common.h"
-#include "bgfx_utils.h"
-
-#include <bx/timer.h>
-#include <bx/string.h>
-#include <bx/math.h>
-
-#include "font/font_manager.h"
-#include "font/text_buffer_manager.h"
-#include "entry/input.h"
-
-#include <iconfontheaders/icons_font_awesome.h>
-#include <iconfontheaders/icons_kenney.h>
-
-#include <stdio.h>
-#include <wchar.h>
+//
+//#include "common.h"
+//#include "bgfx_utils.h"
+//
+//#include <bx/timer.h>
+//#include <bx/string.h>
+//#include <bx/math.h>
+//
+//#include "font/font_manager.h"
+//#include "font/text_buffer_manager.h"
+//#include "entry/input.h"
+//
+//#include <iconfontheaders/icons_font_awesome.h>
+//#include <iconfontheaders/icons_kenney.h>
+//
+//#include <stdio.h>
+//#include <wchar.h>
 
 //long int fsize(FILE* _file)
 //{

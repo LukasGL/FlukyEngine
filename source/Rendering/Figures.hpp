@@ -4,24 +4,25 @@
 
 
 namespace Fluky {
-
+ /**
+  * Class that has to render the figures the user wants
+  */
 	class Figures {
 
 	public:
 		friend class World;
-
+  /**
+   * Figures initializer
+	 * 
+   * @return {int}  : 
+   */
 		int Init();
 
 		~Figures();
-
-		void Update() noexcept;
-
-		/*bgfx::VertexBufferHandle vbh;
-		bgfx::IndexBufferHandle ibh;
-
-		bgfx::ShaderHandle vsh;
-		bgfx::ShaderHandle fsh;
-		bgfx::ProgramHandle program;*/
+  /**
+   * Funciton called in every iteration of the main loop
+   */
+		void Update(float sizeX, float sizeY) noexcept;
 
 		unsigned int counter;
 
