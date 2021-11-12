@@ -1,7 +1,7 @@
-#include "Figures.hpp"
+#include "BoxComponent.hpp"
+#include "../World/TransformComponent.hpp"
 #include "bgfx/bgfx.h"
 #include "bgfx/platform.h"
-#include "bx/math.h"
 #include <iostream>
 
 struct PosColorVertex
@@ -88,7 +88,7 @@ namespace Fluky {
 	bgfx::ShaderHandle fsh;
 	bgfx::ProgramHandle program;
 
-	int Figures::Init()
+	int BoxComponent::Init()
 	{
 		bgfx::VertexLayout pcvDecl;
 		pcvDecl.begin()
@@ -109,18 +109,19 @@ namespace Fluky {
 		return 1;
 	}
 	
-	Figures::~Figures()
+	BoxComponent::~BoxComponent()
 	{
 		bgfx::destroy(ibh);
 		bgfx::destroy(vbh);
 	}
 	
-	void Figures::Update(float sizeX, float sizeY) noexcept
+	void BoxComponent::Update(TransformComponent transform) noexcept
 	{
 
-		float mtx[16];
-		bx::mtxRotateXY(mtx, sizeX, sizeY);
-		bgfx::setTransform(mtx);
+	/*	float mtx[16];
+		bx::mtxRotateXY(mtx, sizeX, sizeY);*/
+
+		bgfx::setTransform(transform.GetMatrix());
 
 		bgfx::setVertexBuffer(0, vbh);
 		bgfx::setIndexBuffer(ibh);

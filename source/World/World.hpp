@@ -3,7 +3,7 @@
 #define WORLD_HPP
 
 #include "../Platform/Window.hpp"
-#include "../Rendering/Figures.hpp"
+#include "../Rendering/BoxComponent.hpp"
 #include "../Rendering/Text.hpp"
 #include "../Audio/Audio.hpp"
 #include "../Application.hpp"

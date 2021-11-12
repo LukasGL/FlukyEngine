@@ -1,10 +1,12 @@
 #include "World.hpp"
+
+#include "TransformComponent.hpp"
 #include <iostream>
 #include <chrono>
 #include <thread>
 namespace Fluky {
 
-	Figures figures;
+	BoxComponent figures;
 	Text m_text;
 
 	World::World(Application& app) :
@@ -26,7 +28,7 @@ namespace Fluky {
 	World::~World() {
 		m_application.UserShutDown(*this);
 		if (add_figure) {
-			figures.~Figures();
+			figures.~BoxComponent();
 		}
 		if (add_text) {
 			m_text.~Text();
@@ -96,7 +98,9 @@ namespace Fluky {
 
 				if (joystickId == GLFW_JOYSTICK_1)
 				{
-					figures.Update(joystick.axes[1], joystick.axes[0]);
+					TransformComponent transform;
+					transform.RotateXY(joystick.axes[1], joystick.axes[0]);
+					figures.Update(transform);
 					if (joystick.buttons[1]) {
 						std::cout << "tecla" << std::endl;
 						PlayWav("demo.wav");
@@ -104,7 +108,9 @@ namespace Fluky {
 				}
 				if (joystickId == GLFW_JOYSTICK_2)
 				{
-					figures.Update(joystick.axes[1], joystick.axes[0]);
+					TransformComponent transform;
+					transform.RotateXY(joystick.axes[1], joystick.axes[0]);
+					figures.Update(transform);
 				}
 			}
 		}
