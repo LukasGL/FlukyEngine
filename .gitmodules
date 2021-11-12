@@ -10,3 +10,6 @@
 [submodule "thirdParty/bgfx-full"]
 	path = thirdParty/bgfx-full
 	url = https://github.com/widberg/bgfx.cmake
+[submodule "thirdParty/entt"]
+	path = thirdParty/entt
+	url = https://github.com/skypjack/entt
