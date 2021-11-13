@@ -1,6 +1,9 @@
 #include "World.hpp"
 
 #include "TransformComponent.hpp"
+#include "../Rendering/BoxComponent.hpp"
+#include "GameObject.hpp"
+#include "RegistryHandler.hpp"
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -8,6 +11,7 @@ namespace Fluky {
 
 	BoxComponent figures;
 	Text m_text;
+
 
 	World::World(Application& app) :
 		m_window(),
@@ -131,6 +135,33 @@ namespace Fluky {
 			}
 		}
 
+		for (auto i = gameObjectVector.begin(); i != gameObjectVector.end(); ++i) {
+			i->Update(registry.get()->registry);
+		}
+
 		m_window.Update();
 	}
+
+
+	GameObject World::CreateGameObject() {
+		entt::registry * _registry = &registry.get()->registry;
+		GameObject gameObject;
+		gameObject.CreateGameObject(*_registry);
+		gameObjectVector.push_back(gameObject);
+		return gameObject;
+	}
+
+	template<typename T>
+	T World::AddComponent(GameObject gameObject) {
+		entt::registry * _registry = &registry.get()->registry;
+		return gameObject.AddComponent<T>(*_registry);
+	}
+
+	void World::ShutDownRegistry()
+	{
+		entt::registry* _registry = &registry.get()->registry;
+		auto view = (*_registry).view<TransformComponent, BoxComponent>();
+		(*_registry).destroy(view.begin(), view.end());
+	}
+
 }

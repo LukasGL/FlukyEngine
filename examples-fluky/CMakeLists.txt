@@ -15,6 +15,7 @@ MakeExample(ex_world ex_world.cpp)
 MakeExample(ex_cube ex_cube.cpp)
 MakeExample(ex_audio ex_audio.cpp)
 MakeExample(ex_text ex_text.cpp)
+MakeExample(ex_components ex_components.cpp)
 
 add_custom_command(
         TARGET ex_world POST_BUILD

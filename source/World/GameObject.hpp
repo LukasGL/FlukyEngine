@@ -3,6 +3,7 @@
 #define GAMEOBJECT_HPP
 
 #include "entt/entt.hpp"
+#include "TransformComponent.hpp"
 
 namespace Fluky {
 
@@ -10,23 +11,39 @@ namespace Fluky {
 
 	public:
 
-		void CreateGameObject();
-		void AddComponent(class Component comp);
-		void Update() 
-		{
-			auto view = registry.view<const TransformComponent, const BoxComponent>();
-			for (auto entity : view)
-			{
-				auto& transf = view.get<const TransformComponent>(entity);
-				auto& box = view.get<const BoxComponent>(entity);
+		void CreateGameObject(entt::registry& registry) {
+			entity = registry.create();
+		}
 
-				box.Update(transf);
-			}
+		template <typename T>
+		void AddComponent(entt::registry& registry) {
+
+		}
+
+		void Update(entt::registry& registry)
+		{
+			auto view = registry.view<TransformComponent, BoxComponent>();
+
+			auto& transf = view.get<TransformComponent>(entity);
+			auto box = view.get<BoxComponent>(entity);
+
+			box.Update(transf);
 		};
+
+		void ShutDown(entt::registry& registry) {
+
+			auto view = registry.view<TransformComponent, BoxComponent>();
+
+			auto& transf = view.get<TransformComponent>(entity);
+			auto& box = view.get<BoxComponent>(entity);
+
+			box.~BoxComponent();
+
+		}
 
 	private:
 
-		entt::registry Registry;
+		entt::entity entity;
 		Component comp;
 
 	};

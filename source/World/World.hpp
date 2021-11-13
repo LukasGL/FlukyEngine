@@ -3,7 +3,6 @@
 #define WORLD_HPP
 
 #include "../Platform/Window.hpp"
-#include "../Rendering/BoxComponent.hpp"
 #include "../Rendering/Text.hpp"
 #include "../Audio/Audio.hpp"
 #include "../Application.hpp"
@@ -13,6 +12,7 @@
 #include <array>
 #include <filesystem>
 #include <string>
+//#include <entt/entt.hpp>
 
 namespace Fluky {
 
@@ -20,6 +20,11 @@ namespace Fluky {
   * Defines the world where the game has to be rendered
   */
 	class World {
+
+	private:
+
+		std::shared_ptr<class Registry> registry;
+
 	public:
 
 		friend class Engine;
@@ -60,6 +65,12 @@ namespace Fluky {
    * @return {Window}  : 
    */
 		Window& GetWindow() noexcept;
+
+		template<typename T>
+		T AddComponent(class GameObject gameObject);
+
+		GameObject CreateGameObject();
+
 	private:
 		World(Application& app);
   /**
@@ -80,6 +91,8 @@ namespace Fluky {
    */
 		void Update(float timeStep) noexcept;
 
+		void ShutDownRegistry();
+
 		// Current window
 		Window m_window;
 		// Current Joystick input instance
@@ -98,9 +111,10 @@ namespace Fluky {
 
 		bool playingwav;
 
+
+		std::vector<class GameObject> gameObjectVector;
+
 	};
-
-
 
 }
 #endif
