@@ -123,8 +123,8 @@ namespace Fluky {
 			}
 		}
 
-		for (auto i = gameObjectVector.begin(); i != gameObjectVector.end(); ++i) {
-			i->Update(scene);
+		for (auto i = scene.gameObjectVector.begin(); i != scene.gameObjectVector.end(); ++i) {
+			i->Update();
 		}
 
 		m_window.Update();
@@ -132,20 +132,17 @@ namespace Fluky {
 
 
 	GameObject World::CreateGameObject() {
-		GameObject gameObject;
-		gameObject.CreateGameObject(scene);
-		gameObjectVector.push_back(gameObject);
-		return gameObject;
+		return scene.CreateGameObject();
 	}
 
-	template<typename T>
-	T World::AddComponent(GameObject gameObject) {
-		return gameObject.AddComponent<T>(scene);
-	}
+	/*template<typename T>
+	T& World::AddComponent(GameObject gameObject) {
+		return gameObject.AddComponent<T>();
+	}*/
 
 	void World::ShutDown()
 	{
-		//scene.ShutDownScene();
+		scene.ShutDownScene();
 	}
 
 }

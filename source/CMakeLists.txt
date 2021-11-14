@@ -14,6 +14,7 @@ set(FLUKY_HEADERS
 				Platform/InputComponent.hpp
 				Platform/Window.hpp
 				Rendering/BoxComponent.hpp
+				"World/Component.hpp"
 				World/GameObject.hpp
 				World/Scene.hpp
 				World/TransformComponent.hpp
@@ -25,6 +26,7 @@ set(FLUKY_SOURCES
 				Platform/InputComponent.cpp
 				Platform/Window.cpp
 				Rendering/BoxComponent.cpp
+				World/Scene.cpp
 				World/TransformComponent.cpp
 				World/World.cpp
 				)

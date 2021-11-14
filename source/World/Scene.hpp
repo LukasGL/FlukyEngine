@@ -11,19 +11,16 @@ namespace Fluky {
 		friend class World;
 		friend class GameObject;
 
-		GameObject CreateGameObject();
+		class GameObject CreateGameObject();
 
-		template<typename T>
-		T AddComponent(GameObject gameObject);
+		//template<typename T>
+		//T AddComponent(GameObject gameObject);
 
 		void ShutDownScene();
 
-		entt::registry& GetRegistry() {
-			return registry;
-		}
-
 	private:
 
+		std::vector<GameObject> gameObjectVector;
 
 		entt::registry registry;
 	};

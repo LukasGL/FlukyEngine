@@ -4,15 +4,14 @@
 namespace Fluky {
 
 	GameObject Scene::CreateGameObject() {
-		GameObject gameObject;
-		gameObject.CreateGameObject(&this);
+		GameObject gameObject = { registry.create(), this };
 		return gameObject;
 	}
 
-	template<typename T>
-	T Scene::AddComponent(GameObject gameObject) {
+	/*template<typename T>
+	T& Scene::AddComponent(GameObject gameObject) {
 		return gameObject.AddComponent<T>(&this);
-	}
+	}*/
 
 	void Scene::ShutDownScene()
 	{

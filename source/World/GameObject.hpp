@@ -13,22 +13,23 @@ namespace Fluky {
 
 	public:
 
-		void CreateGameObject(Scene& scene) {
-			entt::registry* registry = &scene.GetRegistry();
+		GameObject(entt::entity e, Scene* scene) : entity(e), m_scene(scene){}
+
+		/*void CreateGameObject() {
+			entt::registry registry = m_scene->registry;
 			entity = (*registry).create();
-		}
+		}*/
 
 		template <typename T>
-		void AddComponent(Scene& scene) {
-			entt::registry* registry = &scene.GetRegistry();
-			(*registry).emplace<T>(entity);
+		T& AddComponent() {
+			T& component = m_scene->registry.emplace<T>(entity);
+			m_scene->gameObjectVector.push_back(*this);
+			return component;
 		}
 
-		void Update(Scene& scene)
+		void Update()
 		{
-			entt::registry* registry = &scene.GetRegistry();
-
-			auto view = (*registry).view<TransformComponent, BoxComponent>();
+			auto view = m_scene->registry.view<TransformComponent, BoxComponent>();
 
 			auto& transf = view.get<TransformComponent>(entity);
 			auto box = view.get<BoxComponent>(entity);
@@ -36,11 +37,10 @@ namespace Fluky {
 			box.Update(transf);
 		};
 
-		void ShutDown(Scene& scene) {
+		void ShutDown() 
+		{
 
-			entt::registry* registry = &scene.GetRegistry();
-
-			auto view = (*registry).view<TransformComponent, BoxComponent>();
+			auto view = m_scene->registry.view<TransformComponent, BoxComponent>();
 
 			auto& transf = view.get<TransformComponent>(entity);
 			auto& box = view.get<BoxComponent>(entity);
@@ -52,6 +52,7 @@ namespace Fluky {
 	private:
 
 		entt::entity entity;
+		Scene* m_scene;
 
 	};
 

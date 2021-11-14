@@ -63,8 +63,8 @@ namespace Fluky {
 		 */
 		class Window& GetWindow() noexcept;
 
-		template<typename T>
-		T AddComponent(class GameObject gameObject);
+		/*template<typename T>
+		T& AddComponent(class GameObject gameObject);*/
 
 		GameObject CreateGameObject();
 
@@ -107,8 +107,6 @@ namespace Fluky {
 		bool add_text;
 
 		bool playingwav;
-
-		std::vector<class GameObject> gameObjectVector;
 
 		Scene scene;
 
