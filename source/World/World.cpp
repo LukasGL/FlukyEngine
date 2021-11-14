@@ -1,17 +1,13 @@
 #include "World.hpp"
 
-#include "TransformComponent.hpp"
-#include "../Rendering/BoxComponent.hpp"
-#include "GameObject.hpp"
-#include "RegistryHandler.hpp"
+#include "World.hpp"
+
 #include <iostream>
 #include <chrono>
 #include <thread>
 namespace Fluky {
 
 	BoxComponent figures;
-	Text m_text;
-
 
 	World::World(Application& app) :
 		m_window(),
@@ -28,29 +24,21 @@ namespace Fluky {
 		m_application = std::move(app);
 		m_application.StartUp(*this);
 	}
- 
+
 	World::~World() {
 		m_application.UserShutDown(*this);
 		if (add_figure) {
 			figures.~BoxComponent();
 		}
-		if (add_text) {
-			m_text.~Text();
-		}
 		m_audio.ShutDown();
 		m_window.ShutDown();
-	}
- 
-	void World::CreateText() noexcept {
-		m_text.Init();
-		add_text = true;
 	}
 
 	void World::CreateFigure() noexcept {
 		figures.Init();
 		add_figure = true;
 	}
- 
+
 	void World::PlayWav(const char* file) noexcept {
 		m_audio.Play(file);
 	}
@@ -74,7 +62,7 @@ namespace Fluky {
 		while (!m_window.ShouldClose() && !m_shouldClose)
 		{
 			std::chrono::time_point<std::chrono::steady_clock> newTime = std::chrono::steady_clock::now();
-			std::this_thread::sleep_until(newTime + std::chrono::seconds(1/60));
+			std::this_thread::sleep_until(newTime + std::chrono::seconds(1 / 60));
 			const std::chrono::duration<float, std::milli> frameTime = newTime - startTime;
 			startTime = newTime;
 			float timeStep = std::chrono::duration_cast<std::chrono::duration<float>>(frameTime).count();
@@ -90,7 +78,7 @@ namespace Fluky {
 		//std::cout << timeStep * 1000.f << "ms" << std::endl;
 		m_application.UserUpdate(*this, timeStep);
 		if (add_figure) {
-			JoystickInput joyInput = m_window.GetJoystickHandler();
+			InputComponent joyInput = m_window.GetJoystickHandler();
 			JoystickContainer joysticks = joyInput.GetJoysticks();
 
 			for (auto& elem : joysticks)
@@ -119,7 +107,7 @@ namespace Fluky {
 			}
 		}
 
-		JoystickInput joyInput = m_window.GetJoystickHandler();
+		InputComponent joyInput = m_window.GetJoystickHandler();
 		JoystickContainer joysticks = joyInput.GetJoysticks();
 
 		for (auto& elem : joysticks)
@@ -136,7 +124,7 @@ namespace Fluky {
 		}
 
 		for (auto i = gameObjectVector.begin(); i != gameObjectVector.end(); ++i) {
-			i->Update(registry.get()->registry);
+			i->Update(scene);
 		}
 
 		m_window.Update();
@@ -144,24 +132,20 @@ namespace Fluky {
 
 
 	GameObject World::CreateGameObject() {
-		entt::registry * _registry = &registry.get()->registry;
 		GameObject gameObject;
-		gameObject.CreateGameObject(*_registry);
+		gameObject.CreateGameObject(scene);
 		gameObjectVector.push_back(gameObject);
 		return gameObject;
 	}
 
 	template<typename T>
 	T World::AddComponent(GameObject gameObject) {
-		entt::registry * _registry = &registry.get()->registry;
-		return gameObject.AddComponent<T>(*_registry);
+		return gameObject.AddComponent<T>(scene);
 	}
 
-	void World::ShutDownRegistry()
+	void World::ShutDown()
 	{
-		entt::registry* _registry = &registry.get()->registry;
-		auto view = (*_registry).view<TransformComponent, BoxComponent>();
-		(*_registry).destroy(view.begin(), view.end());
+		scene.ShutDownScene();
 	}
 
 }

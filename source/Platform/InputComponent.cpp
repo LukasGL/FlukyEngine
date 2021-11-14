@@ -1,4 +1,4 @@
-#include "JoystickInput.hpp"
+#include "InputComponent.hpp"
 
 void joystick_callback(int jid, int event);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -7,9 +7,6 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 namespace Fluky {
 
-    
-    
-    
     void joystick_callback(int jid, int event)
     {
         if (event == GLFW_CONNECTED)
@@ -23,7 +20,7 @@ namespace Fluky {
             std::cout << "The joystick " << jid << " was disconnected" << std::endl;
         }
     }
-    
+
     void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
     {
         if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
@@ -31,26 +28,26 @@ namespace Fluky {
             glfwSetWindowShouldClose(window, true);
         }
     }
-    
-    void JoystickInput::SetKeyCallback(GLFWwindow* m_windowHandle)
+
+    void InputComponent::SetKeyCallback(GLFWwindow* m_windowHandle)
     {
         glfwSetKeyCallback(m_windowHandle, key_callback);
     }
-    
-    void JoystickInput::SetJoystickCallback()
+
+    void InputComponent::SetJoystickCallback()
     {
         glfwSetJoystickCallback(joystick_callback);
     }
-    
-    JoystickContainer JoystickInput::GetJoysticks()
+
+    JoystickContainer InputComponent::GetJoysticks()
     {
         return this->joysticks;
     }
 
 
-    
-    
-    void JoystickInput::pollJoysticks()
+
+
+    void InputComponent::pollJoysticks()
     {
         for (auto& elem : joysticks)
         {

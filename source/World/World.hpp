@@ -2,11 +2,14 @@
 #ifndef WORLD_HPP
 #define WORLD_HPP
 
+#include "Scene.hpp"
+#include "GameObject.hpp"
+#include "TransformComponent.hpp"
+#include "../Audio/AudioComponent.hpp"
 #include "../Platform/Window.hpp"
-#include "../Rendering/Text.hpp"
-#include "../Audio/Audio.hpp"
+#include "../Platform/InputComponent.hpp"
+#include "../Rendering/BoxComponent.hpp"
 #include "../Application.hpp"
-#include "../Platform/JoystickInput.hpp"
 
 #include <memory>
 #include <array>
@@ -15,54 +18,49 @@
 
 namespace Fluky {
 
- /**
-  * Defines the world where the game has to be rendered
-  */
+	/**
+	 * Defines the world where the game has to be rendered
+	 */
 	class World {
 
-	private:
-
-		std::shared_ptr<class Registry> registry;
-
 	public:
-
 		friend class Engine;
 
 		World(const World& world) = delete;
-  /**
-   * Ends the current application
-   */
+		/**
+		 * Ends the current application
+		 */
 		void EndApplication() noexcept;
-		
-  /**
-   * Render a figure in the world
-   */
+
+		/**
+		 * Render a figure in the world
+		 */
 		void CreateFigure() noexcept;
-		
-  /**
-   * Generates text in the world
-   */
+
+		/**
+		 * Generates text in the world
+		 */
 		void CreateText() noexcept;
 
-  /**
-   * Plays .wav file when the world starts
-	 * 
-   * @param  {char*} file : 
-   */
+		/**
+		 * Plays .wav file when the world starts
+		   *
+		 * @param  {char*} file :
+		 */
 		void PlayWav(const char* file) noexcept;
 
-	/**
-   * Get the joystick input instance
-	 * 
-   * @return {JoystickInput}  : 
-   */
+		/**
+	   * Get the joystick input instance
+		 *
+	   * @return {JoystickInput}  :
+	   */
 		class JoystickInput& GetJoystickInput() noexcept;
 
-  /**
-   * Returns the current window
-	 * 
-   * @return {Window}  : 
-   */
+		/**
+		 * Returns the current window
+		   *
+		 * @return {Window}  :
+		 */
 		class Window& GetWindow() noexcept;
 
 		template<typename T>
@@ -72,34 +70,34 @@ namespace Fluky {
 
 	private:
 		World(Application& app);
-  /**
-   * ~World 
-	 * 
-	 * Kill all the components of the world
-   * 
-   */
+		/**
+		 * ~World
+		   *
+		   * Kill all the components of the world
+		 *
+		 */
 		~World();
-  /**
-   * Starts the main loop for this world 
-   */
+		/**
+		 * Starts the main loop for this world
+		 */
 		void StartMainLoop() noexcept;
-  /**
-   * Updates the world and all it's components
-	 * 
-   * @param  {float} timeStep : 
-   */
+		/**
+		 * Updates the world and all it's components
+		   *
+		 * @param  {float} timeStep :
+		 */
 		void Update(float timeStep) noexcept;
 
-		void ShutDownRegistry();
+		void ShutDown();
 
 		// Current window
 		Window m_window;
 		// Current Joystick input instance
-		JoystickInput m_joystickinput;
+		InputComponent m_joystickinput;
 		// Current Application
 		Application& m_application;
 		// Audio instance
-		class Audio m_audio;
+		AudioComponent m_audio;
 
 		// Should close world boolean
 		bool m_shouldClose;
@@ -112,7 +110,8 @@ namespace Fluky {
 
 		std::vector<class GameObject> gameObjectVector;
 
-	};
+		Scene scene;
 
+	};
 }
 #endif

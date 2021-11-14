@@ -1,4 +1,4 @@
-﻿# CMakeList.txt : CMake project for FlukyEngine, include source and define
+# CMakeList.txt : CMake project for FlukyEngine, include source and define
 # project specific logic here.
 #
 cmake_minimum_required (VERSION 3.8)
@@ -8,31 +8,24 @@ cmake_minimum_required (VERSION 3.8)
 find_package(OpenGL REQUIRED)
 
 set(FLUKY_HEADERS 
-				Platform/Window.hpp
-				Platform/JoystickInput.hpp
-				Platform/KeyCodes.hpp
-				Rendering/BoxComponent.hpp
-				Rendering/Text.hpp
-				Audio/Audio.hpp
-				World/World.hpp
-				World/WorldTest.hpp
-				World/TransformComponent.hpp
-				World/RegistryHandler.hpp
-				"World/Component.hpp"
-				World/GameObject.hpp
-				Application.hpp
 				Engine.hpp
+				Application.hpp
+				Audio/AudioComponent.hpp
+				Platform/InputComponent.hpp
+				Platform/Window.hpp
+				Rendering/BoxComponent.hpp
+				World/GameObject.hpp
+				World/Scene.hpp
+				World/TransformComponent.hpp
+				World/World.hpp
 				)
 set(FLUKY_SOURCES 
-				Platform/Window.cpp
-				Platform/JoystickInput.cpp
-				Rendering/BoxComponent.cpp
-				Rendering/Text.cpp
-				Audio/Audio.cpp
 				Application.cpp
+				Audio/AudioComponent.cpp
+				Platform/InputComponent.cpp
+				Platform/Window.cpp
+				Rendering/BoxComponent.cpp
 				World/World.cpp
-				World/WorldTest.cpp
-				"World/Component.cpp"
 				)
 #file(GLOB_RECURSE Shaders  "${CMAKE_SOURCE_DIR}/Assets/Shaders/*")
 #source_group("Shaders" FILES ${Shaders})

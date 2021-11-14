@@ -1,5 +1,6 @@
 #include "BoxComponent.hpp"
 #include "../World/TransformComponent.hpp"
+
 #include "bgfx/bgfx.h"
 #include "bgfx/platform.h"
 #include <iostream>
@@ -108,18 +109,18 @@ namespace Fluky {
 
 		return 1;
 	}
-	
+
 	BoxComponent::~BoxComponent()
 	{
 		bgfx::destroy(ibh);
 		bgfx::destroy(vbh);
 	}
-	
+
 	void BoxComponent::Update(TransformComponent transform) noexcept
 	{
 
-	/*	float mtx[16];
-		bx::mtxRotateXY(mtx, sizeX, sizeY);*/
+		/*	float mtx[16];
+			bx::mtxRotateXY(mtx, sizeX, sizeY);*/
 
 		bgfx::setTransform(transform.GetMatrix());
 
@@ -131,5 +132,5 @@ namespace Fluky {
 		counter++;
 	}
 
-	
+
 }

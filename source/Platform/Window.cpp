@@ -1,5 +1,6 @@
 #include "Window.hpp"
 #define GLFW_INCLUDE_NONE
+
 #include <iostream>
 #include <stdio.h>
 #include <bx/bx.h>
@@ -13,14 +14,11 @@
 #undef APIENTRY
 #endif
 
-#include "JoystickInput.hpp"
-
-
-class JoystickInput;
+#include "InputComponent.hpp"
 
 namespace Fluky {
 
-	JoystickInput joyInput;
+	InputComponent joyInput;
 	//Figures figtest;
 
 	static void GLFWErrorCallback(int error, const char* description)
@@ -63,7 +61,7 @@ namespace Fluky {
 		// Call bgfx::renderFrame before bgfx::init to signal to bgfx not to create a render thread.
 		// Most graphics APIs must be used on the same thread that created the window.
 		bgfx::renderFrame();
-		
+
 
 		debug = BGFX_DEBUG_NONE;
 		reset = BGFX_RESET_VSYNC;
@@ -155,7 +153,7 @@ namespace Fluky {
 	{
 		int width, height;
 		glfwGetWindowSize(m_windowHandle, &width, &height);
-		return glm::ivec2(width,height);
+		return glm::ivec2(width, height);
 	}
 	glm::ivec2 Window::GetWindowFrameBufferSize() const noexcept
 	{
@@ -163,7 +161,7 @@ namespace Fluky {
 		glfwGetFramebufferSize(m_windowHandle, &width, &height);
 		return glm::ivec2(width, height);
 	}
-	void Window::SetWindowDimensions(const glm::ivec2 &dimensions) noexcept
+	void Window::SetWindowDimensions(const glm::ivec2& dimensions) noexcept
 	{
 		bgfx::reset((uint32_t)dimensions.x, (uint32_t)dimensions.y, BGFX_RESET_VSYNC);
 		//bgfx::setViewRect(kClearView, 0, 0, bgfx::BackbufferRatio::Equal);
@@ -172,7 +170,7 @@ namespace Fluky {
 		return m_windowHandle;
 	}
 
-	JoystickInput Window::GetJoystickHandler()
+	InputComponent Window::GetJoystickHandler()
 	{
 		return joyInput;
 	}

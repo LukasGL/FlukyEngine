@@ -48,7 +48,6 @@ else()
 endif(MSVC)
 
 # Include sub-projects.
-add_subdirectory("examples")
 add_subdirectory("examples-fluky")
 add_subdirectory("thirdParty")
 add_subdirectory("source")

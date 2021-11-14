@@ -2,6 +2,9 @@
 #ifndef GAMEOBJECT_HPP
 #define GAMEOBJECT_HPP
 
+#include "TransformComponent.hpp"
+#include "../Rendering/BoxComponent.hpp"
+#include "Scene.hpp"
 #include "entt/entt.hpp"
 
 namespace Fluky {
@@ -10,18 +13,22 @@ namespace Fluky {
 
 	public:
 
-		void CreateGameObject(entt::registry& registry) {
-			entity = registry.create();
+		void CreateGameObject(Scene& scene) {
+			entt::registry* registry = scene.GetRegistry();
+			entity = (*registry).create();
 		}
 
 		template <typename T>
-		void AddComponent(entt::registry& registry) {
-
+		void AddComponent(Scene scene) {
+			entt::registry* registry = scene.GetRegistry();
+			(*registry).emplace<T>(entity);
 		}
 
-		void Update(entt::registry& registry)
+		void Update(Scene& scene)
 		{
-			auto view = registry.view<TransformComponent, BoxComponent>();
+			entt::registry* registry = scene.GetRegistry();
+
+			auto view = (*registry).view<TransformComponent, BoxComponent>();
 
 			auto& transf = view.get<TransformComponent>(entity);
 			auto box = view.get<BoxComponent>(entity);
@@ -29,9 +36,11 @@ namespace Fluky {
 			box.Update(transf);
 		};
 
-		void ShutDown(entt::registry& registry) {
+		void ShutDown(Scene scene) {
 
-			auto view = registry.view<TransformComponent, BoxComponent>();
+			entt::registry* registry = scene.GetRegistry();
+
+			auto view = (*registry).view<TransformComponent, BoxComponent>();
 
 			auto& transf = view.get<TransformComponent>(entity);
 			auto& box = view.get<BoxComponent>(entity);

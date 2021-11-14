@@ -1,4 +1,4 @@
-#include "Audio.hpp"
+#include "AudioComponent.hpp"
 
 #include <iostream>
 #include <cassert>
@@ -88,7 +88,7 @@ namespace Fluky {
 	ALuint buffer;
 	ALCcontext* context;
 
-	int Audio::Play(const char* file) {
+	int AudioComponent::Play(const char* file) {
 		if (!load_wav_file(file, buffer)) return -1;
 
 		std::cout << "wav file loaded correctly" << std::endl;
@@ -100,7 +100,7 @@ namespace Fluky {
 		alSourcePlay(source);
 	}
 
-	int Audio::ShutDown() noexcept
+	int AudioComponent::ShutDown() noexcept
 	{
 		alDeleteSources(1, &source);
 		alDeleteBuffers(1, &buffer);
@@ -111,10 +111,10 @@ namespace Fluky {
 		return 1;
 	}
 
-	int Audio::StartUp() noexcept
+	int AudioComponent::StartUp() noexcept
 	{
 		/* Conecting to the default device */
-		ALCdevice*  device = alcOpenDevice(NULL);
+		ALCdevice* device = alcOpenDevice(NULL);
 		if (device == nullptr) return -1;
 
 		/* Checking if our OpenAL support enumeration of devices */
@@ -133,8 +133,8 @@ namespace Fluky {
 			std::cout << "failed to make context current OpenAL" << std::endl;
 			return -1;
 		}
-			
-		
+
+
 		//bool success = OPENALCALL(alcMakeContextCurrent(context));
 		//if (!success) return -1;
 
@@ -155,7 +155,7 @@ namespace Fluky {
 		alListenerfv(AL_ORIENTATION, listenerOri);
 		// check for errors
 
-		
+
 		/*OPENALCALL(alGenSources((ALuint)1, &source));
 		OPENALCALL(alSourcef(source, AL_PITCH, 1));
 		OPENALCALL(alSourcef(source, AL_GAIN, 1));
@@ -176,7 +176,7 @@ namespace Fluky {
 		alSourcei(source, AL_LOOPING, AL_FALSE);
 		// check for errros
 
-		
+
 		//OPENALCALL(alGenBuffers((ALuint)1, &buffer));
 		alGenBuffers((ALuint)1, &buffer);
 

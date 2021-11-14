@@ -2,11 +2,12 @@
 #ifndef TRANSFORMCOMPONENT_HPP
 #define TRANSFORMCOMPONENT_HPP
 
+#include <bx/math.h>
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include <memory>
-#include <bx/math.h>
 
 namespace Fluky {
 

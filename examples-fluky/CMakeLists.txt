@@ -11,14 +11,14 @@ function(MakeExample TARGETNAME FILENAME)
 endfunction(MakeExample)
 
 #MakeExample(ex_quad_pro ex_quad_pro.cpp)
-MakeExample(ex_world ex_world.cpp)
-MakeExample(ex_cube ex_cube.cpp)
-MakeExample(ex_audio ex_audio.cpp)
-MakeExample(ex_text ex_text.cpp)
-MakeExample(ex_components ex_components.cpp)
+#MakeExample(ex_world ex_world.cpp)
+#MakeExample(ex_cube ex_cube.cpp)
+#MakeExample(ex_audio ex_audio.cpp)
+#MakeExample(ex_text ex_text.cpp)
+#MakeExample(ex_components ex_components.cpp)
 
-add_custom_command(
-        TARGET ex_world POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy
-                ${CMAKE_SOURCE_DIR}/examples-fluky/demo/demo.wav
-                ${CMAKE_CURRENT_BINARY_DIR}/demo.wav)
+#add_custom_command(
+ #       TARGET ex_world POST_BUILD
+  #      COMMAND ${CMAKE_COMMAND} -E copy
+   #             ${CMAKE_SOURCE_DIR}/examples-fluky/demo/demo.wav
+    #            ${CMAKE_CURRENT_BINARY_DIR}/demo.wav)

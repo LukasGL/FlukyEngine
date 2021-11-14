@@ -1,9 +1,9 @@
-﻿#pragma once
+#pragma once
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
 #include "World/World.hpp"
-#include "Application.hpp"
 #include <memory>
+#include "Application.hpp"
 namespace Fluky {
 	class Engine
 	{
