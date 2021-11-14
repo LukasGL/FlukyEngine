@@ -145,7 +145,7 @@ namespace Fluky {
 
 	void World::ShutDown()
 	{
-		scene.ShutDownScene();
+		//scene.ShutDownScene();
 	}
 
 }

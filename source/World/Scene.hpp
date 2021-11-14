@@ -18,9 +18,9 @@ namespace Fluky {
 
 		void ShutDownScene();
 
-	protected:
-
-		entt::registry* GetRegistry();
+		entt::registry& GetRegistry() {
+			return registry;
+		}
 
 	private:
 

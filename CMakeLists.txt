@@ -3,6 +3,8 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
+#set(CMAKE_CXX_STANDARD 17)
+
 project ("FlukyEngine")
 
 # first we can indicate the documentation build as an option and set it to ON by default

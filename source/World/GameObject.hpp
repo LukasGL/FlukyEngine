@@ -14,19 +14,19 @@ namespace Fluky {
 	public:
 
 		void CreateGameObject(Scene& scene) {
-			entt::registry* registry = scene.GetRegistry();
+			entt::registry* registry = &scene.GetRegistry();
 			entity = (*registry).create();
 		}
 
 		template <typename T>
-		void AddComponent(Scene scene) {
-			entt::registry* registry = scene.GetRegistry();
+		void AddComponent(Scene& scene) {
+			entt::registry* registry = &scene.GetRegistry();
 			(*registry).emplace<T>(entity);
 		}
 
 		void Update(Scene& scene)
 		{
-			entt::registry* registry = scene.GetRegistry();
+			entt::registry* registry = &scene.GetRegistry();
 
 			auto view = (*registry).view<TransformComponent, BoxComponent>();
 
@@ -36,9 +36,9 @@ namespace Fluky {
 			box.Update(transf);
 		};
 
-		void ShutDown(Scene scene) {
+		void ShutDown(Scene& scene) {
 
-			entt::registry* registry = scene.GetRegistry();
+			entt::registry* registry = &scene.GetRegistry();
 
 			auto view = (*registry).view<TransformComponent, BoxComponent>();
 

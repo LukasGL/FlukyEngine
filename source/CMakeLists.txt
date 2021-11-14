@@ -25,6 +25,7 @@ set(FLUKY_SOURCES
 				Platform/InputComponent.cpp
 				Platform/Window.cpp
 				Rendering/BoxComponent.cpp
+				World/TransformComponent.cpp
 				World/World.cpp
 				)
 #file(GLOB_RECURSE Shaders  "${CMAKE_SOURCE_DIR}/Assets/Shaders/*")

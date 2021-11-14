@@ -5,13 +5,13 @@ namespace Fluky {
 
 	GameObject Scene::CreateGameObject() {
 		GameObject gameObject;
-		gameObject.CreateGameObject(registry);
+		gameObject.CreateGameObject(&this);
 		return gameObject;
 	}
 
 	template<typename T>
 	T Scene::AddComponent(GameObject gameObject) {
-		return gameObject.AddComponent<T>(registry);
+		return gameObject.AddComponent<T>(&this);
 	}
 
 	void Scene::ShutDownScene()
@@ -20,8 +20,5 @@ namespace Fluky {
 		registry.destroy(view.begin(), view.end());
 	}
 
-	entt::registry* Scene::GetRegistry() {
-		return &registry;
-	}
 
 }
