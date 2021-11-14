@@ -17,6 +17,7 @@ namespace Fluky
 	class Window {
 	public:
 		friend class World;
+		friend class BoxComponent;
 
 		/**
 		 * What to do when the window closes

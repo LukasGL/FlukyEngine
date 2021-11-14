@@ -34,4 +34,8 @@ namespace Fluky {
 		bx::mtxRotateXYZ(mtx, angleX, angleY, angleZ);
 	}
 
+	void TransformComponent::AddRotationXYZ(float angleX, float angleY, float angleZ)
+	{
+	}
+
 }

@@ -68,6 +68,10 @@ namespace Fluky {
 
 		GameObject CreateGameObject();
 
+		std::vector<GameObject> GetGameObjects() {
+			return scene.gameObjectVector;
+		}
+
 	private:
 		World(Application& app);
 		/**
@@ -86,7 +90,7 @@ namespace Fluky {
 		   *
 		 * @param  {float} timeStep :
 		 */
-		void Update(float timeStep) noexcept;
+		void Update(float time, float timeStep) noexcept;
 
 		void ShutDown();
 

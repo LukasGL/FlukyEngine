@@ -5,6 +5,7 @@ namespace Fluky {
 
 	GameObject Scene::CreateGameObject() {
 		GameObject gameObject = { registry.create(), this };
+		gameObjectVector.push_back(gameObject);
 		return gameObject;
 	}
 

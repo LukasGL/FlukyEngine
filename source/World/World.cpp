@@ -18,8 +18,6 @@ namespace Fluky {
 	{
 		m_audio.StartUp();
 		m_window.StartUp();
-		add_figure = false;
-		add_text = false;
 		playingwav = false;
 		m_application = std::move(app);
 		m_application.StartUp(*this);
@@ -32,11 +30,6 @@ namespace Fluky {
 		}
 		m_audio.ShutDown();
 		m_window.ShutDown();
-	}
-
-	void World::CreateFigure() noexcept {
-		figures.Init();
-		add_figure = true;
 	}
 
 	void World::PlayWav(const char* file) noexcept {
@@ -57,6 +50,7 @@ namespace Fluky {
 
 	void World::StartMainLoop() noexcept {
 		std::chrono::time_point<std::chrono::steady_clock> startTime = std::chrono::steady_clock::now();
+		std::chrono::time_point<std::chrono::steady_clock> initialTime = std::chrono::steady_clock::now();
 
 
 		while (!m_window.ShouldClose() && !m_shouldClose)
@@ -69,15 +63,17 @@ namespace Fluky {
 			if (frameTime > std::chrono::milliseconds(17)) {
 				timeStep = 0.016f;
 			}
-			Update(timeStep);
+			const std::chrono::duration<float, std::milli> timeChrono = newTime - initialTime;
+			float time = std::chrono::duration_cast<std::chrono::duration<float>>(timeChrono).count();
+			Update(time, timeStep);
 		}
 	}
 
-	void World::Update(float timeStep) noexcept
+	void World::Update(float time, float timeStep) noexcept
 	{
 		//std::cout << timeStep * 1000.f << "ms" << std::endl;
-		m_application.UserUpdate(*this, timeStep);
-		if (add_figure) {
+		m_application.UserUpdate(*this, timeStep, time);
+		/*if (add_figure) {
 			InputComponent joyInput = m_window.GetJoystickHandler();
 			JoystickContainer joysticks = joyInput.GetJoysticks();
 
@@ -121,12 +117,17 @@ namespace Fluky {
 				PlayWav("demo.wav");
 				playingwav = true;
 			}
-		}
+		}*/
 
 		for (auto i = scene.gameObjectVector.begin(); i != scene.gameObjectVector.end(); ++i) {
-			i->Update();
+			if (i->HasComponent<BoxComponent, TransformComponent>()) {
+				i->Update();
+			}
+			else
+			{
+				std::cout << "Debes agregar BoxComponent y TransformComponent" << std::endl;
+			}
 		}
-
 		m_window.Update();
 	}
 

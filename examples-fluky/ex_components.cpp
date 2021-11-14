@@ -17,7 +17,13 @@ public:
 
 	virtual void UserShutDown(Fluky::World& world) noexcept override {
 	}
-	virtual void UserUpdate(Fluky::World& world, float timeStep) noexcept override {
+	virtual void UserUpdate(Fluky::World& world, float timeStep, float time) noexcept override {
+		auto gameObjects = world.GetGameObjects();
+
+		for (int i = 0; i < gameObjects.size(); i++) {
+			auto& transf = gameObjects.at(i).GetComponent<Fluky::TransformComponent>();
+			transf.RotateXY(1.f + time, 1.f + time);
+		}
 	}
 };
 

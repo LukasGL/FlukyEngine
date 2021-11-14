@@ -23,7 +23,6 @@ namespace Fluky {
 		template <typename T>
 		T& AddComponent() {
 			T& component = m_scene->registry.emplace<T>(entity);
-			m_scene->gameObjectVector.push_back(*this);
 			return component;
 		}
 
@@ -32,7 +31,7 @@ namespace Fluky {
 			auto view = m_scene->registry.view<TransformComponent, BoxComponent>();
 
 			auto& transf = view.get<TransformComponent>(entity);
-			auto box = view.get<BoxComponent>(entity);
+			auto& box = view.get<BoxComponent>(entity);
 
 			box.Update(transf);
 		};
@@ -47,6 +46,20 @@ namespace Fluky {
 
 			box.~BoxComponent();
 
+		}
+
+		template<typename... T>
+		bool HasComponent()
+		{
+			return m_scene->registry.all_of<T ...>(entity);
+			//return m_scene->registry.has<T>(entity);
+			//return m_scene->m_Registry.has<T>(m_EntityHandle);
+		}
+
+		template<typename T>
+		T& GetComponent()
+		{
+			return m_scene->registry.get<T>(entity);
 		}
 
 	private:

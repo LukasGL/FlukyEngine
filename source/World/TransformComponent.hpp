@@ -15,6 +15,9 @@ namespace Fluky {
 	class TransformComponent {
 
 	public:
+
+		friend class BoxComponent;
+
 		float* GetMatrix() {
 			return mtx;
 		}
@@ -28,6 +31,8 @@ namespace Fluky {
 		void RotateZ(float angle);
 		void RotateXY(float angleX, float angleY);
 		void RotateXYZ(float angleX, float angleY, float angleZ);
+
+		void AddRotationXYZ(float angleX, float angleY, float angleZ);
 
 	private:
 		float mtx[16];

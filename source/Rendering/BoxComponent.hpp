@@ -23,9 +23,11 @@ namespace Fluky {
 		/**
 		 * Funciton called in every iteration of the main loop
 		 */
-		void Update(class TransformComponent transform) noexcept;
+		void Update(class TransformComponent& transform) noexcept;
 
 		unsigned int counter;
+
+		bool initialized = false;
 
 		/*void StartUp() noexcept;
 		void ShutDown() noexcept;

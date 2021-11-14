@@ -39,7 +39,7 @@ namespace Fluky {
 		 * @param  {World} world    :
 		 * @param  {float} timestep :
 		 */
-		virtual void UserUpdate(World& world, float timestep)  noexcept = 0;
+		virtual void UserUpdate(World& world, float timestep, float time)  noexcept = 0;
 
 		virtual ~Application() = default;
 	private:
