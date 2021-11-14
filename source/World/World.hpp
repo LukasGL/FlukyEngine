@@ -12,7 +12,6 @@
 #include <array>
 #include <filesystem>
 #include <string>
-//#include <entt/entt.hpp>
 
 namespace Fluky {
 
@@ -57,14 +56,14 @@ namespace Fluky {
 	 * 
    * @return {JoystickInput}  : 
    */
-		JoystickInput& GetJoystickInput() noexcept;
+		class JoystickInput& GetJoystickInput() noexcept;
 
   /**
    * Returns the current window
 	 * 
    * @return {Window}  : 
    */
-		Window& GetWindow() noexcept;
+		class Window& GetWindow() noexcept;
 
 		template<typename T>
 		T AddComponent(class GameObject gameObject);
@@ -100,7 +99,7 @@ namespace Fluky {
 		// Current Application
 		Application& m_application;
 		// Audio instance
-		Audio m_audio;
+		class Audio m_audio;
 
 		// Should close world boolean
 		bool m_shouldClose;
@@ -110,7 +109,6 @@ namespace Fluky {
 		bool add_text;
 
 		bool playingwav;
-
 
 		std::vector<class GameObject> gameObjectVector;
 

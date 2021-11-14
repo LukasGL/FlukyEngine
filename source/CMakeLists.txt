@@ -15,6 +15,7 @@ set(FLUKY_HEADERS
 				Rendering/Text.hpp
 				Audio/Audio.hpp
 				World/World.hpp
+				World/WorldTest.hpp
 				World/TransformComponent.hpp
 				World/RegistryHandler.hpp
 				"World/Component.hpp"
@@ -30,6 +31,7 @@ set(FLUKY_SOURCES
 				Audio/Audio.cpp
 				Application.cpp
 				World/World.cpp
+				World/WorldTest.cpp
 				"World/Component.cpp"
 				)
 #file(GLOB_RECURSE Shaders  "${CMAKE_SOURCE_DIR}/Assets/Shaders/*")

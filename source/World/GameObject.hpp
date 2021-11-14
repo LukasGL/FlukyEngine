@@ -3,7 +3,6 @@
 #define GAMEOBJECT_HPP
 
 #include "entt/entt.hpp"
-#include "TransformComponent.hpp"
 
 namespace Fluky {
 
@@ -44,7 +43,6 @@ namespace Fluky {
 	private:
 
 		entt::entity entity;
-		Component comp;
 
 	};
 

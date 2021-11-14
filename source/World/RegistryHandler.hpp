@@ -7,10 +7,7 @@
 namespace Fluky {
 
 	class Registry {
-
-
 	public:
-
 		friend class World;
 	private:
 		entt::registry registry;

@@ -6,7 +6,9 @@ public:
 	~EXWorld() = default;
 	virtual void UserStartUp(Fluky::World& world) noexcept override {
 
-		
+		//auto cube = world.CreateGameObject();
+		//Fluky::GameObject aaaaa;
+		Fluky::Window aa;
 
 	}
 
