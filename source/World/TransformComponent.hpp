@@ -34,8 +34,12 @@ namespace Fluky {
 
 		void AddRotationXYZ(float angleX, float angleY, float angleZ);
 
+
+		std::vector<float> Location = { 0.f, 0.f, 0.f };
+
 	private:
 		float mtx[16];
+
 
 	};
 

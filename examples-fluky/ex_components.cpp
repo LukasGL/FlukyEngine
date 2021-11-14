@@ -1,4 +1,5 @@
 #include "FlukyEngine.hpp"
+#include <iostream>
 
 class EXWorld : public Fluky::Application {
 public:
@@ -9,7 +10,16 @@ public:
 		auto cube = world.CreateGameObject();
 		auto& boxComponent = cube.AddComponent<Fluky::BoxComponent>();
 		auto& transformComponent = cube.AddComponent<Fluky::TransformComponent>();
-		transformComponent.SetTranslation(0.f, 0.f, 0.f);
+		transformComponent.RotateXYZ(1.f, 1.f, 1.f);
+		std::cout << transformComponent.Location[0] << std::endl;
+		transformComponent.SetTranslation(1.5f, 0.f, 0.f);
+		std::cout << transformComponent.Location[0] << std::endl;
+
+		auto cube2 = world.CreateGameObject();
+		auto& boxComponent2 = cube2.AddComponent<Fluky::BoxComponent>();
+		auto& transformComponent2 = cube2.AddComponent<Fluky::TransformComponent>();
+		transformComponent2.RotateXYZ(1.f, 1.f, 1.f);
+		transformComponent2.SetTranslation(-1.5f, 0.f, 0.f);
 		//auto boxComponent = world.AddComponent<Fluky::BoxComponent>(cube);
 		//world.AddComponent<Fluky::BoxComponent>(cube);
 
