@@ -39,9 +39,27 @@ namespace Fluky {
         glfwSetJoystickCallback(joystick_callback);
     }
 
-    JoystickContainer InputComponent::GetJoysticks()
+    JoystickContainer& InputComponent::GetJoysticks()
     {
-        return this->joysticks;
+        return joysticks;
+    }
+
+    Joystick InputComponent::GetJoystick(float id)
+    {
+        JoystickContainer joysticks = GetJoysticks();
+
+        for (auto& elem : joysticks)
+        {
+            auto& joystickId = elem.first;
+            auto& joystick = elem.second;
+
+            float const buttonSize = 2.0f / joystick.buttons.size();
+
+            if (joystickId == id)
+            {
+                return joystick;
+            }
+        }
     }
 
 

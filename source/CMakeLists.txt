@@ -16,6 +16,7 @@ set(FLUKY_HEADERS
 				Rendering/BoxComponent.hpp
 				"World/Component.hpp"
 				World/GameObject.hpp
+				World/PlayerComponent.hpp
 				World/Scene.hpp
 				World/TransformComponent.hpp
 				World/World.hpp

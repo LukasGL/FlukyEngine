@@ -4,6 +4,7 @@
 
 #include "TransformComponent.hpp"
 #include "../Rendering/BoxComponent.hpp"
+#include "PlayerComponent.hpp"
 #include "Scene.hpp"
 #include "entt/entt.hpp"
 
@@ -28,25 +29,27 @@ namespace Fluky {
 
 		void Update()
 		{
-			auto view = m_scene->registry.view<TransformComponent, BoxComponent>();
+			if (HasComponent<BoxComponent, TransformComponent, PlayerComponent>()) {
+				auto view = m_scene->registry.view<TransformComponent, BoxComponent, PlayerComponent>();
 
-			auto& transf = view.get<TransformComponent>(entity);
-			auto& box = view.get<BoxComponent>(entity);
+				auto& transf = view.get<TransformComponent>(entity);
+				auto& box = view.get<BoxComponent>(entity);
+				auto& player = view.get<PlayerComponent>(entity);
 
-			box.Update(transf);
+				box.Update(transf);
+				player.Update();
+			}
+			else if (HasComponent<BoxComponent, TransformComponent>()) {
+				auto view = m_scene->registry.view<TransformComponent, BoxComponent>();
+
+				auto& transf = view.get<TransformComponent>(entity);
+				auto& box = view.get<BoxComponent>(entity);
+
+				box.Update(transf);
+			} 
+
+			
 		};
-
-		void ShutDown() 
-		{
-
-			auto view = m_scene->registry.view<TransformComponent, BoxComponent>();
-
-			auto& transf = view.get<TransformComponent>(entity);
-			auto& box = view.get<BoxComponent>(entity);
-
-			box.~BoxComponent();
-
-		}
 
 		template<typename... T>
 		bool HasComponent()

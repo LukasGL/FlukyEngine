@@ -54,7 +54,7 @@ namespace Fluky {
 		 *
 	   * @return {JoystickInput}  :
 	   */
-		class JoystickInput& GetJoystickInput() noexcept;
+		InputComponent& GetJoystickInput() noexcept;
 
 		/**
 		 * Returns the current window

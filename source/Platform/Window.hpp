@@ -6,6 +6,7 @@
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
+#include "InputComponent.hpp"
 
 namespace Fluky
 {
@@ -50,7 +51,7 @@ namespace Fluky
 		 * @return {GLFWwindow*}  :
 		 */
 		GLFWwindow* GetHandle() const;
-		InputComponent GetJoystickHandler();
+		InputComponent joyInput;
 
 		int width, height, debug, reset;
 		GLFWwindow* m_windowHandle;

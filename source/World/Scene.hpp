@@ -18,6 +18,7 @@ namespace Fluky {
 
 		void ShutDownScene();
 
+
 	private:
 
 		std::vector<GameObject> gameObjectVector;

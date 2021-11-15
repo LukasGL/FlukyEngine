@@ -1,6 +1,7 @@
 #pragma once
 #ifndef INPUTCOMPONENT_HPP
 #define INPUTCOMPONENT_HPP
+
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -10,6 +11,7 @@
 #include <bitset>
 #include <cmath>
 #include <ciso646>
+#define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include <memory>
 /**
@@ -62,6 +64,7 @@ namespace Fluky
     class InputComponent {
 
     public:
+
         /**
      *
      * Receives the keyboard events
@@ -113,11 +116,23 @@ namespace Fluky
      *
      * @return {JoystickContainer}  :
      */
-        JoystickContainer GetJoysticks();
+        JoystickContainer& GetJoysticks();
+
+        Joystick GetJoystick(float id);
+
+        void SetPlayerId(float id) {
+            PlayerId = id;
+        }
+
+
+        
 
     private:
 
         JoystickContainer joysticks;
+
+        float PlayerId;
+
     };
 }
 

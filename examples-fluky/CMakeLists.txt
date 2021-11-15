@@ -16,6 +16,7 @@ endfunction(MakeExample)
 #MakeExample(ex_audio ex_audio.cpp)
 #MakeExample(ex_text ex_text.cpp)
 MakeExample(ex_components ex_components.cpp)
+MakeExample(ex_players ex_players.cpp)
 
 #add_custom_command(
  #       TARGET ex_world POST_BUILD

@@ -1,7 +1,5 @@
 #include "World.hpp"
 
-#include "World.hpp"
-
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -10,10 +8,10 @@ namespace Fluky {
 	BoxComponent figures;
 
 	World::World(Application& app) :
-		m_window(),
 		//m_joystickinput(),
 		m_application(app),
 		m_shouldClose(false),
+		m_window(),
 		m_audio()
 	{
 		m_audio.StartUp();
@@ -34,6 +32,11 @@ namespace Fluky {
 
 	void World::PlayWav(const char* file) noexcept {
 		m_audio.Play(file);
+	}
+
+	InputComponent& World::GetJoystickInput() noexcept
+	{
+		return m_window.joyInput;
 	}
 
 	/*JoystickInput& World::GetJoystickInput() noexcept {
@@ -119,8 +122,25 @@ namespace Fluky {
 			}
 		}*/
 
+		/*InputComponent joyInput = m_window.joyInput;
+		JoystickContainer joysticks = joyInput.GetJoysticks();
+
+		for (auto& elem : joysticks)
+		{
+			auto& joystickId = elem.first;
+			auto& joystick = elem.second;
+
+			float const buttonSize = 2.0f / joystick.buttons.size();
+
+			if (joystickId == 0)
+			{
+				std::cout << joystick.axes[0] << std::endl;
+			}
+		}*/
+
 		for (auto i = scene.gameObjectVector.begin(); i != scene.gameObjectVector.end(); ++i) {
-			if (i->HasComponent<BoxComponent, TransformComponent>()) {
+			if (i->HasComponent<BoxComponent, TransformComponent, PlayerComponent>()) {
+				
 				i->Update();
 			}
 			else

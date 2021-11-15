@@ -12,19 +12,8 @@ public:
 		auto& transformComponent = cube.AddComponent<Fluky::TransformComponent>();
 		transformComponent.RotateXYZ(1.f, 1.f, 1.f);
 		transformComponent.SetTranslation(1.5f, 1.5f, 0.f);
-
-		auto cube2 = world.CreateGameObject();
-		auto& boxComponent2 = cube2.AddComponent<Fluky::BoxComponent>();
-		auto& transformComponent2 = cube2.AddComponent<Fluky::TransformComponent>();
-		transformComponent2.RotateXYZ(1.f, 1.f, 1.f);
-		transformComponent2.SetTranslation(-1.5f, 1.5f, 0.f);
-
-
-		auto cube3 = world.CreateGameObject();
-		auto& boxComponent3 = cube3.AddComponent<Fluky::BoxComponent>();
-		auto& transformComponent3 = cube3.AddComponent<Fluky::TransformComponent>();
-		transformComponent3.RotateXYZ(1.f, 1.f, 1.f);
-		transformComponent3.SetTranslation(-1.5f, -1.5f, 0.f);
+		auto& playerComponent = cube.AddComponent<Fluky::PlayerComponent>();
+		playerComponent.SetPlayerId(&world.GetJoystickInput(), 0);
 
 	}
 
@@ -34,9 +23,13 @@ public:
 		auto gameObjects = world.GetGameObjects();
 
 		for (int i = 0; i < gameObjects.size(); i++) {
-			auto& transf = gameObjects.at(i).GetComponent<Fluky::TransformComponent>();
-			transf.RotateXY(1.f + time, 1.f + time);
+			auto& player = gameObjects.at(i).GetComponent<Fluky::PlayerComponent>();
+			player.SetPlayerId(&world.GetJoystickInput(), 0);
+			player.GetAxes();
+			//std::cout << player.GetAxes()[0] << std::endl;
 		}
+
+		//world.GetJoystickInput();
 	}
 };
 

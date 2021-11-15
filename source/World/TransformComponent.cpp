@@ -47,7 +47,6 @@ namespace Fluky {
 	}
 	void TransformComponent::RotateXYZ(float angleX, float angleY, float angleZ) {
 		bx::mtxRotateXYZ(mtx, angleX, angleY, angleZ);
-		std::cout << Location[0] << " caca" << std::endl;
 		mtx[12] = Location[0];
 		mtx[13] = Location[1];
 		mtx[14] = Location[2];

@@ -18,7 +18,6 @@
 
 namespace Fluky {
 
-	InputComponent joyInput;
 	//Figures figtest;
 
 	static void GLFWErrorCallback(int error, const char* description)
@@ -56,6 +55,8 @@ namespace Fluky {
 		joyInput.SetKeyCallback(m_windowHandle);
 
 		joyInput.SetJoystickCallback();
+
+		joyInput.pollJoysticks();
 
 
 		// Call bgfx::renderFrame before bgfx::init to signal to bgfx not to create a render thread.
@@ -170,10 +171,6 @@ namespace Fluky {
 		return m_windowHandle;
 	}
 
-	InputComponent Window::GetJoystickHandler()
-	{
-		return joyInput;
-	}
 
 	bool Window::ShouldClose() const noexcept
 	{
