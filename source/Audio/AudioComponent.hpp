@@ -84,7 +84,7 @@ namespace Fluky {
 		std::vector<float> Position = {0.f, 0.f, 0.f};
 
 		ALuint source;
-		ALuint buffer;
+		ALuint buffer = (ALuint)1;
 
 		Scene* p_sc;
 

@@ -36,6 +36,7 @@ namespace Fluky {
 		std::vector<ALuint> sources = sc.sources;
 		std::vector<ALuint> buffers = sc.buffers;
 
+
 		alGenSources((ALuint)sc.sources.size()+1, &source);
 
 		source = (ALuint)sc.sources.size() + 1;
@@ -51,6 +52,9 @@ namespace Fluky {
 		if (sc.buffers.size() < 1) {
 			StartUpBuffer(sc);
 		}
+
+
+		buffer = (ALuint)1;
 
 		p_sc = &sc;
 
@@ -76,8 +80,6 @@ namespace Fluky {
 	{
 
 		alGenBuffers((ALuint)1, &buffer);
-
-		buffer = (ALuint)sc.buffers.size() + 1;
 
 		sc.buffers.push_back(buffer);
 

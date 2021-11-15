@@ -29,7 +29,7 @@ public:
 
 		world.StartUpScene();
 
-		//audioComponent.Play("bounce.wav");
+		audioComponent.Play("bounce.wav");
 		audioComponent2.Play("bounce.wav");
 
 	}
