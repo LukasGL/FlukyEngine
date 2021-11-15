@@ -9,14 +9,12 @@ namespace Fluky {
 		return gameObject;
 	}
 
-	/*template<typename T>
-	T& Scene::AddComponent(GameObject gameObject) {
-		return gameObject.AddComponent<T>(&this);
-	}*/
+
 
 	void Scene::StartUp() {
+		audioManager.StartUp();
 		for (auto i = gameObjectVector.begin(); i != gameObjectVector.end(); ++i) {
-			i->StartUp();
+			i->StartUp(*this);
 		}
 	}
 

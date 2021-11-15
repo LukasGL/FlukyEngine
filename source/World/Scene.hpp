@@ -3,6 +3,7 @@
 #define SCENE_HPP
 
 #include "entt/entt.hpp"
+#include "../Audio/AudioManager.hpp"
 
 namespace Fluky {
 
@@ -10,6 +11,7 @@ namespace Fluky {
 	public:
 		friend class World;
 		friend class GameObject;
+		friend class AudioComponent;
 
 		class GameObject CreateGameObject();
 
@@ -26,6 +28,12 @@ namespace Fluky {
 		std::vector<GameObject> gameObjectVector;
 
 		entt::registry registry;
+
+		std::vector<ALuint> sources;
+
+		std::vector<ALuint> buffers;
+
+		AudioManager audioManager;
 	};
 
 

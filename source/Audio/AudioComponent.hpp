@@ -7,6 +7,8 @@
 #include <AL/alc.h>
 #include <cstdint>
 #include <vector>
+#include "../World/Scene.hpp"
+#include "AudioManager.hpp"
 
 namespace Fluky {
 
@@ -20,7 +22,11 @@ namespace Fluky {
 		 * initialize all the important values
 		   *
 		 */
-		int StartUp() noexcept;
+		int StartUp(Scene& sc);
+
+		int StartUpSource(ALuint source) noexcept;
+
+		int StartUpBuffer(Scene& sc) noexcept;
 
 
 		/**
@@ -76,6 +82,11 @@ namespace Fluky {
 	private:
 
 		std::vector<float> Position = {0.f, 0.f, 0.f};
+
+		ALuint source;
+		ALuint buffer;
+
+		Scene* p_sc;
 
 	};
 }

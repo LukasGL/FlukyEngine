@@ -11,6 +11,7 @@ set(FLUKY_HEADERS
 				Engine.hpp
 				Application.hpp
 				Audio/AudioComponent.hpp
+				Audio/AudioManager.hpp
 				Platform/InputComponent.hpp
 				Platform/Window.hpp
 				Rendering/BoxComponent.hpp
@@ -24,6 +25,7 @@ set(FLUKY_HEADERS
 set(FLUKY_SOURCES 
 				Application.cpp
 				Audio/AudioComponent.cpp
+				Audio/AudioManager.cpp
 				Platform/InputComponent.cpp
 				Platform/Window.cpp
 				Rendering/BoxComponent.cpp
