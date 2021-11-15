@@ -34,13 +34,13 @@ public:
 			auto& player = gameObjects.at(i).GetComponent<Fluky::PlayerComponent>();
 			auto& transf = gameObjects.at(i).GetComponent<Fluky::TransformComponent>();
 			if (i == 0) {
-				axeXP1 += player.GetAxes()[1] * 0.1;
-				axeYP1 += player.GetAxes()[0] * 0.1;
+				axeXP1 += player.GetAxes(1) * 0.1;
+				axeYP1 += player.GetAxes(0) * 0.1;
 				transf.RotateXY(1.f + axeXP1, 1.f + axeYP1);
 			}
 			else if (i == 1) {
-				axeXP2 += player.GetAxes()[1] * 0.1;
-				axeYP2 += player.GetAxes()[0] * 0.1;
+				axeXP2 += player.GetAxes(1) * 0.1;
+				axeYP2 += player.GetAxes(0) * 0.1;
 				transf.RotateXY(1.f + axeXP2, 1.f + axeYP2);
 			}
 			

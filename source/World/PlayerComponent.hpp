@@ -19,12 +19,18 @@ namespace Fluky {
 			Update(*joyInput);
 		}
 
-		std::vector<bool>& GetButtons() {
-			return p_buttons;
+		bool GetButtons(int ind) {
+			if (!p_buttons.empty()) {
+				return p_buttons[ind];
+			}
+			return false;
 		}
 
-		std::vector<float>& GetAxes() {
-			return p_axes;
+		float GetAxes(int ind) {
+			if (!p_axes.empty()) {
+				return p_axes[ind];
+			}
+			return 0;
 		}
 
 		void Update(InputComponent iP) {
