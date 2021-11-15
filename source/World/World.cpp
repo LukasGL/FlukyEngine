@@ -14,7 +14,6 @@ namespace Fluky {
 		m_window(),
 		m_audio()
 	{
-		m_audio.StartUp();
 		m_window.StartUp();
 		playingwav = false;
 		m_application = std::move(app);
@@ -26,13 +25,9 @@ namespace Fluky {
 		if (add_figure) {
 			figures.~BoxComponent();
 		}
-		m_audio.ShutDown();
 		m_window.ShutDown();
 	}
 
-	void World::PlayWav(const char* file) noexcept {
-		m_audio.Play(file);
-	}
 
 	InputComponent& World::GetJoystickInput() noexcept
 	{
@@ -139,7 +134,7 @@ namespace Fluky {
 		}*/
 
 		for (auto i = scene.gameObjectVector.begin(); i != scene.gameObjectVector.end(); ++i) {
-			if (i->HasComponent<BoxComponent, TransformComponent, PlayerComponent>()) {
+			if (i->HasComponent<BoxComponent, TransformComponent, PlayerComponent, AudioComponent>()) {
 				
 				i->Update(m_window);
 			}

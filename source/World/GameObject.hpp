@@ -7,7 +7,9 @@
 #include "PlayerComponent.hpp"
 #include "../Platform/Window.hpp"
 #include "Scene.hpp"
+#include "../Audio/AudioComponent.hpp"
 #include "entt/entt.hpp"
+
 
 namespace Fluky {
 
@@ -30,7 +32,19 @@ namespace Fluky {
 
 		void Update(Window window)
 		{
-			if (HasComponent<BoxComponent, TransformComponent, PlayerComponent>()) {
+			if (HasComponent<TransformComponent, BoxComponent, PlayerComponent, AudioComponent>()) {
+				auto view = m_scene->registry.view<TransformComponent, BoxComponent, PlayerComponent, AudioComponent>();
+
+				auto& transf = view.get<TransformComponent>(entity);
+				auto& box = view.get<BoxComponent>(entity);
+				auto& player = view.get<PlayerComponent>(entity);
+				auto& audio = view.get<AudioComponent>(entity);
+
+				box.Update(transf);
+				player.Update(window.joyInput);
+				audio.Update();
+			}
+			else if (HasComponent<BoxComponent, TransformComponent, PlayerComponent>()) {
 				auto view = m_scene->registry.view<TransformComponent, BoxComponent, PlayerComponent>();
 
 				auto& transf = view.get<TransformComponent>(entity);
@@ -47,7 +61,7 @@ namespace Fluky {
 				auto& box = view.get<BoxComponent>(entity);
 
 				box.Update(transf);
-			} 
+			}
 
 			
 		};
@@ -56,8 +70,6 @@ namespace Fluky {
 		bool HasComponent()
 		{
 			return m_scene->registry.all_of<T ...>(entity);
-			//return m_scene->registry.has<T>(entity);
-			//return m_scene->m_Registry.has<T>(m_EntityHandle);
 		}
 
 		template<typename T>

@@ -22,6 +22,10 @@ namespace Fluky {
 			return mtx;
 		}
 
+		float GetLocation(int i) {
+			return Location[i];
+		}
+
 		void Translate(float x, float y, float z);
 
 		void SetTranslation(float x, float y, float z);

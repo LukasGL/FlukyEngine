@@ -1,7 +1,12 @@
 #pragma once
+#ifndef AUDIOCOMPONENT_HPP
+#define AUDIOCOMPONENT_HPP
+
+
+#include <AL/al.h>
+#include <AL/alc.h>
 #include <cstdint>
-#ifndef AUDIO_HPP
-#define AUDIO_HPP
+#include <vector>
 
 namespace Fluky {
 
@@ -25,11 +30,14 @@ namespace Fluky {
 		int ShutDown() noexcept;
 
 
+		void SetPosition(float x, float y, float z);
+
+
 		/**
 		   * what to do when the game updates
 		 *
 		 */
-		void Update() noexcept;
+		void Update();
 
 
 		/**
@@ -67,6 +75,7 @@ namespace Fluky {
 		int Play(const char* file);
 	private:
 
+		std::vector<float> Position = {0.f, 0.f, 0.f};
 
 	};
 }

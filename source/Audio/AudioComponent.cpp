@@ -3,8 +3,6 @@
 #include <iostream>
 #include <cassert>
 #include <vector>
-#include <AL/al.h>
-#include <AL/alc.h>
 #define DR_WAV_IMPLEMENTATION
 #include <dr_wav.h>
 
@@ -84,6 +82,7 @@ bool load_wav_file(const char* audiofile, ALuint bufferId)
 
 namespace Fluky {
 
+
 	ALuint source;
 	ALuint buffer;
 	ALCcontext* context;
@@ -93,6 +92,7 @@ namespace Fluky {
 
 		std::cout << "wav file loaded correctly" << std::endl;
 
+		alSource3i(source, AL_POSITION, Position[0], Position[1], Position[2]);
 		/* Binding the buffer with the data to source */
 		alSourcei(source, AL_BUFFER, buffer);
 
@@ -109,6 +109,15 @@ namespace Fluky {
 		alcDestroyContext(context);
 		alcCloseDevice(device);
 		return 1;
+	}
+
+	void AudioComponent::SetPosition(float x, float y, float z){
+		Position = {x, y, z};
+	}
+
+	void AudioComponent::Update() {
+		alSource3f(source, AL_POSITION, Position[0], Position[1], Position[2]);
+		
 	}
 
 	int AudioComponent::StartUp() noexcept
@@ -148,7 +157,7 @@ namespace Fluky {
 		OPENALCALL(alListenerfv(AL_ORIENTATION, listenerOrigin));*/
 		ALfloat listenerOri[] = { 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f };
 
-		alListener3f(AL_POSITION, 0, 0, 1.0f);
+		alListener3f(AL_POSITION, 0, 0, 0);
 		// check for errors
 		alListener3f(AL_VELOCITY, 0, 0, 0);
 		// check for errors
@@ -169,11 +178,11 @@ namespace Fluky {
 		// check for errors
 		alSourcef(source, AL_GAIN, 1);
 		// check for errors
-		alSource3f(source, AL_POSITION, 0, 0, 0);
+		alSource3f(source, AL_POSITION, 0.f, 0.f, 0.f);
 		// check for errors
 		alSource3f(source, AL_VELOCITY, 0, 0, 0);
 		// check for errors
-		alSourcei(source, AL_LOOPING, AL_FALSE);
+		alSourcei(source, AL_LOOPING, AL_TRUE);
 		// check for errros
 
 
