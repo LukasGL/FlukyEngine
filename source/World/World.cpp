@@ -156,6 +156,10 @@ namespace Fluky {
 		return gameObject.AddComponent<T>();
 	}*/
 
+	void World::StartUpScene() {
+		scene.StartUp();
+	}
+
 	void World::ShutDown()
 	{
 		scene.ShutDownScene();

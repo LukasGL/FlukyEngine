@@ -66,6 +66,19 @@ namespace Fluky {
 			
 		};
 
+		void StartUp() {
+			if (HasComponent<BoxComponent, AudioComponent>()) {
+
+				auto view = m_scene->registry.view<TransformComponent, BoxComponent, PlayerComponent, AudioComponent>();
+
+				auto& box = view.get<BoxComponent>(entity);
+				auto& audio = view.get<AudioComponent>(entity);
+
+				box.Init();
+				audio.StartUp();
+			}
+		}
+
 		template<typename... T>
 		bool HasComponent()
 		{

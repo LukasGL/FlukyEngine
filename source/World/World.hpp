@@ -72,6 +72,8 @@ namespace Fluky {
 			return scene.gameObjectVector;
 		}
 
+		void StartUpScene();
+
 	private:
 		World(Application& app);
 		/**

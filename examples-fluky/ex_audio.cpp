@@ -16,7 +16,9 @@ public:
 		playerComponent.SetPlayerId(&world.GetJoystickInput(), 0);
 		auto& audioComponent = cube.AddComponent<Fluky::AudioComponent>();
 		audioComponent.SetPosition(0.f,0.f,0.f);
-		audioComponent.StartUp();
+
+		world.StartUpScene();
+
 		audioComponent.Play("bounce.wav");
 
 	}
@@ -35,7 +37,7 @@ public:
 			axeY -= (player.GetAxes(1) * 0.1);
 			axeZ -= player.GetAxes(3) * 0.1;
 			transf.SetTranslation(axeX, axeY, axeZ);
-			audio.SetPosition(-transf.GetLocation(0), transf.GetLocation(1), transf.GetLocation(2));
+			audio.SetPosition(transf.GetLocation(0), transf.GetLocation(1), transf.GetLocation(2));
 
 
 		}

@@ -18,6 +18,8 @@ namespace Fluky {
 
 		void ShutDownScene();
 
+		void StartUp();
+
 
 	private:
 

@@ -14,6 +14,12 @@ namespace Fluky {
 		return gameObject.AddComponent<T>(&this);
 	}*/
 
+	void Scene::StartUp() {
+		for (auto i = gameObjectVector.begin(); i != gameObjectVector.end(); ++i) {
+			i->StartUp();
+		}
+	}
+
 	void Scene::ShutDownScene()
 	{
 		auto view = registry.view<TransformComponent, BoxComponent>();
