@@ -26,6 +26,8 @@ public:
 		transformComponent3.RotateXYZ(1.f, 1.f, 1.f);
 		transformComponent3.SetTranslation(-1.5f, -1.5f, 0.f);
 
+		world.StartUpScene();
+
 	}
 
 	virtual void UserShutDown(Fluky::World& world) noexcept override {

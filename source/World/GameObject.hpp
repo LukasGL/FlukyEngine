@@ -69,12 +69,25 @@ namespace Fluky {
 		void StartUp() {
 			if (HasComponent<BoxComponent, AudioComponent>()) {
 
-				auto view = m_scene->registry.view<TransformComponent, BoxComponent, PlayerComponent, AudioComponent>();
+				auto view = m_scene->registry.view<BoxComponent, AudioComponent>();
 
 				auto& box = view.get<BoxComponent>(entity);
 				auto& audio = view.get<AudioComponent>(entity);
 
 				box.Init();
+				audio.StartUp();
+			} else if (HasComponent<BoxComponent>()) {
+				auto view = m_scene->registry.view<BoxComponent>();
+
+				auto& box = view.get<BoxComponent>(entity);
+
+				box.Init();
+			}
+			else if (HasComponent<AudioComponent>()) {
+				auto view = m_scene->registry.view<AudioComponent>();
+
+				auto& audio = view.get<AudioComponent>(entity);
+
 				audio.StartUp();
 			}
 		}

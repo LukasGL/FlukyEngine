@@ -118,10 +118,6 @@ namespace Fluky {
 
 	void BoxComponent::Update(TransformComponent& transform) noexcept
 	{
-		if (!initialized) {
-			Init();
-			initialized = true;
-		}
 		/*	float mtx[16];
 			bx::mtxRotateXY(mtx, sizeX, sizeY);*/
 		bgfx::setTransform(transform.mtx);

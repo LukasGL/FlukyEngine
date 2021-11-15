@@ -23,6 +23,7 @@ public:
 		auto& playerComponent2 = cube2.AddComponent<Fluky::PlayerComponent>();
 		playerComponent2.SetPlayerId(&world.GetJoystickInput(), 1);
 
+		world.StartUpScene();
 	}
 
 	virtual void UserShutDown(Fluky::World& world) noexcept override {

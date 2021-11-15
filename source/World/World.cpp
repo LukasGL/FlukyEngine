@@ -134,14 +134,7 @@ namespace Fluky {
 		}*/
 
 		for (auto i = scene.gameObjectVector.begin(); i != scene.gameObjectVector.end(); ++i) {
-			if (i->HasComponent<BoxComponent, TransformComponent, PlayerComponent, AudioComponent>()) {
-				
-				i->Update(m_window);
-			}
-			else
-			{
-				std::cout << "Debes agregar BoxComponent y TransformComponent" << std::endl;
-			}
+			i->Update(m_window);
 		}
 		m_window.Update();
 	}
