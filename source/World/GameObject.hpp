@@ -5,6 +5,7 @@
 #include "TransformComponent.hpp"
 #include "../Rendering/BoxComponent.hpp"
 #include "PlayerComponent.hpp"
+#include "../Platform/Window.hpp"
 #include "Scene.hpp"
 #include "entt/entt.hpp"
 
@@ -27,7 +28,7 @@ namespace Fluky {
 			return component;
 		}
 
-		void Update()
+		void Update(Window window)
 		{
 			if (HasComponent<BoxComponent, TransformComponent, PlayerComponent>()) {
 				auto view = m_scene->registry.view<TransformComponent, BoxComponent, PlayerComponent>();
@@ -37,7 +38,7 @@ namespace Fluky {
 				auto& player = view.get<PlayerComponent>(entity);
 
 				box.Update(transf);
-				player.Update();
+				player.Update(window.joyInput);
 			}
 			else if (HasComponent<BoxComponent, TransformComponent>()) {
 				auto view = m_scene->registry.view<TransformComponent, BoxComponent>();

@@ -141,7 +141,7 @@ namespace Fluky {
 		for (auto i = scene.gameObjectVector.begin(); i != scene.gameObjectVector.end(); ++i) {
 			if (i->HasComponent<BoxComponent, TransformComponent, PlayerComponent>()) {
 				
-				i->Update();
+				i->Update(m_window);
 			}
 			else
 			{

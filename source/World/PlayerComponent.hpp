@@ -16,7 +16,7 @@ namespace Fluky {
 		void SetPlayerId(InputComponent *joyInput, float id) {
 			PlayerId = id;
 			p_joyInput = *joyInput;
-			Update();
+			Update(*joyInput);
 		}
 
 		std::vector<bool>& GetButtons() {
@@ -27,10 +27,10 @@ namespace Fluky {
 			return p_axes;
 		}
 
-		void Update() {
+		void Update(InputComponent iP) {
 
 
-			JoystickContainer& joysticks = p_joyInput.GetJoysticks();
+			JoystickContainer& joysticks = iP.GetJoysticks();
 			for (auto& elem : joysticks)
 			{
 				auto& joystickId = elem.first;

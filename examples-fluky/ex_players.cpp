@@ -24,7 +24,6 @@ public:
 
 		for (int i = 0; i < gameObjects.size(); i++) {
 			auto& player = gameObjects.at(i).GetComponent<Fluky::PlayerComponent>();
-			player.SetPlayerId(&world.GetJoystickInput(), 0);
 			auto& transf = gameObjects.at(i).GetComponent<Fluky::TransformComponent>();
 			transf.RotateXY(1.f + player.GetAxes()[1], 1.f + player.GetAxes()[0]);
 			//player.GetAxes();
