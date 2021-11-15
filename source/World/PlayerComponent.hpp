@@ -24,7 +24,6 @@ namespace Fluky {
 		}
 
 		std::vector<float>& GetAxes() {
-			//std::cout << p_axes[0] << std::endl;
 			return p_axes;
 		}
 
@@ -35,17 +34,13 @@ namespace Fluky {
 			for (auto& elem : joysticks)
 			{
 				auto& joystickId = elem.first;
-				auto& joystick = elem.second;
+				auto joystick = elem.second;
 
 				if (joystickId == PlayerId)
 				{
+					p_axes = joystick.axes;
 
-					std::cout << joystick.axes[0] << std::endl;
-
-					//p_joystick = &joystick;
-					for (int i = 0; i < joystick.axes.size(); i++) {
-						p_axes.push_back(joystick.axes[i]);
-					}
+					p_buttons = joystick.buttons;
 				}
 			}
 
