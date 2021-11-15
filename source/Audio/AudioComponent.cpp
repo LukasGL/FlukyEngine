@@ -22,6 +22,10 @@ namespace Fluky {
 		return 1;
 	}
 
+	void AudioComponent::SetPitch(float p) {
+		Pitch = p;
+	}
+
 	void AudioComponent::SetPosition(float x, float y, float z){
 		Position = {x, y, z};
 	}
@@ -41,7 +45,7 @@ namespace Fluky {
 
 		source = (ALuint)sc.sources.size() + 1;
 
-		alSourcef(source, AL_PITCH, 1);
+		alSourcef(source, AL_PITCH, Pitch);
 		alSourcef(source, AL_GAIN, 1);
 		alSource3f(source, AL_POSITION, 0.f, 0.f, 0.f);
 		alSource3f(source, AL_VELOCITY, 0, 0, 0);

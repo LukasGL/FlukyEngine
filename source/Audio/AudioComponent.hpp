@@ -35,6 +35,8 @@ namespace Fluky {
 		 */
 		int ShutDown() noexcept;
 
+		void SetPitch(float p);
+
 
 		void SetPosition(float x, float y, float z);
 
@@ -85,6 +87,8 @@ namespace Fluky {
 
 		ALuint source;
 		ALuint buffer = (ALuint)1;
+
+		float Pitch = 1;
 
 		Scene* p_sc;
 

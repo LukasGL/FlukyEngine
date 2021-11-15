@@ -26,6 +26,7 @@ public:
 		playerComponent2.SetPlayerId(&world.GetJoystickInput(), 1);
 		auto& audioComponent2 = cube2.AddComponent<Fluky::AudioComponent>();
 		audioComponent2.SetPosition(0.f, 0.f, 0.f);
+		audioComponent2.SetPitch(2.f);
 
 		world.StartUpScene();
 
