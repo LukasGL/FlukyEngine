@@ -13,7 +13,7 @@
 namespace Fluky {
 
 	/**
-	 * This class gives to the user the methods that will allow the management of the game audio
+	 * This class gives to the user the methods that will allow the management of an audio component
 	   *
 	 */
 	class AudioComponent {
@@ -23,9 +23,20 @@ namespace Fluky {
 		   *
 		 */
 		int StartUp(Scene& sc);
-
+  /**
+	 * Initializes a specific source
+   * 
+   * @param  {ALuint} source : 
+   * @return {int}           : 
+   */
 		int StartUpSource(ALuint source) noexcept;
 
+  /**
+	 * Initializes a specific buffer
+   * 
+   * @param  {Scene} sc : 
+   * @return {int}      : 
+   */
 		int StartUpBuffer(Scene& sc) noexcept;
 
 
@@ -34,10 +45,21 @@ namespace Fluky {
 		   *
 		 */
 		int ShutDown() noexcept;
-
+		
+  /**
+	 * Changes the pitch of the audio component
+   * 
+   * @param  {float} p : 
+   */
 		void SetPitch(float p);
 
-
+  /**
+	 * Changes the position of the audio component
+   * 
+   * @param  {float} x : 
+   * @param  {float} y : 
+   * @param  {float} z : 
+   */
 		void SetPosition(float x, float y, float z);
 
 
@@ -74,6 +96,7 @@ namespace Fluky {
 		 *
 		 */
 		void ClearSources() noexcept;
+
 		/**
 		   * Plays a .wav file
 		 *

@@ -6,19 +6,32 @@
 #include <iostream>
 
 namespace Fluky {
-
+	/**
+	 * Class in charge of the player controller and the joystick control assigned to a game object
+	 * 
+	 */ 
 	class PlayerComponent {
 
 	public:
 
 		class Window;
-
+  /**
+	 * Sets the player id that will be the joystick that has control over a game object
+   * 
+   * @param  {InputComponent*} joyInput : 
+   * @param  {float} id                 : 
+   */
 		void SetPlayerId(InputComponent *joyInput, float id) {
 			PlayerId = id;
 			p_joyInput = *joyInput;
 			Update(*joyInput);
 		}
-
+  /**
+	 * Returns a certain button boolean
+   * 
+   * @param  {int} ind : 
+   * @return {bool}    : 
+   */
 		bool GetButtons(int ind) {
 			if (!p_buttons.empty()) {
 				return p_buttons[ind];
@@ -26,6 +39,12 @@ namespace Fluky {
 			return false;
 		}
 
+  /**
+	 * Returns a certain axe float value
+   * 
+   * @param  {int} ind : 
+   * @return {float}   : 
+   */
 		float GetAxes(int ind) {
 			if (!p_axes.empty()) {
 				return p_axes[ind];
@@ -33,6 +52,11 @@ namespace Fluky {
 			return 0;
 		}
 
+  /**
+	 * player component updater
+   * 
+   * @param  {InputComponent} iP : 
+   */
 		void Update(InputComponent iP) {
 
 

@@ -51,6 +51,7 @@ namespace Fluky
 		 * @return {GLFWwindow*}  :
 		 */
 		GLFWwindow* GetHandle() const;
+		
 		InputComponent joyInput;
 
 		int width, height, debug, reset;

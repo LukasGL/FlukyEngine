@@ -6,20 +6,27 @@
 #include "../Audio/AudioManager.hpp"
 
 namespace Fluky {
-
+	/**
+	 * Class in charge of define the scene assigned to a world
+	 */ 
 	class Scene {
 	public:
 		friend class World;
 		friend class GameObject;
 		friend class AudioComponent;
-
+  /**
+	 * Creates a game object and assigns it to the registry
+   * 
+   * @return {GameObject}  : 
+   */
 		class GameObject CreateGameObject();
-
-		//template<typename T>
-		//T AddComponent(GameObject gameObject);
-
+  /**
+   * Scene destructor
+   */
 		void ShutDownScene();
-
+  /**
+   * Scene initializer
+   */
 		void StartUp();
 
 

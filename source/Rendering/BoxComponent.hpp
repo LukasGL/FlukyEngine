@@ -19,6 +19,10 @@ namespace Fluky {
 		 */
 		int Init();
 
+  /**
+   * BoxComponent destructor
+   * 
+   */
 		~BoxComponent();
 		/**
 		 * Funciton called in every iteration of the main loop
@@ -28,10 +32,6 @@ namespace Fluky {
 		unsigned int counter;
 
 		bool initialized = false;
-
-		/*void StartUp() noexcept;
-		void ShutDown() noexcept;
-		void Update() noexcept;*/
 
 	};
 

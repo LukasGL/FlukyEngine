@@ -65,26 +65,34 @@ namespace Fluky {
 
 		/*template<typename T>
 		T& AddComponent(class GameObject gameObject);*/
-
+  /**
+   * Creates a game object assigned to the scene registry
+   * @return {GameObject}  : 
+   */
 		GameObject CreateGameObject();
-
+  /**
+   * Returns the game objects vector
+   * @return {std::vector<GameObject>}  : 
+   */
 		std::vector<GameObject> GetGameObjects() {
 			return scene.gameObjectVector;
 		}
-
+  /**
+   * Scene intializer
+   */
 		void StartUpScene();
 
-
+  /**
+   * Calls the game object destructor
+   * @param  {GameObject} gO : 
+   */
 		void ShutDownGameObject(GameObject gO);
 
 	private:
 		World(Application& app);
 		/**
-		 * ~World
-		   *
-		   * Kill all the components of the world
-		 *
-		 */
+		 * World destructor
+		 */ 
 		~World();
 		/**
 		 * Starts the main loop for this world
@@ -96,7 +104,9 @@ namespace Fluky {
 		 * @param  {float} timeStep :
 		 */
 		void Update(float time, float timeStep) noexcept;
-
+  /**
+   * Shuts down the world
+   */
 		void ShutDown();
 
 

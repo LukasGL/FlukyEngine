@@ -12,24 +12,34 @@
 
 
 namespace Fluky {
-
+	/**
+	 * Class in charge of define the game objects 
+	 */
 	class GameObject {
 
 	public:
-
+  /**
+   * GameObject constructor
+   * 
+   * @param  {entt::entity} e : 
+   * @param  {Scene*} scene   : 
+   */
 		GameObject(entt::entity e, Scene* scene) : entity(e), m_scene(scene){}
 
-		/*void CreateGameObject() {
-			entt::registry registry = m_scene->registry;
-			entity = (*registry).create();
-		}*/
-
+		/**
+		 * Add a certain type of component to the entity
+		 * 
+		 */
 		template <typename T>
 		T& AddComponent() {
 			T& component = m_scene->registry.emplace<T>(entity);
 			return component;
 		}
-
+  /**
+   * Updates all the game object components
+	 * 
+   * @param  {Window} window : 
+   */
 		void Update(Window window)
 		{
 			if (HasComponent<TransformComponent, BoxComponent, PlayerComponent, AudioComponent>()) {
@@ -65,7 +75,11 @@ namespace Fluky {
 
 			
 		};
-
+  /**
+	 * Initializes all the game object components
+   * 
+   * @param  {Scene} sc : 
+   */
 		void StartUp(Scene& sc) {
 			if (HasComponent<BoxComponent, AudioComponent>()) {
 
@@ -92,23 +106,40 @@ namespace Fluky {
 			}
 		}
 
+		/**
+		 * Checks if the game object has a certain type of component
+		 * 
+		 */ 
 		template<typename... T>
 		bool HasComponent()
 		{
 			return m_scene->registry.all_of<T ...>(entity);
 		}
 
+		/**
+		 * Returns a certain type of component of the game object
+		 * 
+		 */ 
 		template<typename T>
 		T& GetComponent()
 		{
 			return m_scene->registry.get<T>(entity);
 		}
-
+  /**
+	 * checks if the game object is equal to another
+   * 
+   * @param  {GameObject} gO : 
+   * @return {bool}          : 
+   */
 		bool equal(GameObject gO) {
 			bool b = this->entity == gO.entity;
 			return this->entity == gO.entity;
 		}
-
+		
+  /**
+	 * entity destructor
+   * 
+   */
 		void ShutDown() {
 
 			//m_scene->registry.erase<BoxComponent>(entity);

@@ -10,8 +10,6 @@ namespace Fluky {
 
 	int AudioComponent::Play(const char* file) {
 		
-		
-		//p_sc->audioManager.Play(file, source, buffer);
 		return p_sc->audioManager.Play(file, source, buffer);
 	}
 
@@ -82,7 +80,6 @@ namespace Fluky {
 
 	int AudioComponent::StartUpBuffer(Scene& sc) noexcept
 	{
-
 		alGenBuffers((ALuint)1, &buffer);
 
 		sc.buffers.push_back(buffer);

@@ -29,21 +29,6 @@ struct Joystick
     }
 };
 
-//std::ostream& operator<<(std::ostream& os, const Joystick& joystick)
-//{
-//    os << "buttons: ";
-//    for (bool button : joystick.buttons)
-//    {
-//        os << (button ? 1 : 0);
-//    }
-//    os << " axes: ";
-//    for (float ax : joystick.axes)
-//    {
-//        os << std::fixed << std::setprecision(2) << std::setfill('0') << ax << " ";
-//    }
-//    return os;
-//}
-
 /**
  * Stores the joystick ID
  *
@@ -117,9 +102,18 @@ namespace Fluky
      * @return {JoystickContainer}  :
      */
         JoystickContainer& GetJoysticks();
-
+        /**
+         * Returns a joystick with a certain id
+         * 
+         * @param  {float} id  : 
+         * @return {Joystick}  : 
+         */
         Joystick GetJoystick(float id);
-
+        /**
+         * Sets the player id of the input component
+         * 
+         * @param  {float} id : 
+         */
         void SetPlayerId(float id) {
             PlayerId = id;
         }
@@ -128,7 +122,7 @@ namespace Fluky
         
 
     private:
-
+    
         JoystickContainer joysticks;
 
         float PlayerId;
