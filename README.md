@@ -18,7 +18,7 @@ Todas las dependencias del proyecto están en la carpeta `thirdParty/`
 
 ## Software/Libreria externas necesarias
 
-Para generar el proyecto, solución o makefiles se necesita [CMake 3.8+](https://cmake.org/), y de OpenGL4.5 para funcionar.
+Para generar el proyecto, solución o makefiles se necesita [CMake 3.8+](https://cmake.org/), y de OpenGL4.5 para funcionar. Todo fue probado en Windows 10.
 
 ## Importando el proyecto
 
