@@ -74,6 +74,9 @@ namespace Fluky {
 
 		void StartUpScene();
 
+
+		void ShutDownGameObject(GameObject gO);
+
 	private:
 		World(Application& app);
 		/**
@@ -95,6 +98,7 @@ namespace Fluky {
 		void Update(float time, float timeStep) noexcept;
 
 		void ShutDown();
+
 
 		// Current window
 		Window m_window;

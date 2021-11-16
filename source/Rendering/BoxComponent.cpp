@@ -112,8 +112,8 @@ namespace Fluky {
 
 	BoxComponent::~BoxComponent()
 	{
-		bgfx::destroy(ibh);
-		bgfx::destroy(vbh);
+		//bgfx::destroy(ibh);
+		//bgfx::destroy(vbh);
 	}
 
 	void BoxComponent::Update(TransformComponent& transform) noexcept

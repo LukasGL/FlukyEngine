@@ -48,7 +48,7 @@ public:
 				player.GetAxes(0);
 				axeXP1 += player.GetAxes(0) * 0.1;
 				axeYP1 -= (player.GetAxes(1) * 0.1);
-				axeZP1 -= player.GetAxes(3) * 0.1;
+				//axeZP1 -= player.GetAxes(3) * 0.1;
 				transf.SetTranslation(axeXP1, axeYP1, axeZP1);
 				audio.SetPosition(transf.GetLocation(0), transf.GetLocation(1), transf.GetLocation(2));
 			}
@@ -56,7 +56,7 @@ public:
 				player.GetAxes(0);
 				axeXP2 += player.GetAxes(0) * 0.1;
 				axeYP2 -= (player.GetAxes(1) * 0.1);
-				axeZP2 -= player.GetAxes(3) * 0.1;
+				//axeZP2 -= player.GetAxes(3) * 0.1;
 				transf.SetTranslation(axeXP2, axeYP2, axeZP2);
 				audio.SetPosition(transf.GetLocation(0), transf.GetLocation(1), transf.GetLocation(2));
 			}

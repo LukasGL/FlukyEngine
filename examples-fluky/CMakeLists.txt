@@ -10,14 +10,11 @@ function(MakeExample TARGETNAME FILENAME)
 
 endfunction(MakeExample)
 
-#MakeExample(ex_quad_pro ex_quad_pro.cpp)
-#MakeExample(ex_world ex_world.cpp)
-#MakeExample(ex_cube ex_cube.cpp)
 MakeExample(ex_audio ex_audio.cpp)
 MakeExample(ex_multiaudio ex_multiaudio.cpp)
-#MakeExample(ex_text ex_text.cpp)
 MakeExample(ex_components ex_components.cpp)
 MakeExample(ex_players ex_players.cpp)
+MakeExample(ex_deletegobject ex_deletegobject.cpp)
 
 macro(configure_files srcDir destDir)
     message(STATUS "Configuring directory ${destDir}")

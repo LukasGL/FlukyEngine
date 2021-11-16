@@ -104,6 +104,17 @@ namespace Fluky {
 			return m_scene->registry.get<T>(entity);
 		}
 
+		bool equal(GameObject gO) {
+			bool b = this->entity == gO.entity;
+			return this->entity == gO.entity;
+		}
+
+		void ShutDown() {
+
+			//m_scene->registry.erase<BoxComponent>(entity);
+			m_scene->registry.destroy(entity);
+		}
+
 	private:
 
 		entt::entity entity;
