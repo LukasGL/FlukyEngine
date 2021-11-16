@@ -11,10 +11,10 @@ Todas las dependencias del proyecto están en la carpeta `thirdParty/`
 - [glad](https://glad.dav1d.de/) para cargar las funciones de OpenGL.
 - [glm](https://glm.g-truc.net/0.9.9/index.html) para algebra lineal.
 - [dr_wav](https://mackron.github.io/dr_wav.html) para cargar archivos .wav desde disco.
-
 - [OpenAL-Soft](https://github.com/kcat/openal-soft) para la implementación del sistema de audio.
 - [BGFX](https://github.com/bkaradzic/bgfx) como librería encargada del renderizado de figuras en 3 dimensiones.
 - [Easy3D](https://github.com/LiangliangNan/Easy3D) como segunda librería de renderizado (incluida por posibles errores, no esta siendo utilizada por el momento).
+- [EnTT](https://github.com/skypjack/entt) administra las entidades del motor.
 
 ## Software/Libreria externas necesarias
 
@@ -44,25 +44,28 @@ La solución solamente ha sido probada en Windows 10 y directamente de Visual St
 
 Los ejemplos serán generados automáticamente y serán los siguientes:
 
-- `ex_audio.exe` Para la prueba del audio, ejecuta el .wav cuando el botón A del joystick es presionado.
-- `ex_cube.exe` Para la prueba del renderizado de figuras y además el testeo de inputs desde joysticks (se podrán mover los cubos)
-- `ex_world.exe` Para la prueba de la creación del mundo
-- `ex_text.exe` (No terminado)
+- `ex_audio.exe` Para la prueba del audio 3D, el cubo principal emite un sonido. El cuerpo puede ser trasladado en el espacio con el análogo izquierdo del joystick (eje X e Y) y para la profundidad se utiliza el análogo derecho.
+- `ex_components.exe` Se inicializan 3 game objects distintos, los cuales se mantienen rotando en la misma posición constantemente.
+- `ex_deleteobject.exe` Se inicializa un game object que se puede mover en el espacio y que puede ser eliminado con la tecla A del joystick.
+- `ex_multiaudio.exe` Se crean 2 game objects con box component asignadas, los cuales se pueden mover en el espacio con 2 joysticks. Además cada uno emite un sonido distinto que probará la emisión de sonido en simultaneo de distintos cuerpos.
+- `ex_players.exe` Se crean 2 game objects con box component asignadas, las cuales se encuentran en un lugar determinado y pueden girar en el lugar con la ayuda de 2 joysticks.
 
 Toda la explicación puede ser vista en el video de la demostración haciendo clic [aquí](https://youtu.be/E3vkcPsZdg8)
 
 ## Como crear aplicaciones usando el motor
 
-Para crear un juego se debe utilizar la plantilla `examples-fluky/ex_world.cpp`, la cual se encarga solamente de generar un mundo. Dentro de las 3 funciones principales se tendrá que desarrollar lo que el usuario desee.
+Para crear juegos es recomendable utilizar los ejemplos descritos en la sección anterior. Principalmente se deben inicializar todos los objetos que serán creados en la escena en `UserStartUp()`. Para empezar es necesario inicializar un game object con `world.CreateGameObject()` y de esta manera se le podrá asignar distintos componentes. Los componentes posibles son:
 
-Por ejemplo si se revisan el archivo `examples-fluky/ex_cube.cpp` utiliza la misma elaboración del mundo pero esta vez genera el cubo en la función `UserStartUp()`.
+- `AudioComponent`, permite ejecutar un archivo `.wav`. Además es posible trasladarlo en el espacio.
+- `PlayerComponent`, asigna un gamepad al game object. Se debe entregar el JoystickInput (`&world.GetJoystickInput()`) y el índice del player que podrá manipular el game object.
+- `BoxComponent`, asigna un cubo que se renderizará en el espacio. Este podrá ser trasladado y rotado según el usuario lo requiera con la ayuda de un `TransformComponent`.
+- `TransformComponent`, define las transformaciones (traslación y rotación) que pueden ser reflejadas en el `BoxComponent` asignado al mismo game object. 
 
-Por el momento solo existen 2 funciones extra que el usuario puede añadir a su juego en `UserStartUp()`:
+Cada uno de los componentes tiene distintas funciones que podrá utilizar el usuario, donde cada una está documentada en los archivos generados por doxygen. 
 
-- `CreateFigure()` generará el cubo giratorio en medio de la pantalla
-- `PlayWav(filename)` reproduce el archivo wav especificado por el usuario (`filename`)
+El usuario tendrá permitido actualizar los valores de cada componente asignado a los game objects creados en un inicio. Esto debe ser realizado en `UserUpdate()`.
 
-La utilización de las 2 funciones están en los ejemplos de `examples-fluky`.
+(Todo lo explicado anteriormente puede ser entendido mucho más fácil si se miran los ejemplos que se encuentran en la carpeta `examples-fluky`).
 
 ## Documentación
 
@@ -71,3 +74,5 @@ Toda la información acerca de las funciones y clases creadas se puede ver media
 ## Screenshots
 
 ![ex_cube](images/ex_cube.png)
+
+![ex_cube](images/ex_components.png)
