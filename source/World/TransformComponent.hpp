@@ -9,8 +9,19 @@
 #include <vector>
 #include <memory>
 
+namespace Fluky {
+	struct Vec3 {
+		float x;
+		float y;
+		float z;
+	};
+}
+
 
 namespace Fluky {
+
+	
+
 	/**
 	 * Class in charge of define the transform component
 	 */ 

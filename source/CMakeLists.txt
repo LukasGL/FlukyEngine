@@ -13,6 +13,7 @@ set(FLUKY_HEADERS
 				Audio/AudioComponent.hpp
 				Audio/AudioManager.hpp
 				Platform/InputComponent.hpp
+				Platform/CameraComponent.hpp
 				Platform/Window.hpp
 				Rendering/BoxComponent.hpp
 				"World/Component.hpp"

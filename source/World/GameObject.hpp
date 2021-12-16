@@ -6,6 +6,7 @@
 #include "../Rendering/BoxComponent.hpp"
 #include "PlayerComponent.hpp"
 #include "../Platform/Window.hpp"
+#include "../Platform/CameraComponent.hpp"
 #include "Scene.hpp"
 #include "../Audio/AudioComponent.hpp"
 #include "entt/entt.hpp"
@@ -42,7 +43,21 @@ namespace Fluky {
    */
 		void Update(Window window)
 		{
-			if (HasComponent<TransformComponent, BoxComponent, PlayerComponent, AudioComponent>()) {
+			/*if (HasComponent<TransformComponent, BoxComponent, PlayerComponent, AudioComponent, CameraComponent>()) {
+				auto view = m_scene->registry.view<TransformComponent, BoxComponent, PlayerComponent, AudioComponent>();
+
+				auto& transf = view.get<TransformComponent>(entity);
+				auto& box = view.get<BoxComponent>(entity);
+				auto& player = view.get<PlayerComponent>(entity);
+				auto& audio = view.get<AudioComponent>(entity);
+				auto& camera = view.get<CameraComponent>(entity);
+
+				box.Update(transf);
+				player.Update(window.joyInput);
+				audio.Update();
+				window.SetMainCamera(camera);
+			}
+			else*/ if (HasComponent<TransformComponent, BoxComponent, PlayerComponent, AudioComponent>()) {
 				auto view = m_scene->registry.view<TransformComponent, BoxComponent, PlayerComponent, AudioComponent>();
 
 				auto& transf = view.get<TransformComponent>(entity);

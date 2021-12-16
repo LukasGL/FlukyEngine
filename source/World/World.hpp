@@ -7,6 +7,7 @@
 #include "TransformComponent.hpp"
 #include "../Audio/AudioComponent.hpp"
 #include "../Platform/Window.hpp"
+#include "../Platform/CameraComponent.hpp"
 #include "../Platform/InputComponent.hpp"
 #include "../Rendering/BoxComponent.hpp"
 #include "../Application.hpp"

@@ -5,8 +5,10 @@
 #include <memory>
 #include <glad/glad.h>
 #include <glm/glm.hpp>
+#define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include "InputComponent.hpp"
+#include "CameraComponent.hpp"
 
 namespace Fluky
 {
@@ -51,11 +53,17 @@ namespace Fluky
 		 * @return {GLFWwindow*}  :
 		 */
 		GLFWwindow* GetHandle() const;
+
+		void SetMainCamera(CameraComponent& cam) {
+			cameraComponent = &cam;
+		}
 		
 		InputComponent joyInput;
 
 		int width, height, debug, reset;
 		GLFWwindow* m_windowHandle;
+
+		CameraComponent* cameraComponent;
 	private:
 		/**
 		   * what to do when the window starts up

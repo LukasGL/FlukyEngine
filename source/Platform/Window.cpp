@@ -122,8 +122,20 @@ namespace Fluky {
 		// Set view 0 default viewport.
 		//bgfx::setViewRect(0, 0, 0, uint16_t(width), uint16_t(height));
 
-		const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
-		const bx::Vec3 eye = { 0.0f, 0.0f, -5.0f };
+		//const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
+		//const bx::Vec3 eye = { 0.0f, 0.0f, -5.0f };
+
+		bx::Vec3 at;
+		bx::Vec3 eye;
+
+		if (cameraComponent) {
+			at = bx::Vec3(cameraComponent->GetAt());
+			eye = bx::Vec3(cameraComponent->GetEye());
+		}
+		else {
+			at = { 0.0f, 0.0f,   0.0f };
+			eye = { 0.0f, 0.0f, -5.0f };
+		}
 
 		// Set view and projection matrix for view 0.
 		{
