@@ -4,6 +4,7 @@
 
 #include "../World/Component.hpp"
 #include "../World/TransformComponent.hpp"
+#include "../PhysicsCollision/CollisionObjectComponent.hpp"
 
 namespace Fluky {
 	/**
@@ -66,10 +67,18 @@ namespace Fluky {
 			transf->RotateXYZ(angleX, angleY, angleZ);
 		}
 
+		void AttachTo(CollisionObjectComponent& c) {
+			attached = true;
+			*colobj = c;
+		}
+
 	private:
 
 		TransformComponent* transf = new TransformComponent;
 
+		bool attached = false;
+
+		CollisionObjectComponent* colobj = new CollisionObjectComponent;
 	};
 
 }

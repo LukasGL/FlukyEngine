@@ -17,8 +17,8 @@ namespace Fluky {
 		m_window.StartUp();
 		playingwav = false;
 		m_application = std::move(app);
-		m_application.StartUp(*this);
 		m_physicsSystem.InitPhysics();
+		m_application.StartUp(*this);
 	}
 
 	World::~World() {

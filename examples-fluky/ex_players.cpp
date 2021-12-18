@@ -35,7 +35,13 @@ public:
 			if (i == 0) {
 				axeXP1 += player.GetAxes(1) * 0.1;
 				axeYP1 += player.GetAxes(0) * 0.1;
-				box.RotateXY(1.f + axeXP1, 1.f + axeYP1);
+				box.RotateXY(0.f + axeXP1, 0.f + axeYP1);
+				std::cout << "---------------------------" << std::endl;
+				for (int i = 0; i < 16; i++) {
+					std::cout << box.GetMatrix()[i] << std::endl;
+				}
+				std::cout << "---------------------------" << std::endl;
+
 			}
 			else if (i == 1) {
 				axeXP2 += player.GetAxes(1) * 0.1;

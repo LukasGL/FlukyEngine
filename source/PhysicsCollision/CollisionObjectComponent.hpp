@@ -12,9 +12,9 @@ namespace Fluky {
 	
 	public:
 
-		void CreateRigidBody(PhysicsCollisionSystem* phySys, btVector3 shape, float in_mass, btVector3 origin) {
+		void CreateRigidBody(PhysicsCollisionSystem* phySys, Fluky::Vec3 shape, float in_mass, Fluky::Vec3 origin) {
 
-			btBoxShape* colShape = new btBoxShape(shape);
+			btBoxShape* colShape = new btBoxShape(btVector3(shape.x, shape.y, shape.z));
 
 			btTransform startTransform;
 			startTransform.setIdentity();
@@ -25,9 +25,18 @@ namespace Fluky {
 			if (isDynamic)
 				colShape->calculateLocalInertia(mass, localInertia);
 
-			startTransform.setOrigin(origin);
+			startTransform.setOrigin(btVector3(origin.x, origin.y, origin.z));
 
 			rigidBody = phySys->AddRigidBody(mass, startTransform, colShape);
+		}
+
+		Fluky::Vec3 GetLocation() {
+			btVector3 v = rigidBody->getWorldTransform().getOrigin();
+			return Fluky::Vec3(v.getX(), v.getY(), v.getZ());
+		}
+
+		btTransform GetTransform() {
+			return rigidBody->getWorldTransform();
 		}
 
 	private:

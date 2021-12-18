@@ -4,6 +4,7 @@
 
 
 
+#include <btBulletDynamicsCommon.h>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -18,6 +19,7 @@ namespace Fluky {
 }
 
 
+
 namespace Fluky {
 
 	
@@ -30,6 +32,20 @@ namespace Fluky {
 	public:
 
 		friend class BoxComponent;
+
+		TransformComponent operator + (TransformComponent tr2) {
+			TransformComponent tr3;
+			for (int i = 0; i < 15; i++) {
+				tr3.mtx[i] = this->mtx[i] + tr2.mtx[i];
+			}
+
+			tr3.Location[0] = tr3.mtx[12];
+			tr3.Location[1] = tr3.mtx[13];
+			tr3.Location[2] = tr3.mtx[14];
+
+			return tr3;
+		}
+
   /**
 	 * Returns the transform values matrix
    * 
@@ -37,6 +53,12 @@ namespace Fluky {
    */
 		float* GetMatrix() {
 			return mtx;
+		}
+
+		void SetMatrix(float mtx_in[16]) {
+			for (int i = 0; i < 16; i++) {
+				mtx[i] = mtx_in[i];
+			}
 		}
   /**
 	 * Returns the location of the component
@@ -114,4 +136,6 @@ namespace Fluky {
 
 
 }
+
+Fluky::TransformComponent PhysMtxtoTransfMtx(btTransform mtx_in);
 #endif

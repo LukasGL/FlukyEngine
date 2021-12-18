@@ -5,6 +5,40 @@
 #include <bx/math.h>
 #include <iostream>
 
+
+Fluky::TransformComponent PhysMtxtoTransfMtx(btTransform mtx_in) {
+	Fluky::TransformComponent mtx_out;
+	btMatrix3x3 m = mtx_in.getBasis();
+	float m_out[16] = { 0.f };
+	int counter = 0;
+	/*for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			m_out[counter] = m[i][j];
+			counter++;
+		}
+	}*/
+	m_out[0] = m[0][0]; //
+	m_out[1] = m[0][1];
+	m_out[2] = m[0][2];
+	m_out[4] = m[1][0];
+	m_out[5] = m[1][1]; //
+	m_out[6] = m[1][2];
+	m_out[8] = m[2][0];
+	m_out[9] = m[2][1];
+	m_out[10] = m[2][2]; //
+
+	m_out[12] = mtx_in.getOrigin().getX();
+	m_out[13] = mtx_in.getOrigin().getY();
+	m_out[14] = mtx_in.getOrigin().getZ();
+
+	m_out[15] = 1.f;
+
+	mtx_out.SetMatrix(m_out);
+
+	mtx_out.SetTranslation(m_out[12], m_out[13], m_out[14]);
+	return mtx_out;
+}
+
 namespace Fluky {
 
 	void TransformComponent::Translate(float x, float y, float z) {

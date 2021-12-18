@@ -66,8 +66,8 @@ namespace Fluky {
 		 */
 		class Window& GetWindow() noexcept;
 
-		/*template<typename T>
-		T& AddComponent(class GameObject gameObject);*/
+		PhysicsCollisionSystem& GetPhysicsSystem() { return m_physicsSystem; }
+
   /**
    * Creates a game object assigned to the scene registry
    * @return {GameObject}  : 

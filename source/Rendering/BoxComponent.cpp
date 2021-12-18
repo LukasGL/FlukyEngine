@@ -120,9 +120,11 @@ namespace Fluky {
 	{
 		/*	float mtx[16];
 			bx::mtxRotateXY(mtx, sizeX, sizeY);*/
+		if (attached) {
+			*transf = PhysMtxtoTransfMtx(colobj->GetTransform());
+			//*transf = *transf + PhysMtxtoTransfMtx(colobj->GetTransform());
+		}
 
-
-		std::cout << "Box update component" << std::endl;
 		bgfx::setTransform(transf->GetMatrix());
 
 		bgfx::setVertexBuffer(0, vbh);
