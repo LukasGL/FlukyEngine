@@ -10,9 +10,8 @@ public:
 
 		auto cube = world.CreateGameObject();
 		auto& boxComponent = cube.AddComponent<Fluky::BoxComponent>();
-		auto& transformComponent = cube.AddComponent<Fluky::TransformComponent>();
-		transformComponent.RotateXYZ(0.f, 0.f, 0.f);
-		transformComponent.SetTranslation(0.0f, 0.f, 5.f);
+		boxComponent.RotateXYZ(0.f, 0.f, 0.f);
+		boxComponent.SetPosition(0.0f, 0.f, 5.f);
 		auto& playerComponent = cube.AddComponent<Fluky::PlayerComponent>();
 		playerComponent.SetPlayerId(&world.GetJoystickInput(), 0);
 		auto& cameraComponent = cube.AddComponent<Fluky::CameraComponent>();
@@ -21,21 +20,18 @@ public:
 
 		auto cube2 = world.CreateGameObject();
 		auto& boxComponent2 = cube2.AddComponent<Fluky::BoxComponent>();
-		auto& transformComponent2 = cube2.AddComponent<Fluky::TransformComponent>();
-		transformComponent2.RotateXYZ(0.f, 0.f, 0.f);
-		transformComponent2.SetTranslation(-2.0f, 0.f, 0.f);
+		boxComponent2.RotateXYZ(0.f, 0.f, 0.f);
+		boxComponent2.SetPosition(-2.0f, 0.f, 0.f);
 
 		auto cube3 = world.CreateGameObject();
 		auto& boxComponent3 = cube3.AddComponent<Fluky::BoxComponent>();
-		auto& transformComponent3 = cube3.AddComponent<Fluky::TransformComponent>();
-		transformComponent3.RotateXYZ(0.f, 0.f, 0.f);
-		transformComponent3.SetTranslation(0.0f, 0.f, 2.f);
+		boxComponent3.RotateXYZ(0.f, 0.f, 0.f);
+		boxComponent3.SetPosition(0.0f, 0.f, 2.f);
 
 		auto cube4 = world.CreateGameObject();
 		auto& boxComponent4 = cube4.AddComponent<Fluky::BoxComponent>();
-		auto& transformComponent4 = cube4.AddComponent<Fluky::TransformComponent>();
-		transformComponent4.RotateXYZ(0.f, 0.f, 0.f);
-		transformComponent4.SetTranslation(2.0f, 0.f, 0.f);
+		boxComponent4.RotateXYZ(0.f, 0.f, 0.f);
+		boxComponent4.SetPosition(2.0f, 0.f, 0.f);
 
 		world.StartUpScene();
 
@@ -49,7 +45,7 @@ public:
 		for (int i = 0; i < gameObjects.size(); i++) {
 			if (i == 0) {
 				auto& player = gameObjects.at(i).GetComponent<Fluky::PlayerComponent>();
-				auto& transf = gameObjects.at(i).GetComponent<Fluky::TransformComponent>();
+				auto& box = gameObjects.at(i).GetComponent<Fluky::BoxComponent>();
 				auto& camera = gameObjects.at(i).GetComponent<Fluky::CameraComponent>();
 				player.GetAxes(0);
 				axeLX += (player.GetAxes(0) > 0.1 || player.GetAxes(0) < -0.1) ? player.GetAxes(0) * 0.1 : 0;
@@ -75,7 +71,7 @@ public:
 				float x = radio * sinf(-axeLX) * cosf(-axeLY);
 				float y = radio * sinf(-axeLX) * sinf(-axeLY);
 				float z = radio * cosf(-axeLX);
-				transf.SetTranslation(x, y, z);
+				box.SetPosition(x, y, z);
 				//camera.SetTranslation(x, y , z);
 				//std::cout << x << " " << y << " " << z << std::endl;
 				std::cout << axeLY << std::endl;

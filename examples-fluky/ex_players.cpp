@@ -9,17 +9,15 @@ public:
 
 		auto cube = world.CreateGameObject();
 		auto& boxComponent = cube.AddComponent<Fluky::BoxComponent>();
-		auto& transformComponent = cube.AddComponent<Fluky::TransformComponent>();
-		transformComponent.RotateXYZ(0.f, 0.f, 0.f);
-		transformComponent.SetTranslation(1.5f, 0.f, 0.f);
+		boxComponent.RotateXYZ(0.f, 0.f, 0.f);
+		boxComponent.SetPosition(1.5f, 0.f, 0.f);
 		auto& playerComponent = cube.AddComponent<Fluky::PlayerComponent>();
 		playerComponent.SetPlayerId(&world.GetJoystickInput(), 0);
 
 		auto cube2 = world.CreateGameObject();
 		auto& boxComponent2 = cube2.AddComponent<Fluky::BoxComponent>();
-		auto& transformComponent2 = cube2.AddComponent<Fluky::TransformComponent>();
-		transformComponent2.RotateXYZ(0.f, 0.f, 0.f);
-		transformComponent2.SetTranslation(-1.5f, 0.f, 0.f);
+		boxComponent2.RotateXYZ(0.f, 0.f, 0.f);
+		boxComponent2.SetPosition(-1.5f, 0.f, 0.f);
 		auto& playerComponent2 = cube2.AddComponent<Fluky::PlayerComponent>();
 		playerComponent2.SetPlayerId(&world.GetJoystickInput(), 1);
 
@@ -33,16 +31,16 @@ public:
 
 		for (int i = 0; i < gameObjects.size(); i++) {
 			auto& player = gameObjects.at(i).GetComponent<Fluky::PlayerComponent>();
-			auto& transf = gameObjects.at(i).GetComponent<Fluky::TransformComponent>();
+			auto& box = gameObjects.at(i).GetComponent<Fluky::BoxComponent>();
 			if (i == 0) {
 				axeXP1 += player.GetAxes(1) * 0.1;
 				axeYP1 += player.GetAxes(0) * 0.1;
-				transf.RotateXY(1.f + axeXP1, 1.f + axeYP1);
+				box.RotateXY(1.f + axeXP1, 1.f + axeYP1);
 			}
 			else if (i == 1) {
 				axeXP2 += player.GetAxes(1) * 0.1;
 				axeYP2 += player.GetAxes(0) * 0.1;
-				transf.RotateXY(1.f + axeXP2, 1.f + axeYP2);
+				box.RotateXY(1.f + axeXP2, 1.f + axeYP2);
 			}
 			
 		}

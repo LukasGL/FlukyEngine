@@ -116,11 +116,14 @@ namespace Fluky {
 		//bgfx::destroy(vbh);
 	}
 
-	void BoxComponent::Update(TransformComponent& transform) noexcept
+	void BoxComponent::Update() noexcept
 	{
 		/*	float mtx[16];
 			bx::mtxRotateXY(mtx, sizeX, sizeY);*/
-		bgfx::setTransform(transform.mtx);
+
+
+		std::cout << "Box update component" << std::endl;
+		bgfx::setTransform(transf->GetMatrix());
 
 		bgfx::setVertexBuffer(0, vbh);
 		bgfx::setIndexBuffer(ibh);

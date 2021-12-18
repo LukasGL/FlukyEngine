@@ -43,49 +43,32 @@ namespace Fluky {
    */
 		void Update(Window window)
 		{
-			/*if (HasComponent<TransformComponent, BoxComponent, PlayerComponent, AudioComponent, CameraComponent>()) {
-				auto view = m_scene->registry.view<TransformComponent, BoxComponent, PlayerComponent, AudioComponent>();
+			if (HasComponent<BoxComponent, PlayerComponent, AudioComponent>()) {
+				auto view = m_scene->registry.view<BoxComponent, PlayerComponent, AudioComponent>();
 
-				auto& transf = view.get<TransformComponent>(entity);
-				auto& box = view.get<BoxComponent>(entity);
-				auto& player = view.get<PlayerComponent>(entity);
-				auto& audio = view.get<AudioComponent>(entity);
-				auto& camera = view.get<CameraComponent>(entity);
-
-				box.Update(transf);
-				player.Update(window.joyInput);
-				audio.Update();
-				window.SetMainCamera(camera);
-			}
-			else*/ if (HasComponent<TransformComponent, BoxComponent, PlayerComponent, AudioComponent>()) {
-				auto view = m_scene->registry.view<TransformComponent, BoxComponent, PlayerComponent, AudioComponent>();
-
-				auto& transf = view.get<TransformComponent>(entity);
 				auto& box = view.get<BoxComponent>(entity);
 				auto& player = view.get<PlayerComponent>(entity);
 				auto& audio = view.get<AudioComponent>(entity);
 
-				box.Update(transf);
+				box.Update();
 				player.Update(window.joyInput);
 				audio.Update();
 			}
-			else if (HasComponent<BoxComponent, TransformComponent, PlayerComponent>()) {
-				auto view = m_scene->registry.view<TransformComponent, BoxComponent, PlayerComponent>();
+			else if (HasComponent<BoxComponent, PlayerComponent>()) {
+				auto view = m_scene->registry.view<BoxComponent, PlayerComponent>();
 
-				auto& transf = view.get<TransformComponent>(entity);
 				auto& box = view.get<BoxComponent>(entity);
 				auto& player = view.get<PlayerComponent>(entity);
 
-				box.Update(transf);
+				box.Update();
 				player.Update(window.joyInput);
 			}
-			else if (HasComponent<BoxComponent, TransformComponent>()) {
-				auto view = m_scene->registry.view<TransformComponent, BoxComponent>();
+			else if (HasComponent<BoxComponent>()) {
+				auto view = m_scene->registry.view<BoxComponent>();
 
-				auto& transf = view.get<TransformComponent>(entity);
 				auto& box = view.get<BoxComponent>(entity);
 
-				box.Update(transf);
+				box.Update();
 			}
 
 			

@@ -134,9 +134,36 @@ namespace Fluky {
 			}
 		}*/
 
-		for (auto i = scene.gameObjectVector.begin(); i != scene.gameObjectVector.end(); ++i) {
-			i->Update(m_window);
+		auto view = scene.registry.view<BoxComponent>();
+
+		for (auto entity : view)
+		{
+			auto& box = view.get<BoxComponent>(entity);
+
+			box.Update();
 		}
+
+		auto view2 = scene.registry.view<PlayerComponent>();
+
+		for (auto entity : view2)
+		{
+			auto& player = view2.get<PlayerComponent>(entity);
+
+			player.Update(m_window.joyInput);
+		}
+
+		auto view3 = scene.registry.view<AudioComponent>();
+
+		for (auto entity : view3)
+		{
+			auto& audio = view3.get<AudioComponent>(entity);
+
+			audio.Update();
+		}
+
+		/*for (auto i = scene.gameObjectVector.begin(); i != scene.gameObjectVector.end(); ++i) {
+			i->Update(m_window);
+		}*/
 
 		m_physicsSystem.Update(timeStep);
 
