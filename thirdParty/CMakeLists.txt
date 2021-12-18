@@ -19,5 +19,6 @@ add_subdirectory_with_folder("thirdParty" imgui)
 add_subdirectory_with_folder("thirdParty" bgfx-full)
 add_subdirectory_with_folder("thirdParty" dr_wav)
 add_subdirectory_with_folder("thirdParty" openal-soft)
+add_subdirectory_with_folder("thirdParty" bullet3)
 
 

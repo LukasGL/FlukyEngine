@@ -18,6 +18,7 @@ namespace Fluky {
 		playingwav = false;
 		m_application = std::move(app);
 		m_application.StartUp(*this);
+		m_physicsSystem.InitPhysics();
 	}
 
 	World::~World() {
@@ -136,6 +137,9 @@ namespace Fluky {
 		for (auto i = scene.gameObjectVector.begin(); i != scene.gameObjectVector.end(); ++i) {
 			i->Update(m_window);
 		}
+
+		m_physicsSystem.Update(timeStep);
+
 		m_window.Update();
 	}
 

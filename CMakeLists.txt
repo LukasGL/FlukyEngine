@@ -38,15 +38,20 @@ set(THIRD_PARTY_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/glfw
 									"${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/imgui"
 									"${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/bgfx-full/bgfx/examples/common"
 									"${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/openal-soft/include"
+									"${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/bullet3/src"
 									"${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/dr_wav"
                                     "${CMAKE_CURRENT_SOURCE_DIR}/thirdParty/entt/single_include")
 
 set(FLUKY_INCLUDE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/source")
 
+list (APPEND BULLET_LIBRARIES BulletDynamics)
+list (APPEND BULLET_LIBRARIES BulletCollision)
+list (APPEND BULLET_LIBRARIES LinearMath)
+
 if(MSVC)
-	set(THIRD_PARTY_LIBRARIES OpenGL::GL glfw glad ImGui bgfx bx bimg dear-imgui meshoptimizer OpenAL dr_wav)
+	set(THIRD_PARTY_LIBRARIES OpenGL::GL glfw glad ImGui bgfx bx bimg ${BULLET_LIBRARIES} dear-imgui meshoptimizer OpenAL dr_wav)
 else()
-	set(THIRD_PARTY_LIBRARIES OpenGL::GL glfw glad ImGui bgfx bx bimg dear-imgui meshoptimizer stdc++fs OpenAL dr_wav)
+	set(THIRD_PARTY_LIBRARIES OpenGL::GL glfw glad ImGui bgfx bx bimg ${BULLET_LIBRARIES} dear-imgui meshoptimizer stdc++fs OpenAL dr_wav)
 endif(MSVC)
 
 # Include sub-projects.

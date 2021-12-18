@@ -12,6 +12,8 @@ set(FLUKY_HEADERS
 				Application.hpp
 				Audio/AudioComponent.hpp
 				Audio/AudioManager.hpp
+				PhysicsCollision/PhysicsCollisionSystem.hpp
+				PhysicsCollision/CollisionObjectComponent.hpp
 				Platform/InputComponent.hpp
 				Platform/CameraComponent.hpp
 				Platform/Window.hpp
@@ -27,6 +29,7 @@ set(FLUKY_SOURCES
 				Application.cpp
 				Audio/AudioComponent.cpp
 				Audio/AudioManager.cpp
+				PhysicsCollision/PhysicsCollisionSystem.cpp
 				Platform/InputComponent.cpp
 				Platform/Window.cpp
 				Rendering/BoxComponent.cpp

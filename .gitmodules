@@ -13,3 +13,6 @@
 [submodule "thirdParty/entt"]
 	path = thirdParty/entt
 	url = https://github.com/skypjack/entt
+[submodule "thirdParty/bullet3"]
+	path = thirdParty/bullet3
+	url = https://github.com/bulletphysics/bullet3.git

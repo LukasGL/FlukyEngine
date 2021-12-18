@@ -125,25 +125,26 @@ namespace Fluky {
 		//const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
 		//const bx::Vec3 eye = { 0.0f, 0.0f, -5.0f };
 
-		bx::Vec3 at;
-		bx::Vec3 eye;
+		bx::Vec3 at = { 0.f,0.f,0.f };
+		bx::Vec3 eye = { 0.f,0.f,0.f };
 
 		if (cameraComponent) {
-			at = bx::Vec3(cameraComponent->GetAt());
-			eye = bx::Vec3(cameraComponent->GetEye());
+			//at = {cameraComponent->GetAtX(), cameraComponent->GetAtY(), cameraComponent->GetAtZ() };
+			//eye = { cameraComponent->GetEyeX(), cameraComponent->GetEyeY(), cameraComponent->GetEyeZ() };
+			at = { cameraComponent->GetAtX(),cameraComponent->GetAtY(),cameraComponent->GetAtZ() };
+			eye = { cameraComponent->GetMtxX(), cameraComponent->GetMtxY(),   cameraComponent->GetMtxZ() };
 		}
 		else {
 			at = { 0.0f, 0.0f,   0.0f };
 			eye = { 0.0f, 0.0f, -5.0f };
 		}
-
 		// Set view and projection matrix for view 0.
 		{
 			float view[16];
 			bx::mtxLookAt(view, eye, at);
 
 			float proj[16];
-			bx::mtxProj(proj, 60.0f, float(width) / float(height), 0.1f, 100.0f, bgfx::getCaps()->homogeneousDepth);
+			bx::mtxProj(proj, 60.0f, float(width) / float(height), 0.1f, 2000.0f, bgfx::getCaps()->homogeneousDepth);
 			bgfx::setViewTransform(0, view, proj);
 
 			// Set view 0 default viewport.

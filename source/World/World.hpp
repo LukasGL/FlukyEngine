@@ -11,6 +11,8 @@
 #include "../Platform/InputComponent.hpp"
 #include "../Rendering/BoxComponent.hpp"
 #include "../Application.hpp"
+#include "../PhysicsCollision/PhysicsCollisionSystem.hpp"
+#include "../PhysicsCollision/CollisionObjectComponent.hpp"
 
 #include <memory>
 #include <array>
@@ -119,6 +121,8 @@ namespace Fluky {
 		Application& m_application;
 		// Audio instance
 		AudioComponent m_audio;
+
+		PhysicsCollisionSystem m_physicsSystem;
 
 		// Should close world boolean
 		bool m_shouldClose;
