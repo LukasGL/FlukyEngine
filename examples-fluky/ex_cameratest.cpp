@@ -48,10 +48,10 @@ public:
 				auto& box = gameObjects.at(i).GetComponent<Fluky::BoxComponent>();
 				auto& camera = gameObjects.at(i).GetComponent<Fluky::CameraComponent>();
 				player.GetAxes(0);
-				axeLX += (player.GetAxes(0) > 0.1 || player.GetAxes(0) < -0.1) ? player.GetAxes(0) * 0.1 : 0;
-				axeLY += (player.GetAxes(1) > 0.1 || player.GetAxes(1) < -0.1) ? player.GetAxes(1) * 0.1 : 0;
-				axeRX += (player.GetAxes(2) > 0.1 || player.GetAxes(2) < -0.1) ? player.GetAxes(2) * 0.1 : 0;
-				axeRY += (player.GetAxes(3) > 0.1 || player.GetAxes(3) < -0.1) ? player.GetAxes(3) * 0.1 : 0;
+				axeLX += (player.GetAxes(0) > 0.1 || player.GetAxes(0) < -0.1) ? player.GetAxes(0) * 0.01 : 0;
+				axeLY += (player.GetAxes(1) > 0.1 || player.GetAxes(1) < -0.1) ? player.GetAxes(1) * 0.01 : 0;
+				axeRX += (player.GetAxes(2) > 0.1 || player.GetAxes(2) < -0.1) ? player.GetAxes(2) * 0.01 : 0;
+				axeRY += (player.GetAxes(3) > 0.1 || player.GetAxes(3) < -0.1) ? player.GetAxes(3) * 0.01 : 0;
 
 
 				//std::cout << player.GetAxes(0) << std::endl;
@@ -60,19 +60,23 @@ public:
 				float radio = 10.f;
 				float radio2 = 15.f;
 
-				if (axeLY > 3.14) {
+				/*if (axeLY > 3.14) {
 					axeLY -= player.GetAxes(1) * 0.1;
 				}
 				else if (axeLY < 0) {
 					axeLY -= player.GetAxes(1) * 0.1;
-				}
+				}*/
+				//axeLX = 3.14f / 4;
+				axeRX = fmodf(axeRX, 2 * 3.14f);
+				//axeLY = time;
+				axeRY = fmodf(axeRY, 3.14f);
 
 				//camera.SetTranslation(-axeLX, -axeLY, axeRY);
-				float x = radio * sinf(-axeLX) * cosf(-axeLY);
-				float y = radio * sinf(-axeLX) * sinf(-axeLY);
-				float z = radio * cosf(-axeLX);
-				box.SetPosition(x, y, z);
-				//camera.SetTranslation(x, y , z);
+				float x = radio * sinf(-axeRY) * cosf(axeRX);
+				float y = radio * sinf(-axeRY) * sinf(axeRX);
+				float z = radio * cosf(-axeRY);
+				//box.SetPosition(x, z, y);
+				camera.SetTranslation(x, z , y);
 				//std::cout << x << " " << y << " " << z << std::endl;
 				std::cout << axeLY << std::endl;
 
@@ -95,7 +99,7 @@ public:
 	}
 
 	float axeLX = 0;
-	float axeLY = 0;
+	float axeLY = 3.14f/2;
 	float axeRX = 0;
 	float axeRY = 10.f;
 
