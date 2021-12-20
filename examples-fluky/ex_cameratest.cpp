@@ -16,7 +16,7 @@ public:
 		playerComponent.SetPlayerId(&world.GetJoystickInput(), 0);
 		auto& cameraComponent = cube.AddComponent<Fluky::CameraComponent>();
 		world.GetWindow().SetMainCamera(cameraComponent);
-		cameraComponent.SetTranslation(0.f, 10.f, 15.f);
+		cameraComponent.SetTranslation(0.f, -10.f, 0.f);
 
 		auto cube2 = world.CreateGameObject();
 		auto& boxComponent2 = cube2.AddComponent<Fluky::BoxComponent>();
@@ -54,46 +54,22 @@ public:
 				axeRY += (player.GetAxes(3) > 0.1 || player.GetAxes(3) < -0.1) ? player.GetAxes(3) * 0.01 : 0;
 
 
-				//std::cout << player.GetAxes(0) << std::endl;
-				//transf.SetTranslation(axeX, axeY, axeZ);
-				//camera.SetAt(axeX, -axeY, axeZ);
 				float radio = 10.f;
 				float radio2 = 15.f;
 
-				/*if (axeLY > 3.14) {
-					axeLY -= player.GetAxes(1) * 0.1;
-				}
-				else if (axeLY < 0) {
-					axeLY -= player.GetAxes(1) * 0.1;
-				}*/
-				//axeLX = 3.14f / 4;
 				axeRX = fmodf(axeRX, 2 * 3.14f);
-				//axeLY = time;
 				axeRY = fmodf(axeRY, 3.14f);
 
-				//camera.SetTranslation(-axeLX, -axeLY, axeRY);
 				float x = radio * sinf(-axeRY) * cosf(axeRX);
-				float y = radio * sinf(-axeRY) * sinf(axeRX);
-				float z = radio * cosf(-axeRY);
-				//box.SetPosition(x, z, y);
-				camera.SetTranslation(x, z , y);
-				//std::cout << x << " " << y << " " << z << std::endl;
-				std::cout << axeLY << std::endl;
-
-				//camera.SetTranslation(-axeLX, -axeLY, 5.f);
-				//camera.SetAt(-axeLX, axeLY, 0);
-				//camera.SetEye(axeRX, axeRY, 5.0f);
-				//camera.SetAt(radio * sin(-axeLX) * cos(-axeLY), radio * sin(-axeLX) * sin(-axeLY), radio * cos(-axeLX));
-				//camera.SetEye(radio2*sin(-axeLX)*cos(-axeLY),0.f, radio2*cos(-axeLX));
-				//camera.SetEye(radio * cos(axeX), radio * sin(axeX) * cos(axeY), -radio * sin(axeX) * sin(axeY));
+				float y = radio * cosf(-axeRY);
+				float z = radio* sinf(-axeRY)* sinf(axeRX);
+				camera.SetTranslation(x, y, z);
 
 			}
 
 
 
 		}
-
-		//world.GetJoystickInput();
 
 
 	}

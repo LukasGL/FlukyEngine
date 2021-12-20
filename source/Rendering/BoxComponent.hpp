@@ -4,7 +4,7 @@
 
 #include "../World/Component.hpp"
 #include "../World/TransformComponent.hpp"
-#include "../PhysicsCollision/CollisionObjectComponent.hpp"
+#include "../PhysicsCollision/RigidBodyComponent.hpp"
 
 namespace Fluky {
 	/**
@@ -27,7 +27,7 @@ namespace Fluky {
    */
 		~BoxComponent();
 		/**
-		 * Funciton called in every iteration of the main loop
+		 * Function called in every iteration of the main loop
 		 */
 		void Update() noexcept;
 
@@ -67,7 +67,7 @@ namespace Fluky {
 			transf->RotateXYZ(angleX, angleY, angleZ);
 		}
 
-		void AttachTo(CollisionObjectComponent& c) {
+		void AttachTo(RigidBodyComponent& c) {
 			attached = true;
 			*colobj = c;
 		}
@@ -78,7 +78,7 @@ namespace Fluky {
 
 		bool attached = false;
 
-		CollisionObjectComponent* colobj = new CollisionObjectComponent;
+		RigidBodyComponent* colobj = new RigidBodyComponent;
 	};
 
 }

@@ -17,7 +17,7 @@ public:
 		auto& cameraComponent = cube.AddComponent<Fluky::CameraComponent>();
 		world.GetWindow().SetMainCamera(cameraComponent);
 		cameraComponent.SetTranslation(0.f, 10.f, 15.f);
-		auto& physicsCol = cube.AddComponent<Fluky::CollisionObjectComponent>();
+		auto& physicsCol = cube.AddComponent<Fluky::RigidBodyComponent>();
 		physicsCol.CreateRigidBody(&world.GetPhysicsSystem(), Fluky::Vec3(1.f,1.f,1.f), 10.f, Fluky::Vec3(0.f, 2.f, 0.f));
 		boxComponent.AttachTo(physicsCol);
 
@@ -25,14 +25,14 @@ public:
 		auto& boxComponent2 = cube2.AddComponent<Fluky::BoxComponent>();
 		boxComponent2.RotateXYZ(0.f, 0.f, 0.f);
 		boxComponent2.SetPosition(-2.0f, 0.f, 0.f);
-		auto& physicsCol2 = cube2.AddComponent<Fluky::CollisionObjectComponent>();
+		auto& physicsCol2 = cube2.AddComponent<Fluky::RigidBodyComponent>();
 		physicsCol2.CreateRigidBody(&world.GetPhysicsSystem(), Fluky::Vec3(100.f, 1.f, 100.f), 0.f, Fluky::Vec3(0.f, 0.f, 0.f));
 
 		auto cube3 = world.CreateGameObject();
 		auto& boxComponent3 = cube3.AddComponent<Fluky::BoxComponent>();
 		boxComponent3.RotateXYZ(0.f, 0.f, 0.f);
 		boxComponent3.SetPosition(0.0f, 0.f, 2.f);
-		auto& physicsCol3 = cube3.AddComponent<Fluky::CollisionObjectComponent>();
+		auto& physicsCol3 = cube3.AddComponent<Fluky::RigidBodyComponent>();
 		physicsCol3.CreateRigidBody(&world.GetPhysicsSystem(), Fluky::Vec3(1.f, 1.f, 1.f), 10.f, Fluky::Vec3(0.f, 30.f, 1.f));
 		boxComponent2.AttachTo(physicsCol3);
 
@@ -40,7 +40,7 @@ public:
 		auto& boxComponent4 = cube4.AddComponent<Fluky::BoxComponent>();
 		boxComponent4.RotateXYZ(0.f, 0.f, 0.f);
 		boxComponent4.SetPosition(2.0f, 0.f, 0.f);
-		auto& physicsCol4 = cube4.AddComponent<Fluky::CollisionObjectComponent>();
+		auto& physicsCol4 = cube4.AddComponent<Fluky::RigidBodyComponent>();
 		physicsCol4.CreateRigidBody(&world.GetPhysicsSystem(), Fluky::Vec3(1.f, 1.f, 1.f), 10.f, Fluky::Vec3(1.f, 30.f, 0.f));
 		boxComponent4.AttachTo(physicsCol4);
 
@@ -59,7 +59,7 @@ public:
 				auto& player = gameObjects.at(i).GetComponent<Fluky::PlayerComponent>();
 				auto& box = gameObjects.at(i).GetComponent<Fluky::BoxComponent>();
 				auto& camera = gameObjects.at(i).GetComponent<Fluky::CameraComponent>();
-				auto& colobj = gameObjects.at(i).GetComponent<Fluky::CollisionObjectComponent>();
+				auto& colobj = gameObjects.at(i).GetComponent<Fluky::RigidBodyComponent>();
 				player.GetAxes(0);
 				axeLX = (player.GetAxes(0) > 0.1 || player.GetAxes(0) < -0.1) ? player.GetAxes(0) * 15  : 0;
 				axeLY = (player.GetAxes(1) > 0.1 || player.GetAxes(1) < -0.1) ? player.GetAxes(1) * 15 : 0;
@@ -91,7 +91,7 @@ public:
 				//std::cout << box.GetLocation(0) << " " << box.GetLocation(1) << " " << box.GetLocation(2) << std::endl;
 
 			} else if (i == 2) {
-				auto& colobj = gameObjects.at(i).GetComponent<Fluky::CollisionObjectComponent>();
+				auto& colobj = gameObjects.at(i).GetComponent<Fluky::RigidBodyComponent>();
 				//colobj.SetPosition(Fluky::Vec3(sin(time), 2.f, 0.f));
 				//std::cout << colobj.GetLocation().x << " " << colobj.GetLocation().y << " " << colobj.GetLocation().z << std::endl;
 			}

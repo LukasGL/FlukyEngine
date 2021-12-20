@@ -13,7 +13,7 @@ set(FLUKY_HEADERS
 				Audio/AudioComponent.hpp
 				Audio/AudioManager.hpp
 				PhysicsCollision/PhysicsCollisionSystem.hpp
-				PhysicsCollision/CollisionObjectComponent.hpp
+				PhysicsCollision/RigidBodyComponent.hpp
 				Platform/InputComponent.hpp
 				Platform/CameraComponent.hpp
 				Platform/Window.hpp

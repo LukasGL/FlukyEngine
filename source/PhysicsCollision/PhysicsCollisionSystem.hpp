@@ -3,6 +3,8 @@
 #define PHYSICSCOLLISIONSYSTEM_HPP
 #include "../World/TransformComponent.hpp"
 #include <btBulletDynamicsCommon.h>
+#include "btBulletCollisionCommon.h"
+#include "BulletCollision/CollisionDispatch/btGhostObject.h"
 #include <set>
 #include <tuple>
 
@@ -34,9 +36,11 @@ namespace Fluky {
 
 		void Update(float timeStep) { m_worldPtr->stepSimulation(timeStep); }
 
-		void SetPositionRigidBody(class CollisionObjectComponent obj, Fluky::Vec3 pos);
+		void SetPositionRigidBody(class RigidBodyComponent obj, Fluky::Vec3 pos);
 
 		btRigidBody* AddRigidBody(float mass, const btTransform& startTransform, btCollisionShape* shape, const btVector4& color = btVector4(1, 0, 0, 1));
+
+		btCollisionObject* AddCollisionTriggerBody(btCollisionShape* shape, btVector3 origin);
 
 		//void AddRigidBody(RigidBodyComponent& component) noexcept;
 		//void RemoveRigidBody(RigidBodyComponent& component) noexcept;

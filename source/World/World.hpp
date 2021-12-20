@@ -12,7 +12,7 @@
 #include "../Rendering/BoxComponent.hpp"
 #include "../Application.hpp"
 #include "../PhysicsCollision/PhysicsCollisionSystem.hpp"
-#include "../PhysicsCollision/CollisionObjectComponent.hpp"
+#include "../PhysicsCollision/RigidBodyComponent.hpp"
 
 #include <memory>
 #include <array>

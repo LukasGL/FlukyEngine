@@ -1,7 +1,7 @@
 #include "PhysicsCollisionSystem.hpp"
 
 
-#include "CollisionObjectComponent.hpp"
+#include "RigidBodyComponent.hpp"
 
 namespace Fluky {
 
@@ -60,7 +60,19 @@ namespace Fluky {
 		return body;
 	}
 
-	void PhysicsCollisionSystem::SetPositionRigidBody(CollisionObjectComponent obj, Fluky::Vec3 pos) {
+	btCollisionObject* PhysicsCollisionSystem::AddCollisionTriggerBody(btCollisionShape* shape, btVector3 origin) {
+
+		btGhostObject* body = new btGhostObject();
+
+		body->setCollisionShape(shape);
+		body->getWorldTransform().setOrigin(origin);
+
+		m_worldPtr->addCollisionObject(body);
+		return body;
+
+	}
+
+	void PhysicsCollisionSystem::SetPositionRigidBody(RigidBodyComponent obj, Fluky::Vec3 pos) {
 
 		btRigidBody* rigidBody = obj.rigidBody;
 		btVector3 localPivot = rigidBody->getWorldTransform().getOrigin();
