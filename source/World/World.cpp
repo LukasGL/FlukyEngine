@@ -191,17 +191,22 @@ namespace Fluky {
 
 	void World::ShutDownGameObject(GameObject gO) {
 
-
 		gO.ShutDown();
 
-		for (auto i = scene.gameObjectVector.begin(); i != scene.gameObjectVector.end(); ++i) {
-			scene.gameObjectVector.erase(std::remove_if(scene.gameObjectVector.begin(), scene.gameObjectVector.end(), 
+		/*for (auto i = scene.gameObjectVector.begin(); i != scene.gameObjectVector.end(); ++i) {
+			scene.gameObjectVector.erase(std::remove_if(scene.gameObjectVector.begin(), scene.gameObjectVector.end(),
 				[&gO](GameObject g)
 				{ return g.equal(gO); }
 			)
 				, scene.gameObjectVector.end());
 			if (scene.gameObjectVector.empty()) { break; }
-		}
+		}*/
+
+		scene.gameObjectVector.erase(std::remove_if(scene.gameObjectVector.begin(), scene.gameObjectVector.end(),
+			[&gO](GameObject g)
+			{ return g.equal(gO); }
+		)
+			, scene.gameObjectVector.end());
 
 		//for (auto i = scene.gameObjectVector.begin(); i != scene.gameObjectVector.end(); ++i) {
 		//	scene.gameObjectVector.erase(std::remove_if(scene.gameObjectVector.begin(), scene.gameObjectVector.end(),
