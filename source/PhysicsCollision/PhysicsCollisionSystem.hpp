@@ -34,19 +34,31 @@ namespace Fluky {
 
 		void InitPhysics();
 
-		void Update(float timeStep) { m_worldPtr->stepSimulation(timeStep); }
+		void Update(float timeStep) { 
+			m_worldPtr->stepSimulation(timeStep); 
+		}
 
-		void SetPositionRigidBody(class RigidBodyComponent obj, Fluky::Vec3 pos);
+		btRigidBody* AddRigidBody(float mass, const btTransform& startTransform, btCollisionShape* shape, int gameObjectID, int group = 1, int mask = 1, const btVector4& color = btVector4(1, 0, 0, 1));
 
-		btRigidBody* AddRigidBody(float mass, const btTransform& startTransform, btCollisionShape* shape, const btVector4& color = btVector4(1, 0, 0, 1));
-
-		btCollisionObject* AddCollisionTriggerBody(btCollisionShape* shape, btVector3 origin);
+		btGhostObject* AddCollisionTriggerBody(btCollisionShape* shape, btVector3 origin);
 
 		//void AddRigidBody(RigidBodyComponent& component) noexcept;
 		//void RemoveRigidBody(RigidBodyComponent& component) noexcept;
 		void ShutDown() noexcept;
 		btDynamicsWorld* GetPhysicsWorldPtr() noexcept { return m_worldPtr; }
 
+		void  SubmitCollisionEvents(World& world) noexcept;
+
+		using CollisionPair = std::tuple<const btRigidBody*, const btRigidBody*, bool, int>;
+		//struct cmp {
+		//	//bool operator()(const CollisionPair& lhs, const CollisionPair& rhs) const {
+		//	//	return (bool)(std::get<0>(lhs) < std::get<0>(rhs)) || (!(bool)(std::get<0>(rhs) < std::get<0>(lhs)) &&
+		//	//		((bool)(std::get<1>(rhs) < std::get<1>(lhs))))
+		//	//		;
+		//	//	//return std::get<3>(lhs) < std::get<3>(rhs);
+		//	//}
+		//};
+		using CollisionSet = std::set<CollisionPair>;
 
 	private:
 		btBroadphaseInterface* m_broadphasePtr;
@@ -57,6 +69,7 @@ namespace Fluky {
 
 		btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
 		//CollisionSet m_previousCollisionSet;
+		CollisionSet m_previousCollisionSet;
 
 
 

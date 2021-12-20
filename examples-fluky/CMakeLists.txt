@@ -18,6 +18,7 @@ MakeExample(ex_deletegobject ex_deletegobject.cpp)
 MakeExample(ex_camera ex_camera.cpp)
 MakeExample(ex_cameratest ex_cameratest.cpp)
 MakeExample(ex_physics ex_physics.cpp)
+MakeExample(ex_triggerphysics ex_triggerphysics.cpp)
 
 macro(configure_files srcDir destDir)
     message(STATUS "Configuring directory ${destDir}")

@@ -13,6 +13,7 @@
 #include "../Application.hpp"
 #include "../PhysicsCollision/PhysicsCollisionSystem.hpp"
 #include "../PhysicsCollision/RigidBodyComponent.hpp"
+#include "../PhysicsCollision/CollisionTriggerComponent.hpp"
 
 #include <memory>
 #include <array>

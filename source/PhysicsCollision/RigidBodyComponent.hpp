@@ -4,8 +4,10 @@
 #include "../World/TransformComponent.hpp"
 #include "PhysicsCollisionSystem.hpp"
 #include <btBulletDynamicsCommon.h>
+#include "CollisionInformation.hpp"
 #include <set>
 #include <tuple>
+#include <functional>
 
 namespace Fluky {
 	class World;
@@ -15,33 +17,10 @@ namespace Fluky {
 
 		friend class PhysicsCollisionSystem;
 
-		void CreateRigidBody(PhysicsCollisionSystem* phySys, Fluky::Vec3 shape, float in_mass, Fluky::Vec3 origin, bool IsTrigger = false) {
+		using StartCollisionCallback = std::function<void(World&, RigidBodyComponent&, bool, CollisionInformation&)>;
+		using EndCollisionCallback = std::function<void(World&, RigidBodyComponent&)>;
 
-			btBoxShape* colShape = new btBoxShape(btVector3(shape.x, shape.y, shape.z));
-
-			btTransform startTransform;
-			startTransform.setIdentity();
-			btScalar mass(in_mass);
-			//rigidbody is dynamic if and only if mass is non zero, otherwise static
-			bool isDynamic = (mass != 0.f);
-			btVector3 localInertia(0, 0, 0);
-			if (isDynamic) {
-				colShape->calculateLocalInertia(mass, localInertia);
-			}
-
-			startTransform.setOrigin(btVector3(origin.x, origin.y, origin.z));
-
-			
-
-			rigidBody = phySys->AddRigidBody(mass, startTransform, colShape);
-
-
-			if (IsTrigger) {
-				int collisionFlags = rigidBody->getCollisionFlags();
-				collisionFlags |= btCollisionObject::CF_NO_CONTACT_RESPONSE;
-				rigidBody->setCollisionFlags(collisionFlags);
-			}
-		}
+		void CreateRigidBody(World& w, Fluky::Vec3 shape, float in_mass, Fluky::Vec3 origin, int collisionGroup = 1, int collisionMask = 1);
 
 		void CreateCollisionTriggerBody(PhysicsCollisionSystem* phySys, Fluky::Vec3 shape, Fluky::Vec3 origin) {
 
@@ -69,9 +48,36 @@ namespace Fluky {
 			rigidBody->setLinearVelocity(bulletForce + btVector3(0.f, rigidBody->getLinearVelocity().getY(), 0.f));
 		}
 
+		void SetStartCollisionCallback(StartCollisionCallback callback) {
+			m_onStartCollisionCallback = callback;
+		}
+		void SetEndCollisionCallback(EndCollisionCallback callback) {
+			m_onEndCollisionCallback = callback;
+		}
+
+		bool HasStartCollisionCallback() const {
+			return (bool)m_onStartCollisionCallback;
+		}
+
+		bool HasEndCollisionCallback() const {
+			return (bool)m_onEndCollisionCallback;
+		}
+
+		void CallStartCollisionCallback(World& world, RigidBodyComponent& rb, bool isSwaped, CollisionInformation& information) {
+			m_onStartCollisionCallback(world, rb, isSwaped, information);
+		}
+
+		void CallEndCollisionCallback(World& world, RigidBodyComponent& rb) {
+			m_onEndCollisionCallback(world, rb);
+		}
+
 	private:
 
 		btRigidBody* rigidBody;
+
+		StartCollisionCallback m_onStartCollisionCallback;
+		EndCollisionCallback m_onEndCollisionCallback;
+
 
 	};
 }

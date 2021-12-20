@@ -166,6 +166,7 @@ namespace Fluky {
 		}*/
 
 		m_physicsSystem.Update(timeStep);
+		m_physicsSystem.SubmitCollisionEvents(*this);
 
 		m_window.Update();
 	}
