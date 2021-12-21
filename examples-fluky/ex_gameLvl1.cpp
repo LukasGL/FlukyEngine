@@ -139,6 +139,8 @@ public:
 		cameraComponent.SetTranslation(0.f, -10.f, 0.f);
 		auto& playerComponent2 = cube2.AddComponent<Fluky::PlayerComponent>();
 		playerComponent2.SetPlayerId(&world.GetJoystickInput(), 0);
+		auto& audioComponent = cube2.AddComponent<Fluky::AudioComponent>();
+		audioComponent.SetPosition(0.f, 0.f, 0.f);
 
 		/*
 		auto cube2 = world.CreateGameObject();
@@ -164,6 +166,9 @@ public:
 
 		world.StartUpScene();
 
+		audioComponent.Play("bounce.wav");
+
+
 	}
 
 	virtual void UserShutDown(Fluky::World& world) noexcept override {
@@ -177,6 +182,7 @@ public:
 				auto& box = gameObjects.at(i).GetComponent<Fluky::BoxComponent>();
 				auto& camera = gameObjects.at(i).GetComponent<Fluky::CameraComponent>();
 				auto& colobj = gameObjects.at(i).GetComponent<Fluky::RigidBodyComponent>();
+				auto& audio = gameObjects.at(i).GetComponent<Fluky::AudioComponent>();
 				player.GetAxes(0);
 				axeLX = (player.GetAxes(0) > 0.1 || player.GetAxes(0) < -0.1) ? player.GetAxes(0) * 2 : 0;
 				axeLY = (player.GetAxes(1) > 0.1 || player.GetAxes(1) < -0.1) ? player.GetAxes(1) * 2 : 0;
@@ -198,6 +204,8 @@ public:
 
 				colobj.SetPosition(Fluky::Vec3(-axeLX, 0.f, axeLY));
 
+				audio.SetPosition(-axeLX, 0.f, axeLY);
+
 			}
 
 
@@ -213,6 +221,8 @@ public:
 	float axeLY = 0;
 	float axeRX = 0;
 	float axeRY = 10.f;
+
+
 
 };
 
