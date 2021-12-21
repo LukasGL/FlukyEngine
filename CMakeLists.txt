@@ -10,6 +10,7 @@ project ("FlukyEngine")
 # first we can indicate the documentation build as an option and set it to ON by default
 # option(BUILD_DOC "Build documentation" ON)
 
+
 # check if Doxygen is installed
 find_package(Doxygen)
 if (DOXYGEN_FOUND)
@@ -58,7 +59,12 @@ else()
 endif(MSVC)
 
 # Include sub-projects.
-add_subdirectory("examples-fluky")
 add_subdirectory("thirdParty")
+
+include(shaderc.cmake)
+
+add_subdirectory("examples-fluky")
 add_subdirectory("source")
+
+
 

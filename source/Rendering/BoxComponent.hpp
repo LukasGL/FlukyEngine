@@ -137,6 +137,13 @@ namespace Fluky {
 		bgfx::UniformHandle s_texColor;
 		bgfx::UniformHandle s_texNormal;
 
+		bgfx::VertexBufferHandle vbh;
+		bgfx::IndexBufferHandle ibh;
+
+		bgfx::ShaderHandle vsh;
+		bgfx::ShaderHandle fsh;
+		bgfx::ProgramHandle program;
+
 
 	};
 

@@ -71,6 +71,10 @@ namespace Fluky {
 			m_onEndCollisionCallback(world, rb);
 		}
 
+		bool equal(RigidBodyComponent r) {
+			return rigidBody == r.rigidBody;
+		}
+
 	private:
 
 		btRigidBody* rigidBody;

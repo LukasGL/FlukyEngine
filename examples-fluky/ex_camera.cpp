@@ -25,14 +25,14 @@ public:
 		boxComponent2.RotateXYZ(0.f, 0.f, 0.f);
 		boxComponent2.SetPosition(-2.0f, 0.f, 0.f);
 		boxComponent2.SetShader("vs_bump.bin", "fs_bump.bin");
-		boxComponent2.SetTexture("Bricks074_1K_Color.dds", "Bricks074_1K_NormalDX.dds");
+		boxComponent2.SetTexture("Plastic008_1K_Color_1.dds", "Plastic008_1K_NormalGL.dds");
 
 		auto cube3 = world.CreateGameObject();
 		auto& boxComponent3 = cube3.AddComponent<Fluky::BoxComponent>();
 		boxComponent3.RotateXYZ(0.f, 0.f, 0.f);
 		boxComponent3.SetPosition(0.0f, 0.f, 2.f);
 		boxComponent3.SetShader("vs_bump.bin", "fs_bump.bin");
-		boxComponent3.SetTexture("fieldstone-rgba.dds", "fieldstone-n.dds");
+		boxComponent3.SetTexture("Plastic008_1K_Color_2.dds", "Plastic008_1K_NormalGL.dds");
 
 		world.StartUpScene();
 

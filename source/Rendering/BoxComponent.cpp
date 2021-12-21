@@ -105,14 +105,14 @@ bgfx::ShaderHandle loadShader(const char* FILENAME)
 
 	switch (bgfx::getRendererType()) {
 	case bgfx::RendererType::Noop:
-	case bgfx::RendererType::Direct3D9:  shaderPath = "../thirdParty/bgfx-full/shaders/dx9/";   break;
+	case bgfx::RendererType::Direct3D9:  shaderPath = "shaders/dx9/";   break;
 	case bgfx::RendererType::Direct3D11:
-	case bgfx::RendererType::Direct3D12: shaderPath = "../thirdParty/bgfx-full/shaders/dx11/";  break;
-	case bgfx::RendererType::Gnm:        shaderPath = "../thirdParty/bgfx-full/shaders/pssl/";  break;
-	case bgfx::RendererType::Metal:      shaderPath = "../thirdParty/bgfx-full/shaders/metal/"; break;
-	case bgfx::RendererType::OpenGL:     shaderPath = "../thirdParty/bgfx-full/shaders/glsl/";  break;
-	case bgfx::RendererType::OpenGLES:   shaderPath = "../thirdParty/bgfx-full/shaders/essl/";  break;
-	case bgfx::RendererType::Vulkan:     shaderPath = "../thirdParty/bgfx-full/shaders/spirv/"; break;
+	case bgfx::RendererType::Direct3D12: shaderPath = "shaders/dx11/";  break;
+	case bgfx::RendererType::Gnm:        shaderPath = "shaders/pssl/";  break;
+	case bgfx::RendererType::Metal:      shaderPath = "shaders/metal/"; break;
+	case bgfx::RendererType::OpenGL:     shaderPath = "shaders/glsl/";  break;
+	case bgfx::RendererType::OpenGLES:   shaderPath = "shaders/essl/";  break;
+	case bgfx::RendererType::Vulkan:     shaderPath = "shaders/spirv/"; break;
 	}
 
 	size_t shaderLen = strlen(shaderPath);
@@ -257,13 +257,6 @@ namespace Fluky {
 
 namespace Fluky {
 
-	bgfx::VertexBufferHandle vbh;
-	bgfx::IndexBufferHandle ibh;
-
-	bgfx::ShaderHandle vsh;
-	bgfx::ShaderHandle fsh;
-	bgfx::ProgramHandle program;
-
 	
 
 	int BoxComponent::Init()
@@ -328,17 +321,25 @@ namespace Fluky {
 		/*	float mtx[16];
 			bx::mtxRotateXY(mtx, sizeX, sizeY);*/
 		if (attached) {
-			btQuaternion rot = colobj->GetTransform().getRotation();
-			btVector3 origin = colobj->GetTransform().getOrigin();
-			//*transf = PhysMtxtoTransfMtx(colobj->GetTransform());
-			float mtx[16];
+
+			/*float mtx[16];
 			colobj->GetTransform().getOpenGLMatrix(mtx);
 			mtx[0] = shape.x;
 			mtx[5] = shape.y;
 			mtx[10] = shape.z;
-			//bx::mtxScale(mtx, shape.x, shape.y, shape.z);
-			//*transf = *transf + PhysMtxtoTransfMtx(colobj->GetTransform());
-			bgfx::setTransform(mtx);
+			bgfx::setTransform(mtx);*/
+
+
+			////bx::mtxScale(mtx, shape.x, shape.y, shape.z);
+			////*transf = *transf + PhysMtxtoTransfMtx(colobj->GetTransform());
+			//bgfx::setTransform(mtx);
+			btVector3 origin = colobj->GetTransform().getOrigin();
+			transf->GetMatrix()[12] = origin.getX();
+			transf->GetMatrix()[13] = origin.getY();
+			transf->GetMatrix()[14] = origin.getZ();
+
+			bgfx::setTransform(transf->GetMatrix());
+			
 		}
 		else {
 			bgfx::setTransform(transf->GetMatrix());
