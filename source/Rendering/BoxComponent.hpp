@@ -82,6 +82,17 @@ namespace Fluky {
 			*colobj = c;
 		}
 
+		void SetShader(const char* vs, const char* fs) {
+			shader_vs = vs;
+			shader_fs = fs;
+		}
+
+		void SetTexture(const char* texColor, const char* texNormal) {
+			textureColor = texColor;
+			textureNormal = texNormal;
+			hasTexture = true;
+		}
+
 		struct PosColorVertex
 		{
 			float m_x;
@@ -95,7 +106,7 @@ namespace Fluky {
 	private:
 
 		PosColorVertex s_cubeVertices[8] = {
-				{-1.0f,  1.0f,  1.0f, 0xff000000 },
+				{-1.0f,  1.0f,  1.0f, 0xff9ca600 },
 				{ 1.0f,  1.0f,  1.0f, 0xff0000ff },
 				{-1.0f, -1.0f,  1.0f, 0xff00ff00 },
 				{ 1.0f, -1.0f,  1.0f, 0xff00ffff },
@@ -110,8 +121,15 @@ namespace Fluky {
 		TransformComponent* transf = new TransformComponent;
 
 		bool attached = false;
+		bool hasTexture = false;
 
 		RigidBodyComponent* colobj = new RigidBodyComponent;
+
+		const char* shader_vs;
+		const char* shader_fs;
+
+		const char* textureColor;
+		const char* textureNormal;
 
 	};
 

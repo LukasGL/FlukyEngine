@@ -13,6 +13,9 @@ public:
 		boxComponent.RotateXYZ(0.f, 0.f, 0.f);
 		boxComponent.SetPosition(0.0f, 5.f, 5.f);
 		boxComponent.SetShape(Fluky::Vec3(2.f, 1.f, 1.f));
+		//boxComponent.SetShader("vs_cubes.bin", "fs_cubes.bin");
+		boxComponent.SetShader("vs_bump.bin", "fs_bump.bin");
+		boxComponent.SetTexture("fieldstone-rgba.dds", "fieldstone-n.dds");
 		auto& playerComponent = cube.AddComponent<Fluky::PlayerComponent>();
 		playerComponent.SetPlayerId(&world.GetJoystickInput(), 0);
 		auto& cameraComponent = cube.AddComponent<Fluky::CameraComponent>();
@@ -31,7 +34,10 @@ public:
 		auto& boxComponent2 = cube2.AddComponent<Fluky::BoxComponent>();
 		boxComponent2.RotateXYZ(0.f, 0.f, 0.f);
 		boxComponent2.SetPosition(10.0f, 0.f, 0.f);
-		boxComponent2.SetShape(Fluky::Vec3(2.f, 1.f, 1.f));
+		boxComponent2.SetShape(Fluky::Vec3(100.f, 0.5f, 100.f));
+		/*boxComponent2.SetShader("vs_cubes.bin", "fs_cubes.bin");*/
+		boxComponent2.SetShader("vs_bump.bin", "fs_bump.bin");
+		boxComponent2.SetTexture("fieldstone-rgba.dds", "fieldstone-n.dds");
 		auto& physicsCol2 = cube2.AddComponent<Fluky::RigidBodyComponent>();
 		physicsCol2.CreateRigidBody(world, Fluky::Vec3(100.f, 1.f, 100.f), 0.f, Fluky::Vec3(0.f, 0.f, 0.f), 1, 2 | 3 | 4);
 		auto& triggerBody = cube2.AddComponent<Fluky::CollisionTriggerComponent>();
@@ -40,6 +46,12 @@ public:
 		auto& boxComponent3 = cube3.AddComponent<Fluky::BoxComponent>();
 		boxComponent3.RotateXYZ(0.f, 0.f, 0.f);
 		boxComponent3.SetPosition(0.0f, 0.f, 2.f);
+		boxComponent3.SetShape(Fluky::Vec3(0.5f, 1.f, 2.f));
+		//boxComponent3.SetShader("vs_cubes.bin", "fs_cubes.bin");
+		boxComponent3.SetShader("vs_bump.bin", "fs_bump.bin");
+		boxComponent3.SetTexture("fieldstone-rgba.dds", "fieldstone-n.dds");
+		auto& playerComponent2 = cube2.AddComponent<Fluky::PlayerComponent>();
+		playerComponent2.SetPlayerId(&world.GetJoystickInput(), 1);
 		auto& physicsCol3 = cube3.AddComponent<Fluky::RigidBodyComponent>();
 		physicsCol3.CreateRigidBody(world, Fluky::Vec3(1.f, 1.f, 1.f), 10.f, Fluky::Vec3(0.f, 30.f, 1.f), 3, 1 | 2);
 		boxComponent3.AttachTo(physicsCol3);
@@ -48,6 +60,9 @@ public:
 		auto& boxComponent4 = cube4.AddComponent<Fluky::BoxComponent>();
 		boxComponent4.RotateXYZ(0.f, 0.f, 0.f);
 		boxComponent4.SetPosition(2.0f, 0.f, 0.f);
+		//boxComponent4.SetShader("vs_cubes.bin", "fs_cubes.bin");
+		boxComponent4.SetShader("vs_bump.bin", "fs_bump.bin");
+		boxComponent4.SetTexture("fieldstone-rgba.dds", "fieldstone-n.dds");
 		auto& physicsCol4 = cube4.AddComponent<Fluky::RigidBodyComponent>();
 		physicsCol4.CreateRigidBody(world, Fluky::Vec3(1.f, 1.f, 1.f), 10.f, Fluky::Vec3(1.f, 30.f, 0.f), 4, 1);
 		boxComponent4.AttachTo(physicsCol4);
@@ -102,6 +117,24 @@ public:
 			else if (i == 1) {
 				//auto& colobj = gameObjects.at(i).GetComponent<Fluky::RigidBodyComponent>();
 				//colobj.SetPosition(Fluky::Vec3(sin(time), 2.f, 0.f));
+				auto& player = gameObjects.at(i).GetComponent<Fluky::PlayerComponent>();
+
+				axeLX_P2 += (player.GetAxes(0) > 0.1 || player.GetAxes(0) < -0.1) ? player.GetAxes(0) * 15 : 0;
+				axeLY_P2 += (player.GetAxes(1) > 0.1 || player.GetAxes(1) < -0.1) ? player.GetAxes(1) * 15 : 0;
+				axeRX_P2 += (player.GetAxes(2) > 0.1 || player.GetAxes(2) < -0.1) ? player.GetAxes(2) * 0.01 : 0;
+				axeRY_P2 += (player.GetAxes(3) > 0.1 || player.GetAxes(3) < -0.1) ? player.GetAxes(3) * 0.01 : 0;
+
+				float radio = 50.f;
+
+				float x = radio * sinf(-axeRY_P2) * cosf(axeRX_P2);
+				float y = radio * cosf(-axeRY_P2);
+				float z = radio * sinf(-axeRY_P2) * sinf(axeRX_P2);
+
+				world.GetWindow().SetLightRadius(radio);
+
+				world.GetWindow().SetLightPos(Fluky::Vec3(x, y, z));
+
+				
 			}
 
 
@@ -117,6 +150,11 @@ public:
 	float axeLY = 0;
 	float axeRX = 0;
 	float axeRY = 10.f;
+
+	float axeLX_P2 = 0;
+	float axeLY_P2 = 0;
+	float axeRX_P2 = 0;
+	float axeRY_P2 = 10.f;
 
 };
 

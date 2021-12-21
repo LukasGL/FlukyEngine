@@ -20,6 +20,10 @@ namespace Fluky {
 
 	//Figures figtest;
 
+	uint16_t m_numLights;
+	bgfx::UniformHandle u_lightPosRadius;
+	bgfx::UniformHandle u_lightRgbInnerR;
+
 	static void GLFWErrorCallback(int error, const char* description)
 	{
 		fprintf(stderr, "GLFW error %d: %s\n", error, description);
@@ -71,7 +75,7 @@ namespace Fluky {
 		bgfx::Init init;
 		init.platformData.nwh = glfwGetWin32Window(m_windowHandle);
 		glfwGetWindowSize(m_windowHandle, &width, &height);
-		init.type = bgfx::RendererType::Direct3D12;
+		init.type = bgfx::RendererType::WebGPU;
 		init.resolution.width = (uint32_t)width;
 		init.resolution.height = (uint32_t)height;
 		init.resolution.reset = reset;
@@ -89,6 +93,10 @@ namespace Fluky {
 		bgfx::setViewClear(0, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH, 0x443355FF, 1.0f, 0);
 		bgfx::setViewRect(0, 0, 0, width, height);
 
+
+		m_numLights = 1;
+		u_lightPosRadius = bgfx::createUniform("u_lightPosRadius", bgfx::UniformType::Vec4, m_numLights);
+		u_lightRgbInnerR = bgfx::createUniform("u_lightRgbInnerR", bgfx::UniformType::Vec4, m_numLights);
 
 		/*if (figtest.Init()) {
 			std::cout << "Figures initialized succesfully!" << std::endl;
@@ -150,6 +158,19 @@ namespace Fluky {
 			// Set view 0 default viewport.
 			bgfx::setViewRect(0, 0, 0, uint16_t(width), uint16_t(height));
 		}
+
+		/*float lightPosRadius[4][(m_numLights==0)? 1: m_numLights];
+		for (uint32_t ii = 0; ii < m_numLights; ++ii)
+		{
+			lightPosRadius[ii][0] = 2.0f;
+			lightPosRadius[ii][1] = 20.0f;
+			lightPosRadius[ii][2] = 2.0f;
+			lightPosRadius[ii][3] = 100.0f;
+		}*/
+
+		bgfx::setUniform(u_lightPosRadius, &lightPoseRadius, m_numLights);
+
+		bgfx::setUniform(u_lightRgbInnerR, &lightRgbInnerR, m_numLights);
 
 		// This dummy draw call is here to make sure that view 0 is cleared
 		// if no other draw calls are submitted to view 0.

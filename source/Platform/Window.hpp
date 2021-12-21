@@ -64,6 +64,25 @@ namespace Fluky
 		GLFWwindow* m_windowHandle;
 
 		CameraComponent* cameraComponent;
+
+		void SetLightPos(Fluky::Vec3 pos) {
+			lightPoseRadius[0] = pos.x;
+			lightPoseRadius[1] = pos.y;
+			lightPoseRadius[2] = pos.z;
+		}
+
+		void SetLightRadius(float rad) {
+			lightPoseRadius[3] = rad;
+		}
+
+		void SetLightRGBA(float r, float g, float b, float a) {
+			lightRgbInnerR[0] = r;
+			lightRgbInnerR[1] = g;
+			lightRgbInnerR[2] = b;
+			lightRgbInnerR[3] = a;
+		}
+
+		
 	private:
 		/**
 		   * what to do when the window starts up
@@ -80,6 +99,9 @@ namespace Fluky
 		   *
 		 */
 		void Update() noexcept;
+
+		float lightPoseRadius[4] = { 2.f,20.f,2.f,100.f };
+		float lightRgbInnerR[4] = { 1.0f, 1.0f, 1.0f, 0.8f };
 	};
 
 }
