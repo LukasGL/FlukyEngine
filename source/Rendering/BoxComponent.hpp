@@ -5,6 +5,7 @@
 #include "../World/Component.hpp"
 #include "../World/TransformComponent.hpp"
 #include "../PhysicsCollision/RigidBodyComponent.hpp"
+#include "bgfx_utils.h"
 
 namespace Fluky {
 	/**
@@ -130,6 +131,11 @@ namespace Fluky {
 
 		const char* textureColor;
 		const char* textureNormal;
+
+		bgfx::TextureHandle m_textureColor;
+		bgfx::TextureHandle m_textureNormal;
+		bgfx::UniformHandle s_texColor;
+		bgfx::UniformHandle s_texNormal;
 
 
 	};

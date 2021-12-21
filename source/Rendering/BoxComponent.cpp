@@ -264,10 +264,7 @@ namespace Fluky {
 	bgfx::ShaderHandle fsh;
 	bgfx::ProgramHandle program;
 
-	bgfx::TextureHandle m_textureColor;
-	bgfx::TextureHandle m_textureNormal;
-	bgfx::UniformHandle s_texColor;
-	bgfx::UniformHandle s_texNormal;
+	
 
 	int BoxComponent::Init()
 	{
