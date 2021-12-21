@@ -123,6 +123,8 @@ namespace Fluky {
    */
 		void AddRotationXYZ(float angleX, float angleY, float angleZ);
 
+		void ScaleMtx(Fluky::Vec3 scale);
+
 
 		std::vector<float> Location = { 0.f, 0.f, 0.f };
 

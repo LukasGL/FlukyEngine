@@ -17,6 +17,7 @@ Fluky::TransformComponent PhysMtxtoTransfMtx(btTransform mtx_in) {
 			counter++;
 		}
 	}*/
+
 	m_out[0] = m[0][0]; //
 	m_out[1] = m[0][1];
 	m_out[2] = m[0][2];
@@ -84,6 +85,10 @@ namespace Fluky {
 		mtx[12] = Location[0];
 		mtx[13] = Location[1];
 		mtx[14] = Location[2];
+	}
+
+	void TransformComponent::ScaleMtx(Fluky::Vec3 scale) {
+		bx::mtxScale(mtx, scale.x, scale.y, scale.z);
 	}
 
 }

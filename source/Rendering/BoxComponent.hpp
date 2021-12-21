@@ -51,6 +51,16 @@ namespace Fluky {
 			transf->SetTranslation(x, y, z);
 		}
 
+		void SetShape(Fluky::Vec3 s) {
+			shape = s;
+			/*for (int i = 0; i < 8; i++) {
+				this->s_cubeVertices[i].m_x *= shape.x;
+				this->s_cubeVertices[i].m_y *= shape.y;
+				this->s_cubeVertices[i].m_z *= shape.z;
+			}*/
+			transf->ScaleMtx(s);
+		}
+
 		void RotateX(float angle) {
 			transf->RotateX(angle);
 		}
@@ -72,13 +82,37 @@ namespace Fluky {
 			*colobj = c;
 		}
 
+		struct PosColorVertex
+		{
+			float m_x;
+			float m_y;
+			float m_z;
+			uint32_t m_abgr;
+		};
+
+		
+
 	private:
+
+		PosColorVertex s_cubeVertices[8] = {
+				{-1.0f,  1.0f,  1.0f, 0xff000000 },
+				{ 1.0f,  1.0f,  1.0f, 0xff0000ff },
+				{-1.0f, -1.0f,  1.0f, 0xff00ff00 },
+				{ 1.0f, -1.0f,  1.0f, 0xff00ffff },
+				{-1.0f,  1.0f, -1.0f, 0xffff0000 },
+				{ 1.0f,  1.0f, -1.0f, 0xffff00ff },
+				{-1.0f, -1.0f, -1.0f, 0xffffff00 },
+				{ 1.0f, -1.0f, -1.0f, 0xffffffff },
+		};
+
+		Fluky::Vec3 shape = Fluky::Vec3(1.f, 1.f, 1.f);
 
 		TransformComponent* transf = new TransformComponent;
 
 		bool attached = false;
 
 		RigidBodyComponent* colobj = new RigidBodyComponent;
+
 	};
 
 }

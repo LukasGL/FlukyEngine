@@ -12,6 +12,7 @@ public:
 		auto& boxComponent = cube.AddComponent<Fluky::BoxComponent>();
 		boxComponent.RotateXYZ(0.f, 0.f, 0.f);
 		boxComponent.SetPosition(0.0f, 5.f, 5.f);
+		boxComponent.SetShape(Fluky::Vec3(2.f, 1.f, 1.f));
 		auto& playerComponent = cube.AddComponent<Fluky::PlayerComponent>();
 		playerComponent.SetPlayerId(&world.GetJoystickInput(), 0);
 		auto& cameraComponent = cube.AddComponent<Fluky::CameraComponent>();
@@ -24,13 +25,13 @@ public:
 		auto callback = [physicsCol](Fluky::World& world, Fluky::RigidBodyComponent& otherRigidBody, bool isSwaped, Fluky::CollisionInformation& colInfo) mutable {
 			std::cout << "cubo colisiona" << std::endl;
 		};
-
 		physicsCol.SetStartCollisionCallback(callback);
 
 		auto cube2 = world.CreateGameObject();
 		auto& boxComponent2 = cube2.AddComponent<Fluky::BoxComponent>();
 		boxComponent2.RotateXYZ(0.f, 0.f, 0.f);
-		boxComponent2.SetPosition(-2.0f, 0.f, 0.f);
+		boxComponent2.SetPosition(10.0f, 0.f, 0.f);
+		boxComponent2.SetShape(Fluky::Vec3(2.f, 1.f, 1.f));
 		auto& physicsCol2 = cube2.AddComponent<Fluky::RigidBodyComponent>();
 		physicsCol2.CreateRigidBody(world, Fluky::Vec3(100.f, 1.f, 100.f), 0.f, Fluky::Vec3(0.f, 0.f, 0.f), 1, 2 | 3 | 4);
 		auto& triggerBody = cube2.AddComponent<Fluky::CollisionTriggerComponent>();
@@ -41,7 +42,7 @@ public:
 		boxComponent3.SetPosition(0.0f, 0.f, 2.f);
 		auto& physicsCol3 = cube3.AddComponent<Fluky::RigidBodyComponent>();
 		physicsCol3.CreateRigidBody(world, Fluky::Vec3(1.f, 1.f, 1.f), 10.f, Fluky::Vec3(0.f, 30.f, 1.f), 3, 1 | 2);
-		boxComponent2.AttachTo(physicsCol3);
+		boxComponent3.AttachTo(physicsCol3);
 
 		auto cube4 = world.CreateGameObject();
 		auto& boxComponent4 = cube4.AddComponent<Fluky::BoxComponent>();
@@ -99,7 +100,7 @@ public:
 
 			}
 			else if (i == 1) {
-				auto& colobj = gameObjects.at(i).GetComponent<Fluky::RigidBodyComponent>();
+				//auto& colobj = gameObjects.at(i).GetComponent<Fluky::RigidBodyComponent>();
 				//colobj.SetPosition(Fluky::Vec3(sin(time), 2.f, 0.f));
 			}
 

@@ -3,28 +3,10 @@
 
 #include "bgfx/bgfx.h"
 #include "bgfx/platform.h"
+#include <bx/bx.h>
+#include <bx/math.h>
 #include <iostream>
 
-struct PosColorVertex
-{
-	float m_x;
-	float m_y;
-	float m_z;
-	uint32_t m_abgr;
-};
-
-
-static PosColorVertex s_cubeVertices[] =
-{
-	{-1.0f,  1.0f,  1.0f, 0xff000000 },
-	{ 1.0f,  1.0f,  1.0f, 0xff0000ff },
-	{-1.0f, -1.0f,  1.0f, 0xff00ff00 },
-	{ 1.0f, -1.0f,  1.0f, 0xff00ffff },
-	{-1.0f,  1.0f, -1.0f, 0xffff0000 },
-	{ 1.0f,  1.0f, -1.0f, 0xffff00ff },
-	{-1.0f, -1.0f, -1.0f, 0xffffff00 },
-	{ 1.0f, -1.0f, -1.0f, 0xffffffff },
-};
 
 static const uint16_t s_cubeTriList[] =
 {
@@ -121,11 +103,24 @@ namespace Fluky {
 		/*	float mtx[16];
 			bx::mtxRotateXY(mtx, sizeX, sizeY);*/
 		if (attached) {
-			*transf = PhysMtxtoTransfMtx(colobj->GetTransform());
+			btQuaternion rot = colobj->GetTransform().getRotation();
+			btVector3 origin = colobj->GetTransform().getOrigin();
+			//*transf = PhysMtxtoTransfMtx(colobj->GetTransform());
+			float mtx[16];
+			colobj->GetTransform().getOpenGLMatrix(mtx);
+			mtx[0] = shape.x;
+			mtx[5] = shape.y;
+			mtx[10] = shape.z;
+			//bx::mtxScale(mtx, shape.x, shape.y, shape.z);
 			//*transf = *transf + PhysMtxtoTransfMtx(colobj->GetTransform());
+			bgfx::setTransform(mtx);
+		}
+		else {
+			bgfx::setTransform(transf->GetMatrix());
 		}
 
-		bgfx::setTransform(transf->GetMatrix());
+
+		
 
 		bgfx::setVertexBuffer(0, vbh);
 		bgfx::setIndexBuffer(ibh);
