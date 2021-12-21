@@ -257,7 +257,6 @@ namespace Fluky {
 
 namespace Fluky {
 
-
 	bgfx::VertexBufferHandle vbh;
 	bgfx::IndexBufferHandle ibh;
 

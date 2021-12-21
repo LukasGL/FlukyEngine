@@ -12,6 +12,8 @@ public:
 		auto& boxComponent = cube.AddComponent<Fluky::BoxComponent>();
 		boxComponent.RotateXYZ(0.f, 0.f, 0.f);
 		boxComponent.SetPosition(2.0f, 0.f, 0.f);
+		boxComponent.SetShader("vs_bump.bin", "fs_bump.bin");
+		boxComponent.SetTexture("Bricks074_1K_Color.dds", "Bricks074_1K_NormalDX.dds");
 		auto& playerComponent = cube.AddComponent<Fluky::PlayerComponent>();
 		playerComponent.SetPlayerId(&world.GetJoystickInput(), 0);
 		auto& cameraComponent = cube.AddComponent<Fluky::CameraComponent>();
@@ -22,11 +24,15 @@ public:
 		auto& boxComponent2 = cube2.AddComponent<Fluky::BoxComponent>();
 		boxComponent2.RotateXYZ(0.f, 0.f, 0.f);
 		boxComponent2.SetPosition(-2.0f, 0.f, 0.f);
+		boxComponent2.SetShader("vs_bump.bin", "fs_bump.bin");
+		boxComponent2.SetTexture("Bricks074_1K_Color.dds", "Bricks074_1K_NormalDX.dds");
 
 		auto cube3 = world.CreateGameObject();
 		auto& boxComponent3 = cube3.AddComponent<Fluky::BoxComponent>();
 		boxComponent3.RotateXYZ(0.f, 0.f, 0.f);
 		boxComponent3.SetPosition(0.0f, 0.f, 2.f);
+		boxComponent3.SetShader("vs_bump.bin", "fs_bump.bin");
+		boxComponent3.SetTexture("fieldstone-rgba.dds", "fieldstone-n.dds");
 
 		world.StartUpScene();
 

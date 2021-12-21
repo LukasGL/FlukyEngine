@@ -131,6 +131,7 @@ namespace Fluky {
 		const char* textureColor;
 		const char* textureNormal;
 
+
 	};
 
 }
