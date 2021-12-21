@@ -44,11 +44,7 @@ La solución solamente ha sido probada en Windows 10 y directamente de Visual St
 
 Los ejemplos serán generados automáticamente y serán los siguientes:
 
-- `ex_audio.exe` Para la prueba del audio 3D, el cubo principal emite un sonido. El cuerpo puede ser trasladado en el espacio con el análogo izquierdo del joystick (eje X e Y) y para la profundidad se utiliza el análogo derecho.
-- `ex_components.exe` Se inicializan 3 game objects distintos, los cuales se mantienen rotando en la misma posición constantemente.
-- `ex_deleteobject.exe` Se inicializa un game object que se puede mover en el espacio y que puede ser eliminado con la tecla A del joystick.
-- `ex_multiaudio.exe` Se crean 2 game objects con box component asignadas, los cuales se pueden mover en el espacio con 2 joysticks. Además cada uno emite un sonido distinto que probará la emisión de sonido en simultaneo de distintos cuerpos.
-- `ex_players.exe` Se crean 2 game objects con box component asignadas, las cuales se encuentran en un lugar determinado y pueden girar en el lugar con la ayuda de 2 joysticks.
+- `ex_gameLvl1.exe`, en este programa se crea una gran cantidad de cubos, donde 1 de esos puede ser controlado. La finalidad es encontrar el cubo rojo para superar el nivel.
 
 Toda la explicación puede ser vista en el video de la demostración haciendo clic [aquí](https://youtu.be/E3vkcPsZdg8)
 
@@ -60,6 +56,7 @@ Para crear juegos es recomendable utilizar los ejemplos descritos en la sección
 - `PlayerComponent`, asigna un gamepad al game object. Se debe entregar el JoystickInput (`&world.GetJoystickInput()`) y el índice del player que podrá manipular el game object.
 - `BoxComponent`, asigna un cubo que se renderizará en el espacio. Este podrá ser trasladado y rotado según el usuario lo requiera con la ayuda de un `TransformComponent`.
 - `TransformComponent`, define las transformaciones (traslación y rotación) que pueden ser reflejadas en el `BoxComponent` asignado al mismo game object. 
+- `RigidBodyComponent`, se encarga de implementar un cuerpo que tendrá colisiones, este puede se r asignado a las mismas transformaciones de la mesh.
 
 Cada uno de los componentes tiene distintas funciones que podrá utilizar el usuario, donde cada una está documentada en los archivos generados por doxygen. 
 
@@ -76,3 +73,5 @@ Toda la información acerca de las funciones y clases creadas se puede ver media
 ![ex_cube](images/ex_cube.png)
 
 ![ex_cube](images/ex_components.png)
+
+![ex_cube](images/ex_gamelvl1.png)
